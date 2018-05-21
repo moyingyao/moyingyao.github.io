@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>AmberWu</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://moyingyao.github.io/"/>
+  <updated>2018-05-18T14:27:18.211Z</updated>
+  <id>http://moyingyao.github.io/</id>
+  
+  <author>
+    <name>AmberWu</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>伊始</title>
+    <link href="http://moyingyao.github.io/2018/05/17/%E4%BC%8A%E5%A7%8B/"/>
+    <id>http://moyingyao.github.io/2018/05/17/伊始/</id>
+    <published>2018-05-17T14:27:24.000Z</published>
+    <updated>2018-05-18T14:27:18.211Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to AmberWu’s Blog! 为什么会想弄这么一个博客呢，还不是因为有那么一个研究僧程序猿且男屌丝，哦不不不，大神，嗯，大神0.0。第一次接触建站域名，随便弄弄。还挺有意思的，本以为这个很难，离自己很远，动起手来，真的蛮简单的，毕竟，本学渣弄得下来，哈哈哈<br><a id="more"></a></p><h2 id="简单随便说说建站方法"><a href="#简单随便说说建站方法" class="headerlink" title="简单随便说说建站方法"></a>简单随便说说建站方法</h2><h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><p>就是以Hexo为主，剩下的自行百度吧，毕竟我要回寝室，没时间写了</p><h3 id="Github-Pages"><a href="#Github-Pages" class="headerlink" title="Github Pages"></a>Github Pages</h3><p>以github为载体实现的，也百度吧，啊啊啊，实验室就剩我自己了。</p><h3 id="更多资料"><a href="#更多资料" class="headerlink" title="更多资料"></a>更多资料</h3><p>参考资料请点击：:</p><p><a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">资料一</a><br><a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">资料二</a><br><a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">资料三</a><br><a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">资料四</a><br><a href="https://reuixiy.github.io/technology/computer/computer-aided-art/2017/06/09/hexo-next-optimization.html#%E9%99%84%E4%B8%8A%E6%88%91%E7%9A%84-custom-styl" target="_blank" rel="noopener">这个是会让博客变好看的哦</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to AmberWu’s Blog! 为什么会想弄这么一个博客呢，还不是因为有那么一个研究僧程序猿且男屌丝，哦不不不，大神，嗯，大神0.0。第一次接触建站域名，随便弄弄。还挺有意思的，本以为这个很难，离自己很远，动起手来，真的蛮简单的，毕竟，本学渣弄得下来，哈哈哈&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随便写写" scheme="http://moyingyao.github.io/categories/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99/"/>
+    
+    
+      <category term="个人随笔" scheme="http://moyingyao.github.io/tags/%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+</feed>
