@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#fff">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#fff">
+
+
+
+
+
+  <meta name="keywords" content="机器学习实战," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="AmberWu" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="这本书的好就不多说的，其实如果不是因为机器学习那门学位课的作业是这个，我想我会错过这本书0.0">
+<meta name="keywords" content="机器学习实战">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习实战--KNN">
+<meta property="og:url" content="http://moyingyao.github.io/2018/05/23/机器学习实战-KNN/index.html">
+<meta property="og:site_name" content="AmberWu">
+<meta property="og:description" content="这本书的好就不多说的，其实如果不是因为机器学习那门学位课的作业是这个，我想我会错过这本书0.0">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/1diiQIB.png">
+<meta property="og:updated_time" content="2018-05-23T13:11:04.231Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习实战--KNN">
+<meta name="twitter:description" content="这本书的好就不多说的，其实如果不是因为机器学习那门学位课的作业是这个，我想我会错过这本书0.0">
+<meta name="twitter:image" content="https://i.imgur.com/1diiQIB.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://moyingyao.github.io/2018/05/23/机器学习实战-KNN/"/>
+
+
+
+
+
+  <title>机器学习实战--KNN | AmberWu</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AmberWu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-站主简介">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            站主简介
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-类别">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            类别
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-时间轴">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://moyingyao.github.io/2018/05/23/机器学习实战-KNN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AmberWu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmberWu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习实战--KNN</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-23T20:24:18+08:00">
+                2018-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,144
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这本书的好就不多说的，其实如果不是因为机器学习那门学位课的作业是这个，我想我会错过这本书0.0<br><a id="more"></a><br><img src="https://i.imgur.com/1diiQIB.png" alt=""></p>
+<p>—————————————————————–下面进入正题—————————————————————–</p>
+<h1 id="kNN-py"><a href="#kNN-py" class="headerlink" title="kNN.py"></a>kNN.py</h1><pre><code>&apos;&apos;&apos; 
+优点：精度高，对异常值不敏感，无数据输入假定 
+缺点：计算复杂度高，空间复杂度高，无法给出数据的内在含义 
+使用数据范围：数值型和标称型 
+&apos;&apos;&apos;  
+from numpy import *  
+import operator  
+from os import listdir  
+
+def createDataSet():  
+    group = array([[1.0,1.1],[1.0,1.0],[0,0],[0,0.1]])  
+    labels = [&apos;A&apos;,&apos;A&apos;,&apos;B&apos;,&apos;B&apos;]  
+    return group, labels 
+</code></pre><h2 id="classify0"><a href="#classify0" class="headerlink" title="classify0()"></a>classify0()</h2><pre><code># inX用于分类的输入向量,是一个向量  
+# dataSet输入的训练样本集，是一个矩阵  
+# labels标签向量  
+# k用于选择最近邻居的数目  
+# labels数目与dataSet的行数相同 
+
+def classify0(inX, dataSet, labels, k):
+    dataSetSize = dataSet.shape[0]  #返回的是dataSet的行数，行数就是样本的数量
+    diffMat = tile(inX, (dataSetSize,1)) - dataSet  #矩阵相减
+    #inX是个向量，而dataset是个矩阵，两者之间要进行相减的运算，需要把这个向量也补成一个和dataset有相同行数列数的矩阵，
+    #tile()的第二个参数，就是(datasetsize,1)，这个参数的意思就是把inX补成有datasetsize行数的矩阵。
+    #假如inX是（1，2），datasetsize =3，那么经过tile()转换后产生了一个这样的矩阵（[1,2],[1,2],[1,2]）
+    sqDiffMat = diffMat**2  #平方
+    sqDistances = sqDiffMat.sum(axis=1) #按行求和
+    # sqdiffMat是([1,2],[0,1],[3,4])，axis这个参数影响了对矩阵求和时候的顺序，axis=0是按照列求和，结果为([3.1.7])
+    # axis=1是按照行进行求和，结果是([4,7])。
+    distances = sqDistances**0.5    #开方，得到欧氏距离
+    sortedDistIndicies = distances.argsort()     #把向量中每个元素进行排序，结果是元素的索引形成的向量
+    #例子distance([1,4,3])，经过distance.argsort()之后的结果是([0,2,1]
+    classCount={}       #存放最终的分类结果及相应的结果投票数
+    #投票过程，就是统计前k个最近的样本所属类别包含的样本个数
+    for i in range(k):
+        # index = sortedDistIndicies[i]是第i个最相近的元素索引，即样本下标
+        # voteIlabel = labels[index]是样本index对应的分类结果(&apos;A&apos; or &apos;B&apos;)
+        voteIlabel = labels[sortedDistIndicies[i]]
+        # classCount.get(voteIlabel, 0)返回voteIlabel的值，如果不存在，则返回0
+        # 然后将票数增1
+        classCount[voteIlabel] = classCount.get(voteIlabel,0) + 1
+    # 把分类结果进行排序，然后返回得票数最多的分类结果
+    # key=operator.itemgetter(1)的意思是按照字典里的第一个排序
+    #例子a = [1, 2, 3]，b = operator.itemgetter(1)，b(a)返回为2
+    #b = operator.itemgetter(1, 0)，b(a)，定义函数b，获取对象的第1个域和第0个的值，返回 (2, 1)
+    # reverse=True是降序排序
+    sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(1), reverse=True)
+    return sortedClassCount[0][0] #返回类别最多的类别
+</code></pre><h2 id="file2matrix-–将文本记录转换为NumPy"><a href="#file2matrix-–将文本记录转换为NumPy" class="headerlink" title="file2matrix()–将文本记录转换为NumPy"></a>file2matrix()–将文本记录转换为NumPy</h2><pre><code>#将文本记录转换为NumPy的解析程序
+#输入为矩阵，输出为训练样本矩阵和类标签向量
+def file2matrix(filename):
+    fr = open(filename)     #打开文档
+    numberOfLines = len(fr.readlines())        #得到文件行数
+    #fr.readlines()读取行数,存在数组中,导入后每行中用\t隔开,两行之间用\n换行得到文件行数
+    returnMat = zeros((numberOfLines,3))        #创建返回NumPy矩阵，numberoflines行，3列的初始化零的矩阵
+    classLabelVector = []#定义一个空的数组
+    fr = open(filename)
+    index = 0
+    for line in fr.readlines():
+        line = line.strip() #删除（）中的内容，这里表示删除空格
+        listFromLine = line.split(&apos;\t&apos;)#以\t分割
+        #print(listFromLine)
+        returnMat[index,:] = listFromLine[0:3]#把每行前三个元素存入returnMat矩阵中，每行中存储三个
+        classLabelVector.append(int(listFromLine[-1]))#存储第四列元素即标签，在数组中append添加，-1表示最后一列
+        index += 1
+    return returnMat,classLabelVector
+</code></pre><h2 id="autoNorm-–归一化数值"><a href="#autoNorm-–归一化数值" class="headerlink" title="autoNorm()–归一化数值"></a>autoNorm()–归一化数值</h2><pre><code>#归一化数值，避免某特征值过大，使得权重比例不均匀，对计算结果产生影响。
+#autoNorm可以自动将数字特征值转化为0到1区间
+def autoNorm(dataSet):
+    minVals = dataSet.min(0)#一维数组，值为各项特征（列）中的最小值。参数0使得函数从列中选取最小值
+    #print(minVals)
+    maxVals = dataSet.max(0)
+    #print(maxVals)
+    ranges = maxVals - minVals
+    normDataSet = zeros(shape(dataSet)) #创建与样本集一样大小的零矩阵
+    #print(normDataSet)
+    m = dataSet.shape[0]#dataSet的行数
+    normDataSet = dataSet - tile(minVals, (m,1))#矩阵中所有的值减去最小值
+    #tile将原来的一个数组minVals，扩充成了m行1列的数组
+    normDataSet = normDataSet/tile(ranges, (m,1))   #矩阵中所有的值除以最大取值范围进行归一化
+    return normDataSet, ranges, minVals
+</code></pre><h2 id="datingClassTest-–测试算法"><a href="#datingClassTest-–测试算法" class="headerlink" title="datingClassTest()–测试算法"></a>datingClassTest()–测试算法</h2><pre><code>#测试算法，样本集中百分之九十的数据用来训练样本，百分之十的样本用来测试分类器kNN.classify0()。
+def datingClassTest():
+    hoRatio = 0.10      #百分之十的数据用于测试分类器，更改该变量的值可更改参加测试分类器的数据量
+    datingDataMat,datingLabels = file2matrix(&apos;datingTestSet2.txt&apos;)       #导入数据
+    normMat, ranges, minVals = autoNorm(datingDataMat)      #归一化数值
+    m = normMat.shape[0]    #得到总行数
+    numTestVecs = int(m*hoRatio)    #测试总数据数量，m*hoRatio是一个浮点型，需转化成整形
+    errorCount = 0.0    #初试错误率为0
+    for i in range(numTestVecs):
+        classifierResult = classify0(normMat[i,:],normMat[numTestVecs:m,:],datingLabels[numTestVecs:m],3)
+        #分类器（需要测试的向量，训练样本集(90%)，标签集合，K）
+        print(&quot;the classifier came back with: %d, the real answer is: %d&quot; % (classifierResult, datingLabels[i]))
+        if (classifierResult != datingLabels[i]): errorCount += 1.0     #计数，错误的个数
+    print(&quot;the total error rate is: %f&quot; % (errorCount/float(numTestVecs)))      #错误率
+    print(errorCount)
+</code></pre><h2 id="classifyPerson-–约会数据"><a href="#classifyPerson-–约会数据" class="headerlink" title="classifyPerson()–约会数据"></a>classifyPerson()–约会数据</h2><pre><code>#对于未来的约会预测函数，输入飞行里程数，玩视频游戏的百分比和冰激凌公升数，可以得到一个是否对他感兴趣的预测，
+def classifyPerson():
+    resultList=[&apos;not at all&apos;,&apos;in samll doses&apos;,&apos;in large doses&apos;] #三种感兴趣程度
+    percentTats=float(input(&quot;percentage of time spent playing video games?&quot;))
+    ffMiles=floats=float(input(&quot;frequent flier miles earned per year?&quot;))
+    iceCream=float(input(&quot;liters of ice cream consuned per year?&quot;))#input键盘输入
+    datingDataMat,datingLabels=file2matrix(&apos;datingTestSet2.txt&apos;) # 导入数据
+    normMat,ranges,minvals=autoNorm(datingDataMat) # 归一化，ranges是归一化的分母
+    inArr=array([ffMiles,percentTats,iceCream]) # inArr是归一化之前的datingDataMat数组中的行
+    classifierResult=classify0((inArr-minvals)/ranges,normMat,datingLabels,3)#先归一化，然后调用分类函数
+    #print(classifierResult)
+    print(&quot;you will probably like this person:%s&quot;%resultList[classifierResult-1])
+</code></pre><h2 id="img2vector-–图片转向量"><a href="#img2vector-–图片转向量" class="headerlink" title="img2vector()–图片转向量"></a>img2vector()–图片转向量</h2><pre><code>#手写体：32*32的黑白图像
+#图片转向量，将32*32的二进制图像矩阵转换为1*1024的向量
+def img2vector(filename):
+    returnVect = zeros((1,1024))
+    fr = open(filename)
+    for i in range(32):#循环读出文件的前32行
+        lineStr = fr.readline()
+        for j in range(32):#将每行的前32个字符存储在NumPy数组中
+            returnVect[0,32*i+j] = int(lineStr[j])
+    return returnVect#返回数组
+</code></pre><h2 id="handwritingClassTest-–手写体测试"><a href="#handwritingClassTest-–手写体测试" class="headerlink" title="handwritingClassTest()–手写体测试"></a>handwritingClassTest()–手写体测试</h2><pre><code>#手写体
+def handwritingClassTest():
+    hwLabels = []
+    trainingFileList = listdir(&apos;trainingDigits&apos;)           #导入训练数据
+    #print(trainingFileList)
+    m = len(trainingFileList)   #训练数据的总数
+    #print(m)
+    trainingMat = zeros((m,1024))   #m行1024列的零向量
+    for i in range(m):
+        fileNameStr = trainingFileList[i]   #文件名
+        fileStr = fileNameStr.split(&apos;.&apos;)[0]     #取文件名.之前的名字
+        classNumStr = int(fileStr.split(&apos;_&apos;)[0])    #取文件名_之前的名字
+        hwLabels.append(classNumStr)
+        trainingMat[i,:] = img2vector(&apos;trainingDigits/%s&apos; % fileNameStr)    #将对应数据集下的文件一个个的转为向量
+        #print(trainingMat[i,:])
+    testFileList = listdir(&apos;testDigits&apos;)        #测试数据
+    errorCount = 0.0
+    mTest = len(testFileList)
+    for i in range(mTest):
+        fileNameStr = testFileList[i]
+        fileStr = fileNameStr.split(&apos;.&apos;)[0]
+        classNumStr = int(fileStr.split(&apos;_&apos;)[0])
+        vectorUnderTest = img2vector(&apos;testDigits/%s&apos; % fileNameStr)
+        classifierResult = classify0(vectorUnderTest, trainingMat, hwLabels, 3) #利用训练的trainingMat测试
+        print(&quot;the classifier came back with: %d, the real answer is: %d&quot; % (classifierResult, classNumStr))
+        if (classifierResult != classNumStr): errorCount += 1.0
+    print(&quot;\nthe total number of errors is: %d&quot; % errorCount)
+    print(&quot;\nthe total error rate is: %f&quot; % (errorCount/float(mTest)))
+</code></pre><h1 id="knn-main-py"><a href="#knn-main-py" class="headerlink" title="knn_main.py"></a>knn_main.py</h1><pre><code>import kNN  
+import matplotlib  
+import matplotlib.pyplot as plt  
+import numpy as np  
+from imp import reload  
+
+
+group,labels=kNN.createDataSet()  
+#print(group)  
+#print(labels)  
+#print(kNN.classify0([0,0],group,labels,3))  
+</code></pre><h2 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h2><pre><code>fig=plt.figure()                #建立画板  
+ax=fig.add_subplot(111)         #添加一个子图，一行一列第一个子块，若括号内为349，则三行四列第9个子块  
+reload(kNN)  
+datingDataMat,datingLabels=kNN.file2matrix(&apos;datingTestSet2.txt&apos;)  
+#print(datingDataMat)  
+#ax.scatter(datingDataMat[:,1],datingDataMat[:,2])        # scatter绘制散点图,使用第二列第三列数据  
+#ax.scatter(datingDataMat[:,1],datingDataMat[:,2],15.0*np.array(datingLabels),15.0*np.array(datingLabels))  
+ax.scatter(datingDataMat[:,0],datingDataMat[:,1],15.0*np.array(datingLabels),15.0*np.array(datingLabels))  
+#plt.show()  
+</code></pre><h2 id="归一化数值"><a href="#归一化数值" class="headerlink" title="归一化数值"></a>归一化数值</h2><pre><code>normMat,ranges,minVals=kNN.autoNorm(datingDataMat)  
+#print(normMat)  
+#print(ranges)  
+#print(minVals)  
+</code></pre><h2 id="测试算法"><a href="#测试算法" class="headerlink" title="测试算法"></a>测试算法</h2><pre><code>#kNN.datingClassTest()  
+</code></pre><h2 id="约会预测"><a href="#约会预测" class="headerlink" title="约会预测"></a>约会预测</h2><pre><code>#对于未来的约会预测函数，输入飞行里程数，玩视频游戏的百分比和冰激凌公升数，可以得到一个是否对他感兴趣的预测，  
+#输入10   10000   0.5  
+#kNN.classifyPerson()  
+</code></pre><h2 id="手写体"><a href="#手写体" class="headerlink" title="手写体"></a>手写体</h2><pre><code>#trainingDigits包含大约2000个例子，每个数字约有200个样本  
+#testDigits包含大约900个测试数据  
+testVector=kNN.img2vector(&apos;trainingDigits/0_13.txt&apos;)  
+#print(testVector[0,0:31])  
+#print(testVector[0,32:63])  
+#print(testVector[0,64:95])  
+kNN.handwritingClassTest()  
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+	
+	
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习实战/" rel="tag"><i class="fa fa-tag"></i> 机器学习实战</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/17/伊始/" rel="next" title="伊始">
+                <i class="fa fa-chevron-left"></i> 伊始
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="AmberWu" />
+            
+              <p class="site-author-name" itemprop="name">AmberWu</p>
+              <p class="site-description motion-element" itemprop="description">这是一个深度学习菜鸟做汇报的地方</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/moyingyao" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:moyingyao@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://my.csdn.net/?ref=toolbar" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-copyright"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5021422784/home?wvr=5&topnav=1&mod=logo" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yzhao.top/" title="😆洋仔的世界😆" target="_blank">😆洋仔的世界😆</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#kNN-py"><span class="nav-number">1.</span> <span class="nav-text">kNN.py</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#classify0"><span class="nav-number">1.1.</span> <span class="nav-text">classify0()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#file2matrix-–将文本记录转换为NumPy"><span class="nav-number">1.2.</span> <span class="nav-text">file2matrix()–将文本记录转换为NumPy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#autoNorm-–归一化数值"><span class="nav-number">1.3.</span> <span class="nav-text">autoNorm()–归一化数值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#datingClassTest-–测试算法"><span class="nav-number">1.4.</span> <span class="nav-text">datingClassTest()–测试算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#classifyPerson-–约会数据"><span class="nav-number">1.5.</span> <span class="nav-text">classifyPerson()–约会数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#img2vector-–图片转向量"><span class="nav-number">1.6.</span> <span class="nav-text">img2vector()–图片转向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#handwritingClassTest-–手写体测试"><span class="nav-number">1.7.</span> <span class="nav-text">handwritingClassTest()–手写体测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#knn-main-py"><span class="nav-number">2.</span> <span class="nav-text">knn_main.py</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#散点图"><span class="nav-number">2.1.</span> <span class="nav-text">散点图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#归一化数值"><span class="nav-number">2.2.</span> <span class="nav-text">归一化数值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试算法"><span class="nav-number">2.3.</span> <span class="nav-text">测试算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#约会预测"><span class="nav-number">2.4.</span> <span class="nav-text">约会预测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手写体"><span class="nav-number">2.5.</span> <span class="nav-text">手写体</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AmberWu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v="></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v="></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>
