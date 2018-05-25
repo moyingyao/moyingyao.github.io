@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#fff">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#fff">
+
+
+
+
+
+  <meta name="keywords" content="机器学习实战," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="AmberWu" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="决策树优点：计算复杂度不高，输出结果易于理解，对中间值的缺失不敏感，可以处理不相关特诊数据缺点：可能会产生过度匹配问题使用数据类型：数值型和标称型专家系统中，经常使用决策树">
+<meta name="keywords" content="机器学习实战">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习实战--决策树">
+<meta property="og:url" content="http://moyingyao.github.io/2018/05/25/机器学习实战-决策树/index.html">
+<meta property="og:site_name" content="AmberWu">
+<meta property="og:description" content="决策树优点：计算复杂度不高，输出结果易于理解，对中间值的缺失不敏感，可以处理不相关特诊数据缺点：可能会产生过度匹配问题使用数据类型：数值型和标称型专家系统中，经常使用决策树">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-25T03:05:40.151Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习实战--决策树">
+<meta name="twitter:description" content="决策树优点：计算复杂度不高，输出结果易于理解，对中间值的缺失不敏感，可以处理不相关特诊数据缺点：可能会产生过度匹配问题使用数据类型：数值型和标称型专家系统中，经常使用决策树">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://moyingyao.github.io/2018/05/25/机器学习实战-决策树/"/>
+
+
+
+
+
+  <title>机器学习实战--决策树 | AmberWu</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AmberWu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-站主简介">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            站主简介
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-类别">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            类别
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-时间轴">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://moyingyao.github.io/2018/05/25/机器学习实战-决策树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AmberWu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmberWu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习实战--决策树</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-25T10:32:28+08:00">
+                2018-05-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,984
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h1><p>优点：计算复杂度不高，输出结果易于理解，对中间值的缺失不敏感，可以处理不相关特诊数据<br>缺点：可能会产生过度匹配问题<br>使用数据类型：数值型和标称型<br>专家系统中，经常使用决策树<br><a id="more"></a></p>
+<h1 id="trees-py"><a href="#trees-py" class="headerlink" title="trees.py"></a>trees.py</h1><pre><code>from math import log    
+import operator
+</code></pre><h2 id="createDataSet"><a href="#createDataSet" class="headerlink" title="createDataSet()"></a>createDataSet()</h2><p>创建数据集</p>
+<pre><code>def createDataSet():
+    # 数据集中两个特征&apos;no surfacing&apos;,&apos;flippers&apos;, 数据的两个类标签&apos;yes&apos;,&apos;no
+    #dataSet是个list
+    dataSet = [[1, 1, &apos;yes&apos;],
+                 [1, 1, &apos;yes&apos;],
+                 [1, 0, &apos;no&apos;],
+                 [0, 1, &apos;no&apos;],
+                 [0, 1, &apos;no&apos;]]
+    labels = [&apos;no surfacing&apos;,&apos;flippers&apos;]
+    return dataSet, labels
+</code></pre><h2 id="calcShannonEnt-dataSet"><a href="#calcShannonEnt-dataSet" class="headerlink" title="calcShannonEnt(dataSet)"></a>calcShannonEnt(dataSet)</h2><p>计算给定数据集的熵</p>
+<pre><code>def calcShannonEnt(dataSet):
+    numEntries = len(dataSet)   #计算数据集中实例的总数
+    labelCounts = {}            #创建空字典
+    for featVec in dataSet:     #提取数据集每一行的特征向量
+        currentLabel = featVec[-1]  #获取特征向量最后一列的标签
+        # 检测字典的关键字key中是否存在该标签，如果不存在keys()关键字，将当前标签/0键值对存入字典中,并赋值为0
+        #print(labelCounts.keys())
+        if currentLabel not in labelCounts.keys(): labelCounts[currentLabel] = 0
+        #print(labelCounts)
+        labelCounts[currentLabel] += 1  #否则将当前标签对应的键值加1
+        #print(&quot;%s=&quot;%currentLabel,labelCounts[currentLabel])
+    shannonEnt = 0.0    #初始化熵为0
+    for key in labelCounts:
+        prob = float(labelCounts[key])/numEntries   #计算各值出现的频率
+        shannonEnt -= prob * log(prob,2)    #以2为底求对数再乘以出现的频率，即信息期望值
+        #print(&quot;%s=&quot;%labelCounts[key],shannonEnt)
+    return shannonEnt
+</code></pre><h2 id="splitDataSet-dataSet-axis-value"><a href="#splitDataSet-dataSet-axis-value" class="headerlink" title="splitDataSet(dataSet, axis, value)"></a>splitDataSet(dataSet, axis, value)</h2><p>按照给定特征划分数据集<br>得到熵之后，还需划分数据集，以便判断当前是否正确地划分了数据集，三个输入参数分别为：带划分的数据集，划分数据集的特征，需要返回的特征得值，挑选出dataSet中axis位置值为value的剩余部分。</p>
+<pre><code>def splitDataSet(dataSet, axis, value):
+    retDataSet = []
+    for featVec in dataSet:
+        if featVec[axis] == value:  #筛选出dataSet中axis位置值为value
+            #列表的索引中冒号的作用，a[1: ]表示该列表中的第1个元素到最后一个元素，而a[ : n]表示从第0歌元素到第n个元素(不包括n)
+            reducedFeatVec = featVec[:axis] #取出特定位置前面部分并赋值给reducedFeatVec
+            #print(featVec[axis+1:])
+            #print(reducedFeatVec)
+            reducedFeatVec.extend(featVec[axis+1:])     #取出特定位置后面部分并赋值给reducedFeatVec
+            retDataSet.append(reducedFeatVec)
+            #print(retDataSet)
+    return retDataSet
+</code></pre><h2 id="chooseBestFeatureToSplit-dataSet"><a href="#chooseBestFeatureToSplit-dataSet" class="headerlink" title="chooseBestFeatureToSplit(dataSet)"></a>chooseBestFeatureToSplit(dataSet)</h2><p>选择最好的数据集划分方式<br>选取特征，划分数据集，计算得出最好的划分数据集的特征</p>
+<pre><code>def chooseBestFeatureToSplit(dataSet):
+    numFeatures = len(dataSet[0]) - 1      #计算特征数量，即每一列表元素具有的列数，再减去最后一列为标签，故需减去1
+    baseEntropy = calcShannonEnt(dataSet)       #计算信息熵，此处值为0.9709505944546686，此值将与划分之后的数据集计算的信息熵进行比较
+    bestInfoGain = 0.0;bestFeature = -1
+    for i in range(numFeatures):
+        featList = [example[i] for example in dataSet]      #创建标签列表
+        #print(featList)
+        uniqueVals = set(featList)       #确定某一特征下所有可能的取值,set集合类型中的每个值互不相同
+        #print(uniqueVals)
+        newEntropy = 0.0
+        for value in uniqueVals:        #计算每种划分方式的信息熵
+            subDataSet = splitDataSet(dataSet, i, value)        #抽取该特征的每个取值下其他特征的值组成新的子数据集
+            prob = len(subDataSet)/float(len(dataSet))      #计算该特征下的每一个取值对应的概率（或者说所占的比重）
+            newEntropy += prob * calcShannonEnt(subDataSet)     #计算该特征下每一个取值的子数据集的信息熵，并求和
+        infoGain = baseEntropy - newEntropy     #计算每个特征的信息增益
+        #print(&quot;第%d个特征是的取值是%s，对应的信息增益值是%f&quot;%((i+1),uniqueVals,infoGain))
+        if (infoGain &gt; bestInfoGain):
+            bestInfoGain = infoGain
+            bestFeature = i
+            #print(&quot;第%d个特征的信息增益最大，所以选择它作为划分的依据，其特征的取值为%s,对应的信息增益值是%f&quot;%((i+1),uniqueVals,infoGain))
+    return bestFeature
+</code></pre><h2 id="majorityCnt-classList"><a href="#majorityCnt-classList" class="headerlink" title="majorityCnt(classList)"></a>majorityCnt(classList)</h2><p>递归构建决策树，返回出现次数最多的分类名称</p>
+<pre><code>def majorityCnt(classList):
+    classCount={}
+    for vote in classList:
+        if vote not in classCount.keys(): classCount[vote] = 0
+        classCount[vote] += 1
+    sortedClassCount = sorted(classCount.iteritems(), key=operator.itemgetter(1), reverse=True)
+    return sortedClassCount[0][0]
+</code></pre><h2 id="createTree-dataSet-labels"><a href="#createTree-dataSet-labels" class="headerlink" title="createTree(dataSet,labels)"></a>createTree(dataSet,labels)</h2><p>创建树,参数为数据集和标签列表</p>
+<pre><code>def createTree(dataSet,labels):
+    classList = [example[-1] for example in dataSet]       #提取dataset中的最后一列——种类标签
+    #print(classList)
+    if classList.count(classList[0]) == len(classList):    #计算classlist[0]出现的次数,如果相等，说明都是属于一类，不用继续往下划分
+        return classList[0]     #递归结束的第一个条件是所有的类标签完全相同，则直接返回该类标签
+    #print(dataSet[0])
+    if len(dataSet[0]) == 1: #看还剩下多少个属性，如果只有一个属性，但是类别标签有多个，就直接用majoritycnt()进行整理，选取类别最多的作为返回值
+        return majorityCnt(classList)   #递归结束的第二个条件是使用完了所有的特征，仍然不能将数据集划分成仅包含唯一类别的分组，则返回出现次数最多的类别
+    bestFeat = chooseBestFeatureToSplit(dataSet)    #选取信息增益最大的特征作为下一次分类的依据
+    bestFeatLabel = labels[bestFeat]     #选取特征对应的标签
+    #print(bestFeatLabel)
+    myTree = {bestFeatLabel:{}}  #创建tree字典，下一个特征位于第二个大括号内，循环递归
+    del(labels[bestFeat])   #删除使用过的特征
+    featValues = [example[bestFeat] for example in dataSet]     #特征值对应的该栏数据
+    #print(featValues)
+    uniqueVals = set(featValues)    #找到featvalues所包含的所有元素，去重复
+    for value in uniqueVals:
+        subLabels = labels[:]        #将使用过的标签删除更新后，赋值给新的列表，进行迭代
+        #print(subLabels)
+        myTree[bestFeatLabel][value] = createTree(splitDataSet(dataSet, bestFeat,value),subLabels) #循环递归生成树
+    return myTree                            
+</code></pre><h2 id="classify-inputTree-featLabels-testVec"><a href="#classify-inputTree-featLabels-testVec" class="headerlink" title="classify(inputTree,featLabels,testVec):"></a>classify(inputTree,featLabels,testVec):</h2><p>测试算法，使用决策树执行分类</p>
+<pre><code>def classify(inputTree,featLabels,testVec):
+    firstStr = list(inputTree.keys())[0]    #找到树的第一个分类特征，或者说根节点&apos;no surfacing&apos;
+    #print(firstStr)
+    secondDict = inputTree[firstStr]    #从树中得到该分类特征的分支，有0和1
+    #print(secondDict)
+    featIndex = featLabels.index(firstStr)  #根据分类特征的索引找到对应的标称型数据值，&apos;no surfacing&apos;对应的索引为0
+    #print(featIndex)
+    key = testVec[featIndex]
+    valueOfFeat = secondDict[key]
+    if isinstance(valueOfFeat, dict): 
+        classLabel = classify(valueOfFeat, featLabels, testVec)
+    else: classLabel = valueOfFeat
+    return classLabel
+</code></pre><h2 id="storeTree-inputTree-filename"><a href="#storeTree-inputTree-filename" class="headerlink" title="storeTree(inputTree,filename)"></a>storeTree(inputTree,filename)</h2><p>决策树的存储，使用pickle序列化对象，可在磁盘中保存对象。</p>
+<pre><code>def storeTree(inputTree,filename):
+    import pickle
+    fw = open(filename,&apos;wb&apos;)    #二进制写入&apos;wb&apos;
+    pickle.dump(inputTree,fw)   #pickle的dump函数将决策树写入文件中
+    fw.close()
+
+def grabTree(filename):
+    import pickle
+    fr = open(filename,&apos;rb&apos;)    #对应于二进制方式写入数据，&apos;rb&apos;采用二进制形式读出数据
+    return pickle.load(fr)
+</code></pre><h1 id="trees-main-py"><a href="#trees-main-py" class="headerlink" title="trees_main.py"></a>trees_main.py</h1><pre><code>import trees
+from imp import reload
+import treePlotter
+</code></pre><h2 id="创建数据集"><a href="#创建数据集" class="headerlink" title="创建数据集"></a>创建数据集</h2><pre><code>myDat,labels=trees.createDataSet()
+#print(myDat)
+#print(labels)
+#print(trees.calcShannonEnt(myDat))
+</code></pre><h2 id="熵增大的原因"><a href="#熵增大的原因" class="headerlink" title="熵增大的原因"></a>熵增大的原因</h2><p>熵越高，混合的数据就越多，如果我们在数据集中添加更多的分类，会导致熵结果增大</p>
+<pre><code>#myDat[1][-1]=&apos;maybe&apos;#更改list中某一元素的值（除yes和no外的值），即为添加更多的分类，中括号中为对应元素行列的位置
+#print(myDat)
+#print(trees.calcShannonEnt(myDat))  #分类变多，熵增大
+</code></pre><h2 id="append-和extend-两类方法的区别"><a href="#append-和extend-两类方法的区别" class="headerlink" title="append()和extend()两类方法的区别"></a>append()和extend()两类方法的区别</h2><pre><code>a=[1,2,3]
+b=[4,5,6]
+a.append(b)
+#print(a)#[1, 2, 3, [4, 5, 6]]
+a.extend(b)
+#print(a)#[1, 2, 3, [4, 5, 6], 4, 5, 6]
+</code></pre><h2 id="按照给定特征划分数据集"><a href="#按照给定特征划分数据集" class="headerlink" title="按照给定特征划分数据集"></a>按照给定特征划分数据集</h2><pre><code>#print(myDat)
+#print(trees.splitDataSet(myDat,0,1))
+#print(trees.splitDataSet(myDat,0,0))
+</code></pre><h2 id="选择最好的数据集划分方式"><a href="#选择最好的数据集划分方式" class="headerlink" title="选择最好的数据集划分方式"></a>选择最好的数据集划分方式</h2><pre><code>#print(myDat)
+#print(trees.chooseBestFeatureToSplit(myDat))
+</code></pre><h2 id="创建树-参数为数据集和标签列表"><a href="#创建树-参数为数据集和标签列表" class="headerlink" title="创建树,参数为数据集和标签列表"></a>创建树,参数为数据集和标签列表</h2><pre><code>myTree=trees.createTree(myDat,labels)
+#print(myTree)
+
+myDat,labels=trees.createDataSet()
+myTree1=treePlotter.retrieveTree(0)    
+#print(myTree1)
+#print(trees.classify(myTree1,labels,[1,0]))
+#print(trees.classify(myTree,labels,[1,1]))
+</code></pre><h2 id="决策树的存储"><a href="#决策树的存储" class="headerlink" title="决策树的存储"></a>决策树的存储</h2><pre><code>trees.storeTree(myTree,&apos;classifierStorage.txt&apos;)
+#print(trees.grabTree(&apos;classifierStorage.txt&apos;))
+</code></pre><h2 id="使用决策树预测隐形眼镜类型"><a href="#使用决策树预测隐形眼镜类型" class="headerlink" title="使用决策树预测隐形眼镜类型"></a>使用决策树预测隐形眼镜类型</h2><pre><code>fr=open(&apos;lenses.txt&apos;)
+lenses = [inst.strip().split(&apos;\t&apos;) for inst in fr.readlines()]  #将文本数据的每一个数据行按照tab键分割，并依次存入lenses
+lensesLabels = [&apos;age&apos;, &apos;prescript&apos;, &apos;astigmatic&apos;, &apos;tearRate&apos;]   # 创建并存入特征标签列表
+lensesTree = trees.createTree(lenses, lensesLabels)   # 根据继续文件得到的数据集和特征标签列表创建决策树
+print(lensesTree)
+treePlotter.createPlot(lensesTree)
+</code></pre><h1 id="treePlotter-py"><a href="#treePlotter-py" class="headerlink" title="treePlotter.py"></a>treePlotter.py</h1><p>python中使用Matplotlib注解绘制树形图</p>
+<pre><code>import matplotlib.pyplot as plt
+</code></pre><h2 id="定义文本框和箭头格式"><a href="#定义文本框和箭头格式" class="headerlink" title="定义文本框和箭头格式"></a>定义文本框和箭头格式</h2><pre><code>decisionNode = dict(boxstyle=&quot;sawtooth&quot;, fc=&quot;0.8&quot;)  # boxstyle为文本框的类型，sawtooth是锯齿形，fc是边框线粗细,pad指的是外边框锯齿形（圆形等）的大小
+leafNode = dict(boxstyle=&quot;round4&quot;, fc=&quot;0.8&quot;)    #定义决策树的叶子结点的描述属性，round4表示圆形
+arrow_args = dict(arrowstyle=&quot;&lt;-&quot;)  #定义箭头属性
+</code></pre><h2 id="plotNode-nodeTxt-centerPt-parentPt-nodeType"><a href="#plotNode-nodeTxt-centerPt-parentPt-nodeType" class="headerlink" title="plotNode(nodeTxt, centerPt, parentPt, nodeType)"></a>plotNode(nodeTxt, centerPt, parentPt, nodeType)</h2><p>绘制带箭头的注解<br>annotate是关于一个数据点的文本<br>nodeTxt为要显示的文本，centerPt为文本的中心点，箭头所在的点，parentPt为指向文本的点<br>annotate的作用是添加注释，nodetxt是注释的内容<br>nodetype指的是输入的节点（边框）的形状</p>
+<pre><code>def plotNode(nodeTxt, centerPt, parentPt, nodeType):
+    createPlot.ax1.annotate(nodeTxt, xy=parentPt,  xycoords=&apos;axes fraction&apos;,
+             xytext=centerPt, textcoords=&apos;axes fraction&apos;,
+             va=&quot;center&quot;, ha=&quot;center&quot;, bbox=nodeType, arrowprops=arrow_args )
+</code></pre><h2 id="def-createPlot"><a href="#def-createPlot" class="headerlink" title="def createPlot():"></a>def createPlot():</h2><p>第一版构造树函数，后面会改进，所以这里要注释上</p>
+<pre><code>#fig = plt.figure(1, facecolor=&apos;white&apos;)
+#fig.clf()
+#createPlot.ax1 = plt.subplot(111, frameon=False) #ticks for demo puropses
+#plotNode(&apos;a decision node&apos;, (0.5, 0.1), (0.1, 0.5), decisionNode)
+#plotNode(&apos;a leaf node&apos;, (0.8, 0.1), (0.3, 0.8), leafNode)
+#plt.show()
+</code></pre><h2 id="getNumLeafs-myTree"><a href="#getNumLeafs-myTree" class="headerlink" title="getNumLeafs(myTree)"></a>getNumLeafs(myTree)</h2><p>计算叶子节点的个数<br>构造注解树，需要知道叶节点的个数，以便可以正确确定x轴的长度；要知道树的层数，可以确定y轴的高度。</p>
+<pre><code>def getNumLeafs(myTree):    
+    numLeafs = 0
+    firstStr = list(myTree.keys())[0]  #获得myTree的第一个键值，即第一个特征，分割的标签
+    #print(firstStr)
+    secondDict = myTree[firstStr]   #根据键值得到对应的值，即根据第一个特征分类的结果
+    #print(secondDict)
+    for key in secondDict.keys():   #获取第二个小字典中的key
+        if type(secondDict[key]).__name__==&apos;dict&apos;:
+            #判断是否小字典中是否还包含新的字典（即新的分支）
+            numLeafs += getNumLeafs(secondDict[key])    #包含的话进行递归从而继续循环获得新的分支所包含的叶节点的数量
+        else:   numLeafs +=1    #不包含的话就停止迭代并把现在的小字典加一表示这边有一个分支
+    return numLeafs
+
+def getTreeDepth(myTree):   #计算判断节点的个数
+    maxDepth = 0
+    firstStr = list(myTree.keys())[0]
+    secondDict = myTree[firstStr]
+    for key in secondDict.keys():
+        if type(secondDict[key]).__name__==&apos;dict&apos;:
+            thisDepth = 1 + getTreeDepth(secondDict[key])
+        else:   thisDepth = 1
+        if thisDepth &gt; maxDepth: maxDepth = thisDepth
+    return maxDepth
+</code></pre><h2 id="retrieveTree-i"><a href="#retrieveTree-i" class="headerlink" title="retrieveTree(i)"></a>retrieveTree(i)</h2><p>预先存储树信息</p>
+<pre><code>def retrieveTree(i):
+    listOfTrees =[{&apos;no surfacing&apos;: {0: &apos;no&apos;, 1: {&apos;flippers&apos;: {0: &apos;no&apos;, 1: &apos;yes&apos;}}}},
+                  {&apos;no surfacing&apos;: {0: &apos;no&apos;, 1: {&apos;flippers&apos;: {0: {&apos;head&apos;: {0: &apos;no&apos;, 1: &apos;yes&apos;}}, 1: &apos;no&apos;}}}}
+              ]
+    return listOfTrees[i]
+</code></pre><h2 id="plotMidText-cntrPt-parentPt-txtString"><a href="#plotMidText-cntrPt-parentPt-txtString" class="headerlink" title="plotMidText(cntrPt, parentPt, txtString)"></a>plotMidText(cntrPt, parentPt, txtString)</h2><p>作用是计算tree的中间位置，cntrPt起始位置,parentPt终止位置,txtString文本标签信息</p>
+<pre><code>def plotMidText(cntrPt, parentPt, txtString):
+    xMid = (parentPt[0]-cntrPt[0])/2.0 + cntrPt[0]  #cntrPt起点坐标，子节点坐标，parentPt结束坐标，父节点坐标
+    yMid = (parentPt[1]-cntrPt[1])/2.0 + cntrPt[1]  #找到x和y的中间位置
+    createPlot.ax1.text(xMid, yMid, txtString, va=&quot;center&quot;, ha=&quot;center&quot;, rotation=30)
+
+def plotTree(myTree, parentPt, nodeTxt):
+    numLeafs = getNumLeafs(myTree)
+    depth = getTreeDepth(myTree)
+    firstStr = list(myTree.keys())[0]
+    cntrPt = (plotTree.xOff + (1.0 + float(numLeafs))/2.0/plotTree.totalW, plotTree.yOff)   #计算子节点的坐标
+    plotMidText(cntrPt, parentPt, nodeTxt)      #绘制线上的文字
+    plotNode(firstStr, cntrPt, parentPt, decisionNode)      #绘制节点
+    secondDict = myTree[firstStr]
+    plotTree.yOff = plotTree.yOff - 1.0/plotTree.totalD     #每绘制一次图，将y的坐标减少1.0/plottree.totald，间接保证y坐标上深度的
+    for key in secondDict.keys():
+        if type(secondDict[key]).__name__==&apos;dict&apos;:
+            plotTree(secondDict[key],cntrPt,str(key))
+        else:
+            plotTree.xOff = plotTree.xOff + 1.0/plotTree.totalW
+            plotNode(secondDict[key], (plotTree.xOff, plotTree.yOff), cntrPt, leafNode)
+            plotMidText((plotTree.xOff, plotTree.yOff), cntrPt, str(key))
+    plotTree.yOff = plotTree.yOff + 1.0/plotTree.totalD
+</code></pre><h2 id="createPlot-inTree"><a href="#createPlot-inTree" class="headerlink" title="createPlot(inTree)"></a>createPlot(inTree)</h2><pre><code>def createPlot(inTree):
+    fig = plt.figure(1, facecolor=&apos;white&apos;)  #类似于Matlab的figure，定义一个画布，背景为白色
+    fig.clf()   # 把画布清空
+    axprops = dict(xticks=[], yticks=[])    #subplot定义了一个绘图
+    createPlot.ax1 = plt.subplot(111, frameon=False, **axprops)    #no ticks
+    #createPlot.ax1为全局变量，绘制图像的句柄，111表示figure中的图有1行1列，即1个，最后的1代表第一个图,frameon表示是否绘制坐标轴矩形
+    plotTree.totalW = float(getNumLeafs(inTree))
+    plotTree.totalD = float(getTreeDepth(inTree))
+    plotTree.xOff = -0.5/plotTree.totalW; plotTree.yOff = 1.0;
+    plotTree(inTree, (0.5,1.0), &apos;&apos;)
+    plt.show()
+</code></pre><h1 id="treePlotter-main-py"><a href="#treePlotter-main-py" class="headerlink" title="treePlotter_main.py"></a>treePlotter_main.py</h1><pre><code>import  treePlotter
+#treePlotter.createPlot()
+#print(treePlotter.retrieveTree(1))
+myTree=treePlotter.retrieveTree(0)
+#print(treePlotter.getNumLeafs(myTree))
+#print(treePlotter.getTreeDepth(myTree))
+myTree[&apos;no surfacing&apos;][3]=&apos;maybe&apos;
+treePlotter.createPlot(myTree)
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+	
+	
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习实战/" rel="tag"><i class="fa fa-tag"></i> 机器学习实战</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/23/机器学习实战-KNN/" rel="next" title="机器学习实战--KNN">
+                <i class="fa fa-chevron-left"></i> 机器学习实战--KNN
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="AmberWu" />
+            
+              <p class="site-author-name" itemprop="name">AmberWu</p>
+              <p class="site-description motion-element" itemprop="description">这是一个深度学习菜鸟储存粮食的地方</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/moyingyao" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:moyingyao@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://my.csdn.net/?ref=toolbar" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-copyright"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5021422784/home?wvr=5&topnav=1&mod=logo" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yzhao.top/" title="😆洋仔的世界😆" target="_blank">😆洋仔的世界😆</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#决策树"><span class="nav-number">1.</span> <span class="nav-text">决策树</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#trees-py"><span class="nav-number">2.</span> <span class="nav-text">trees.py</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#createDataSet"><span class="nav-number">2.1.</span> <span class="nav-text">createDataSet()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#calcShannonEnt-dataSet"><span class="nav-number">2.2.</span> <span class="nav-text">calcShannonEnt(dataSet)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#splitDataSet-dataSet-axis-value"><span class="nav-number">2.3.</span> <span class="nav-text">splitDataSet(dataSet, axis, value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chooseBestFeatureToSplit-dataSet"><span class="nav-number">2.4.</span> <span class="nav-text">chooseBestFeatureToSplit(dataSet)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#majorityCnt-classList"><span class="nav-number">2.5.</span> <span class="nav-text">majorityCnt(classList)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#createTree-dataSet-labels"><span class="nav-number">2.6.</span> <span class="nav-text">createTree(dataSet,labels)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#classify-inputTree-featLabels-testVec"><span class="nav-number">2.7.</span> <span class="nav-text">classify(inputTree,featLabels,testVec):</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#storeTree-inputTree-filename"><span class="nav-number">2.8.</span> <span class="nav-text">storeTree(inputTree,filename)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#trees-main-py"><span class="nav-number">3.</span> <span class="nav-text">trees_main.py</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建数据集"><span class="nav-number">3.1.</span> <span class="nav-text">创建数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#熵增大的原因"><span class="nav-number">3.2.</span> <span class="nav-text">熵增大的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#append-和extend-两类方法的区别"><span class="nav-number">3.3.</span> <span class="nav-text">append()和extend()两类方法的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按照给定特征划分数据集"><span class="nav-number">3.4.</span> <span class="nav-text">按照给定特征划分数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择最好的数据集划分方式"><span class="nav-number">3.5.</span> <span class="nav-text">选择最好的数据集划分方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建树-参数为数据集和标签列表"><span class="nav-number">3.6.</span> <span class="nav-text">创建树,参数为数据集和标签列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#决策树的存储"><span class="nav-number">3.7.</span> <span class="nav-text">决策树的存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用决策树预测隐形眼镜类型"><span class="nav-number">3.8.</span> <span class="nav-text">使用决策树预测隐形眼镜类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#treePlotter-py"><span class="nav-number">4.</span> <span class="nav-text">treePlotter.py</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义文本框和箭头格式"><span class="nav-number">4.1.</span> <span class="nav-text">定义文本框和箭头格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#plotNode-nodeTxt-centerPt-parentPt-nodeType"><span class="nav-number">4.2.</span> <span class="nav-text">plotNode(nodeTxt, centerPt, parentPt, nodeType)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#def-createPlot"><span class="nav-number">4.3.</span> <span class="nav-text">def createPlot():</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getNumLeafs-myTree"><span class="nav-number">4.4.</span> <span class="nav-text">getNumLeafs(myTree)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#retrieveTree-i"><span class="nav-number">4.5.</span> <span class="nav-text">retrieveTree(i)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#plotMidText-cntrPt-parentPt-txtString"><span class="nav-number">4.6.</span> <span class="nav-text">plotMidText(cntrPt, parentPt, txtString)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#createPlot-inTree"><span class="nav-number">4.7.</span> <span class="nav-text">createPlot(inTree)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#treePlotter-main-py"><span class="nav-number">5.</span> <span class="nav-text">treePlotter_main.py</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AmberWu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v="></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v="></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>
