@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://moyingyao.github.io/"/>
-  <updated>2018-05-25T09:56:11.658Z</updated>
+  <updated>2018-05-25T12:52:05.663Z</updated>
   <id>http://moyingyao.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>memcached安装及简单命令</title>
+    <link href="http://moyingyao.github.io/2018/05/25/memcached%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%80%E5%8D%95%E5%91%BD%E4%BB%A4/"/>
+    <id>http://moyingyao.github.io/2018/05/25/memcached安装及简单命令/</id>
+    <published>2018-05-25T12:09:14.000Z</published>
+    <updated>2018-05-25T12:52:05.663Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="ubuntu16-0-4下memcached的安装"><a href="#ubuntu16-0-4下memcached的安装" class="headerlink" title="ubuntu16.0.4下memcached的安装"></a>ubuntu16.0.4下memcached的安装</h1><a id="more"></a><p>linux系统安装memcached首先要安装libevent库</p><pre><code>sudo apt-get install libevent-devesudo apt-get install memcached</code></pre><p>若linux系统为centos则命令为</p><pre><code>yum install libevent libevent-deveyum install memcached</code></pre><h1 id="memcached的连接与关闭"><a href="#memcached的连接与关闭" class="headerlink" title="memcached的连接与关闭"></a>memcached的连接与关闭</h1><h2 id="启动memcached连接"><a href="#启动memcached连接" class="headerlink" title="启动memcached连接"></a>启动memcached连接</h2><p>找到memcached的安装目录，自动安装memcached在/usr/local/bin/memcached路径下</p><pre><code>memcached -u root -d -m 128m -p 11211</code></pre><p>连接memcached语法为：telnet HOST PORT<br>本实例的memcached服务运行的主机为127.0.0.1(本机)，端口为11211</p><pre><code>telnet 127.0.0.1 11211</code></pre><p>连接成功如下图所示：<img src="https://i.imgur.com/jLWKbvn.png" alt=""><br>退出命令</p><pre><code>quit</code></pre><h2 id="关闭memcached"><a href="#关闭memcached" class="headerlink" title="关闭memcached"></a>关闭memcached</h2><p>与windows直接输入memcached.exe -d stop关闭memcached不同<br>linux需先知道memcached的进程号，再将其杀死<br>查看进程号</p><pre><code>stats     或者     ps -ef|grep memcached</code></pre><p>知道了memcached对应的进程号pid后，使用kill命令杀死进程即可。<br>注意：杀死进程前必须quit退出连接</p><pre><code>kill 5070</code></pre><p>杀死进城后再次连接memcached失败，说明memcached已经被关闭。</p><h1 id="memcached的命令"><a href="#memcached的命令" class="headerlink" title="memcached的命令"></a>memcached的命令</h1><h2 id="存储命令"><a href="#存储命令" class="headerlink" title="存储命令"></a>存储命令</h2><p>1.set<br>set用于将value存储于key中，若set的key已经存在，该命令可以更新key所对应的原来的数据。语法格式如下：</p><pre><code>set key flag exptime bytes [noreply]value</code></pre><p>key：键值对中的key，用于查找缓存值<br>flag：可以包含键值对的整型参数，客户机使用它存储关于键值对的额外信息<br>exptime：再缓存中保存键值对的时间长度，以秒为单位，0表示永远<br>bytes：在缓存中存储的字节数<br>noreply：可选参数，该参数告知服务器不需要返回数据<br>value：存储的值，始终位于第二行</p><p>2.add<br>add用于将value存储在指定的key中，如果add的key已经存在，则不会更新数据，与之前的值仍然保持相同，会得到NOT_STORED的响应，但是过期的key会更新。<br>语法格式如下：</p><pre><code>add key flags exptime bytes [noreply]value</code></pre><p>3.replace<br>replace用于替换已经存在的key的value，如果可以不存在，则替换失败，并且得到NOT_STORED的响应<br>语法格式如下：</p><pre><code>replace key flags exptime bytes [noreply]value</code></pre><p>4.append<br>append用于向已经存在key的value后面追加数据<br>语法格式如下：</p><pre><code>append key flags exptime bytes [noreply]value</code></pre><p>5.prepend<br>prepend命令用于向已经存在key的value前面追加数据<br>语法格式如下：</p><pre><code>prepend key flags exptime bytes [noreply]value</code></pre><p>6.cas<br>cas用于执行一个“检查并设置”的操作，它仅在当前客户端最后一次取值后，该key对应的值没有被其他客户端修改的情况下才能够将值写入。检查是通过cas_token参数进行的，这个参数是memcached指定给已经存在的元素的一个唯一的64位值。<br>语法格式如下：</p><pre><code>cas key flags exptime bytes unique_cas_token [noreply]value</code></pre><p>unique_cas_token是通过gets命令获取的一个唯一的64位值</p><h2 id="查找命令"><a href="#查找命令" class="headerlink" title="查找命令"></a>查找命令</h2><p>1.get<br>get用于获取存储在key中的value，如果key不存在，则返回空。若获取多个key的value，则使用空格将其隔开即可。<br>语法格式如下：</p><pre><code>get keyget key1 key2 key3</code></pre><p>2.gets<br>gets用于获取CAS令牌存的value,如果key不存在，则返回空。若获取多个key的value，则使用空格将其隔开即可。<br>语法格式如下：</p><pre><code>gets keygets key1 key2 key3</code></pre><p>3.delete<br>delete命令用于删除已经存在的key。<br>语法格式如下：</p><pre><code>delete key [noreply]</code></pre><p>4.incr/decr<br>incr和decr用于对已经存在的key的数字进行自增或自减操作。但是惭怍的数据必须是十进制的32位无符号整数，若key不存在，返回NOT_FOUND，若键的值不为数字，则返回CLIENT_ERROR，其他错误返回ERROR。<br>语法格式如下：</p><pre><code>incr key increment_values [noreply]decr key decrement_values [noreply]</code></pre><p>increment_values为增加的数值<br>decrement_values为减少的数值</p><p>5.flush_all<br>flush_all用于清理缓存中的所有的键值对，该命令提供了一个可选参数time，用于在制定的时间后执行清理缓存操作。<br>语法格式如下：</p><pre><code>flush_all [time] [noreply]</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;ubuntu16-0-4下memcached的安装&quot;&gt;&lt;a href=&quot;#ubuntu16-0-4下memcached的安装&quot; class=&quot;headerlink&quot; title=&quot;ubuntu16.0.4下memcached的安装&quot;&gt;&lt;/a&gt;ubuntu16.0.4下memcached的安装&lt;/h1&gt;
+    
+    </summary>
+    
+      <category term="大数据相关" scheme="http://moyingyao.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/"/>
+    
+    
+      <category term="memcached" scheme="http://moyingyao.github.io/tags/memcached/"/>
+    
+  </entry>
   
   <entry>
     <title>redis安装及简单命令</title>

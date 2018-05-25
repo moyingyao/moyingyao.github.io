@@ -101,7 +101,7 @@
 
 
 
-  <meta name="keywords" content="个人随笔," />
+  <meta name="keywords" content="memcached," />
 
 
 
@@ -114,18 +114,20 @@
 
 
 
-<meta name="description" content="Welcome to AmberWu’s Blog! 为什么会想弄这么一个博客呢，还不是因为有那么一个研究僧程序猿且男屌丝，哦不不不，大神，嗯，大神0.0。第一次接触建站域名，随便弄弄。还挺有意思的，本以为这个很难，离自己很远，动起手来，真的蛮简单的，毕竟，本学渣弄得下来，哈哈哈">
-<meta name="keywords" content="个人随笔">
+<meta name="description" content="ubuntu16.0.4下memcached的安装">
+<meta name="keywords" content="memcached">
 <meta property="og:type" content="article">
-<meta property="og:title" content="伊始">
-<meta property="og:url" content="http://moyingyao.github.io/2018/05/17/伊始/index.html">
+<meta property="og:title" content="memcached安装及简单命令">
+<meta property="og:url" content="http://moyingyao.github.io/2018/05/25/memcached安装及简单命令/index.html">
 <meta property="og:site_name" content="AmberWu">
-<meta property="og:description" content="Welcome to AmberWu’s Blog! 为什么会想弄这么一个博客呢，还不是因为有那么一个研究僧程序猿且男屌丝，哦不不不，大神，嗯，大神0.0。第一次接触建站域名，随便弄弄。还挺有意思的，本以为这个很难，离自己很远，动起手来，真的蛮简单的，毕竟，本学渣弄得下来，哈哈哈">
+<meta property="og:description" content="ubuntu16.0.4下memcached的安装">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-18T14:27:18.211Z">
+<meta property="og:image" content="https://i.imgur.com/jLWKbvn.png">
+<meta property="og:updated_time" content="2018-05-25T12:52:05.663Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="伊始">
-<meta name="twitter:description" content="Welcome to AmberWu’s Blog! 为什么会想弄这么一个博客呢，还不是因为有那么一个研究僧程序猿且男屌丝，哦不不不，大神，嗯，大神0.0。第一次接触建站域名，随便弄弄。还挺有意思的，本以为这个很难，离自己很远，动起手来，真的蛮简单的，毕竟，本学渣弄得下来，哈哈哈">
+<meta name="twitter:title" content="memcached安装及简单命令">
+<meta name="twitter:description" content="ubuntu16.0.4下memcached的安装">
+<meta name="twitter:image" content="https://i.imgur.com/jLWKbvn.png">
 
 
 
@@ -155,13 +157,13 @@
 
 
 
-  <link rel="canonical" href="http://moyingyao.github.io/2018/05/17/伊始/"/>
+  <link rel="canonical" href="http://moyingyao.github.io/2018/05/25/memcached安装及简单命令/"/>
 
 
 
 
 
-  <title>伊始 | AmberWu</title>
+  <title>memcached安装及简单命令 | AmberWu</title>
   
 
 
@@ -298,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://moyingyao.github.io/2018/05/17/伊始/">
+    <link itemprop="mainEntityOfPage" href="http://moyingyao.github.io/2018/05/25/memcached安装及简单命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AmberWu">
@@ -315,7 +317,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">伊始</h1>
+          <h1 class="post-title" itemprop="name headline">memcached安装及简单命令</h1>
         
 
         <div class="post-meta">
@@ -327,8 +329,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T22:27:24+08:00">
-                2018-05-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-25T20:09:14+08:00">
+                2018-05-25
               </time>
             
 
@@ -350,8 +352,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/随便写写/" itemprop="url" rel="index">
-                    <span itemprop="name">随便写写</span>
+                  <a href="/categories/大数据相关/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据相关</span>
                   </a>
                 </span>
 
@@ -388,7 +390,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  200
+                  993
                 </span>
               
 
@@ -413,12 +415,59 @@
       
 
       
-        <p>Welcome to AmberWu’s Blog! 为什么会想弄这么一个博客呢，还不是因为有那么一个研究僧程序猿且男屌丝，哦不不不，大神，嗯，大神0.0。第一次接触建站域名，随便弄弄。还挺有意思的，本以为这个很难，离自己很远，动起手来，真的蛮简单的，毕竟，本学渣弄得下来，哈哈哈<br><a id="more"></a></p>
-<h2 id="简单随便说说建站方法"><a href="#简单随便说说建站方法" class="headerlink" title="简单随便说说建站方法"></a>简单随便说说建站方法</h2><h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><p>就是以Hexo为主，剩下的自行百度吧，毕竟我要回寝室，没时间写了</p>
-<h3 id="Github-Pages"><a href="#Github-Pages" class="headerlink" title="Github Pages"></a>Github Pages</h3><p>以github为载体实现的，也百度吧，啊啊啊，实验室就剩我自己了。</p>
-<h3 id="更多资料"><a href="#更多资料" class="headerlink" title="更多资料"></a>更多资料</h3><p>参考资料请点击：:</p>
-<p><a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">资料一</a><br><a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">资料二</a><br><a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">资料三</a><br><a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">资料四</a><br><a href="https://reuixiy.github.io/technology/computer/computer-aided-art/2017/06/09/hexo-next-optimization.html#%E9%99%84%E4%B8%8A%E6%88%91%E7%9A%84-custom-styl" target="_blank" rel="noopener">这个是会让博客变好看的哦</a></p>
-
+        <h1 id="ubuntu16-0-4下memcached的安装"><a href="#ubuntu16-0-4下memcached的安装" class="headerlink" title="ubuntu16.0.4下memcached的安装"></a>ubuntu16.0.4下memcached的安装</h1><a id="more"></a>
+<p>linux系统安装memcached首先要安装libevent库</p>
+<pre><code>sudo apt-get install libevent-deve
+sudo apt-get install memcached
+</code></pre><p>若linux系统为centos则命令为</p>
+<pre><code>yum install libevent libevent-deve
+yum install memcached
+</code></pre><h1 id="memcached的连接与关闭"><a href="#memcached的连接与关闭" class="headerlink" title="memcached的连接与关闭"></a>memcached的连接与关闭</h1><h2 id="启动memcached连接"><a href="#启动memcached连接" class="headerlink" title="启动memcached连接"></a>启动memcached连接</h2><p>找到memcached的安装目录，自动安装memcached在/usr/local/bin/memcached路径下</p>
+<pre><code>memcached -u root -d -m 128m -p 11211
+</code></pre><p>连接memcached语法为：telnet HOST PORT<br>本实例的memcached服务运行的主机为127.0.0.1(本机)，端口为11211</p>
+<pre><code>telnet 127.0.0.1 11211
+</code></pre><p>连接成功如下图所示：<img src="https://i.imgur.com/jLWKbvn.png" alt=""><br>退出命令</p>
+<pre><code>quit
+</code></pre><h2 id="关闭memcached"><a href="#关闭memcached" class="headerlink" title="关闭memcached"></a>关闭memcached</h2><p>与windows直接输入memcached.exe -d stop关闭memcached不同<br>linux需先知道memcached的进程号，再将其杀死<br>查看进程号</p>
+<pre><code>stats     或者     ps -ef|grep memcached
+</code></pre><p>知道了memcached对应的进程号pid后，使用kill命令杀死进程即可。<br>注意：杀死进程前必须quit退出连接</p>
+<pre><code>kill 5070
+</code></pre><p>杀死进城后再次连接memcached失败，说明memcached已经被关闭。</p>
+<h1 id="memcached的命令"><a href="#memcached的命令" class="headerlink" title="memcached的命令"></a>memcached的命令</h1><h2 id="存储命令"><a href="#存储命令" class="headerlink" title="存储命令"></a>存储命令</h2><p>1.set<br>set用于将value存储于key中，若set的key已经存在，该命令可以更新key所对应的原来的数据。语法格式如下：</p>
+<pre><code>set key flag exptime bytes [noreply]
+value
+</code></pre><p>key：键值对中的key，用于查找缓存值<br>flag：可以包含键值对的整型参数，客户机使用它存储关于键值对的额外信息<br>exptime：再缓存中保存键值对的时间长度，以秒为单位，0表示永远<br>bytes：在缓存中存储的字节数<br>noreply：可选参数，该参数告知服务器不需要返回数据<br>value：存储的值，始终位于第二行</p>
+<p>2.add<br>add用于将value存储在指定的key中，如果add的key已经存在，则不会更新数据，与之前的值仍然保持相同，会得到NOT_STORED的响应，但是过期的key会更新。<br>语法格式如下：</p>
+<pre><code>add key flags exptime bytes [noreply]
+value
+</code></pre><p>3.replace<br>replace用于替换已经存在的key的value，如果可以不存在，则替换失败，并且得到NOT_STORED的响应<br>语法格式如下：</p>
+<pre><code>replace key flags exptime bytes [noreply]
+value
+</code></pre><p>4.append<br>append用于向已经存在key的value后面追加数据<br>语法格式如下：</p>
+<pre><code>append key flags exptime bytes [noreply]
+value
+</code></pre><p>5.prepend<br>prepend命令用于向已经存在key的value前面追加数据<br>语法格式如下：</p>
+<pre><code>prepend key flags exptime bytes [noreply]
+value
+</code></pre><p>6.cas<br>cas用于执行一个“检查并设置”的操作，它仅在当前客户端最后一次取值后，该key对应的值没有被其他客户端修改的情况下才能够将值写入。检查是通过cas_token参数进行的，这个参数是memcached指定给已经存在的元素的一个唯一的64位值。<br>语法格式如下：</p>
+<pre><code>cas key flags exptime bytes unique_cas_token [noreply]
+value
+</code></pre><p>unique_cas_token是通过gets命令获取的一个唯一的64位值</p>
+<h2 id="查找命令"><a href="#查找命令" class="headerlink" title="查找命令"></a>查找命令</h2><p>1.get<br>get用于获取存储在key中的value，如果key不存在，则返回空。若获取多个key的value，则使用空格将其隔开即可。<br>语法格式如下：</p>
+<pre><code>get key
+get key1 key2 key3
+</code></pre><p>2.gets<br>gets用于获取CAS令牌存的value,如果key不存在，则返回空。若获取多个key的value，则使用空格将其隔开即可。<br>语法格式如下：</p>
+<pre><code>gets key
+gets key1 key2 key3
+</code></pre><p>3.delete<br>delete命令用于删除已经存在的key。<br>语法格式如下：</p>
+<pre><code>delete key [noreply]
+</code></pre><p>4.incr/decr<br>incr和decr用于对已经存在的key的数字进行自增或自减操作。但是惭怍的数据必须是十进制的32位无符号整数，若key不存在，返回NOT_FOUND，若键的值不为数字，则返回CLIENT_ERROR，其他错误返回ERROR。<br>语法格式如下：</p>
+<pre><code>incr key increment_values [noreply]
+decr key decrement_values [noreply]
+</code></pre><p>increment_values为增加的数值<br>decrement_values为减少的数值</p>
+<p>5.flush_all<br>flush_all用于清理缓存中的所有的键值对，该命令提供了一个可选参数time，用于在制定的时间后执行清理缓存操作。<br>语法格式如下：</p>
+<pre><code>flush_all [time] [noreply]
+</code></pre>
       
     </div>
     
@@ -437,7 +486,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/个人随笔/" rel="tag"><i class="fa fa-tag"></i> 个人随笔</a>
+            <a href="/tags/memcached/" rel="tag"><i class="fa fa-tag"></i> memcached</a>
           
         </div>
       
@@ -450,15 +499,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/05/25/redis安装及简单命令/" rel="next" title="redis安装及简单命令">
+                <i class="fa fa-chevron-left"></i> redis安装及简单命令
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/23/机器学习实战-KNN/" rel="prev" title="机器学习实战--KNN">
-                机器学习实战--KNN <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -645,7 +694,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单随便说说建站方法"><span class="nav-number">1.</span> <span class="nav-text">简单随便说说建站方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo"><span class="nav-number">1.1.</span> <span class="nav-text">Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Github-Pages"><span class="nav-number">1.2.</span> <span class="nav-text">Github Pages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更多资料"><span class="nav-number">1.3.</span> <span class="nav-text">更多资料</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ubuntu16-0-4下memcached的安装"><span class="nav-number">1.</span> <span class="nav-text">ubuntu16.0.4下memcached的安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#memcached的连接与关闭"><span class="nav-number">2.</span> <span class="nav-text">memcached的连接与关闭</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#启动memcached连接"><span class="nav-number">2.1.</span> <span class="nav-text">启动memcached连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关闭memcached"><span class="nav-number">2.2.</span> <span class="nav-text">关闭memcached</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#memcached的命令"><span class="nav-number">3.</span> <span class="nav-text">memcached的命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储命令"><span class="nav-number">3.1.</span> <span class="nav-text">存储命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找命令"><span class="nav-number">3.2.</span> <span class="nav-text">查找命令</span></a></li></ol></li></ol></div>
             
 
           </div>
