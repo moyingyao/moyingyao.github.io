@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://moyingyao.github.io/"/>
-  <updated>2018-05-25T03:05:40.151Z</updated>
+  <updated>2018-05-25T07:52:04.485Z</updated>
   <id>http://moyingyao.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LaTeX入门</title>
+    <link href="http://moyingyao.github.io/2018/05/25/LaTeX%E5%85%A5%E9%97%A8/"/>
+    <id>http://moyingyao.github.io/2018/05/25/LaTeX入门/</id>
+    <published>2018-05-25T07:04:26.000Z</published>
+    <updated>2018-05-25T07:52:04.485Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><p>打开WinEdt，建立一个新文档，将以下内容复制进入文档中，保存，保存类型选择为UTF-8。<br><a id="more"></a></p><pre><code>\documentclass{article}  \begin{document}  hello, world  \end{document} </code></pre><p>然后在WinEdt的工具栏中找到编译按钮（在垃圾桶和字母B中间），在下拉菜单中选择XeTeX，并点击编译。<br>如果顺利的话，就可以顺利生成出第一个pdf文件，点击工具栏中的放大镜按钮就可以快速打开生成的pdf文件。 </p><h1 id="标题、作者、章节和段落"><a href="#标题、作者、章节和段落" class="headerlink" title="标题、作者、章节和段落"></a>标题、作者、章节和段落</h1><p>建立一个新文档，将以下内容复制进入文档中，保存，保存类型选择为UTF-8，编译并观察现象。</p><pre><code>\documentclass{article}  \author{My Name}  \title{The Title}  \begin{document}  \maketitle  hello, world % This is comment  \end{document} </code></pre><p>效果图如下：<br><img src="https://i.imgur.com/KPP0wzq.png" alt=""> </p><h1 id="加入目录"><a href="#加入目录" class="headerlink" title="加入目录"></a>加入目录</h1><p>建立一个新文档，将以下内容复制进入文档中，保存，保存类型选择为UTF-8，编译并观察现象。</p><pre><code>\documentclass{article}  \begin{document}  \tableofcontents  \section{Hello China} China is in East Asia.  \subsection{Hello Beijing} Beijing is the capital of China.  \subsubsection{Hello Dongcheng District}  \paragraph{Hello Tian&apos;anmen Square}is in the center of Beijing  \subparagraph{Hello Chairman Mao} is in the center of Tian&apos;anmen Square  \end{document} </code></pre><p>效果图如下：<br><img src="https://i.imgur.com/5KAaLd6.png" alt=""> </p><h1 id="段落和换行"><a href="#段落和换行" class="headerlink" title="段落和换行"></a>段落和换行</h1><pre><code>\documentclass{article}  \begin{document}  Beijing is  the capital  of China.  New York is  the capital  of America.  Amsterdam is \\ the capital \\  of Netherlands.  \end{document} </code></pre><p>效果图如下：<br><img src="https://i.imgur.com/Rpk6Hh2.png" alt=""></p><h1 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h1><pre><code>\documentclass{article}  \usepackage{amsmath}  \usepackage{amssymb}  \begin{document}  The Newton&apos;s second law is F=ma.  The Newton&apos;s second law is $F=ma$.  The Newton&apos;s second law is  F=maThe Newton&apos;s second law is  F=maGreek Letters $\eta$ and $\mu$  Fraction $\frac{a}{b}$  Power $a^b$  Subscript $a_b$  Derivate $\frac{\partial y}{\partial t} $  Vector $\vec{n}$  Bold $\mathbf{n}$  To time differential $\dot{F}$  Matrix (lcr here means left, center or right for each column)  \[  \left[  \begin{array}{lcr}  a1 &amp; b22 &amp; c333 \\  d444 &amp; e555555 &amp; f6  \end{array}  \right]  \]  Equations(here \&amp; is the symbol for aligning different rows)  \begin{align}  a+b&amp;=c\\  d&amp;=e+f+g  \end{align}  \[  \left\{  \begin{aligned}  &amp;a+b=c\\  &amp;d=e+f+g  \end{aligned}  \right.  \]  \end{document} </code></pre><p>效果图如下：<br><img src="https://i.imgur.com/JCSYPxO.png" alt=""></p><h1 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h1><p>先搜索到一个将图片转成eps文件的软件，很容易找的，然后将图片保存为一个名字如figure1.eps。<br>建立一个新文档，将以下内容复制进入文档中，保存，保存类型选择为UTF-8，放在和图片文件同一个文件夹里，编译并观察现象。</p><pre><code>\documentclass{article}  \usepackage{graphicx}  \begin{document}  \includegraphics[width=4.00in,height=3.00in]{figure1.eps}  \end{document}</code></pre><h1 id="简单表格"><a href="#简单表格" class="headerlink" title="简单表格"></a>简单表格</h1><pre><code>\documentclass{article}\begin{document}\begin{tabular}{|c|c|}a &amp; b \\c &amp; d\\\end{tabular}\begin{tabular}{|c|c|}\hlinea &amp; b \\\hlinec &amp; d\\\hline\end{tabular}\begin{center}\begin{tabular}{|c|c|}\hlinea &amp; b \\ \hlinec &amp; d\\\hline\end{tabular}\end{center}\end{document}</code></pre><p>效果图如下：<br><img src="https://i.imgur.com/JoYKa5s.png" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Hello-World&quot;&gt;&lt;a href=&quot;#Hello-World&quot; class=&quot;headerlink&quot; title=&quot;Hello World&quot;&gt;&lt;/a&gt;Hello World&lt;/h1&gt;&lt;p&gt;打开WinEdt，建立一个新文档，将以下内容复制进入文档中，保存，保存类型选择为UTF-8。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="文档编写" scheme="http://moyingyao.github.io/categories/%E6%96%87%E6%A1%A3%E7%BC%96%E5%86%99/"/>
+    
+    
+      <category term="LaTeX" scheme="http://moyingyao.github.io/tags/LaTeX/"/>
+    
+  </entry>
   
   <entry>
     <title>机器学习实战--决策树</title>
