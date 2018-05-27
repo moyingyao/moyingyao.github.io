@@ -173,7 +173,7 @@
 <meta property="og:image" content="https://i.imgur.com/KUlb3nd.png">
 <meta property="og:image" content="https://i.imgur.com/jO0YeHh.png">
 <meta property="og:image" content="https://i.imgur.com/JEnzQND.png">
-<meta property="og:updated_time" content="2018-05-25T09:56:11.658Z">
+<meta property="og:updated_time" content="2018-05-27T14:03:48.818Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis安装及简单命令">
 <meta name="twitter:description" content="Redis：REmote DIctionary Server">
@@ -440,7 +440,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,381
+                  1,417
                 </span>
               
 
@@ -469,6 +469,7 @@
 <h2 id="Redis-远程字典服务器"><a href="#Redis-远程字典服务器" class="headerlink" title="Redis(远程字典服务器)"></a>Redis(远程字典服务器)</h2><p>是完全开源免费的，用C语言编写，是一个高性能的（key/value）分布式内存数据库，基于内存运行并支持持久化的NoSQL数据库，是当前最热门的NoSQL数据库之一，也被人们称之为结构数据服务器。</p>
 <h2 id="Redis逐步取代memcached的原因"><a href="#Redis逐步取代memcached的原因" class="headerlink" title="Redis逐步取代memcached的原因"></a>Redis逐步取代memcached的原因</h2><p>1.redis支持数据持久化，可以将内存中的数据保持在磁盘中，重启的时候可以再次加载进行使用<br>2.redis不仅仅直迟简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储<br>3.redis支持数据的备份，即master-slave魔术的数据备份</p>
 <h2 id="Redis能做什么？"><a href="#Redis能做什么？" class="headerlink" title="Redis能做什么？"></a>Redis能做什么？</h2><p>1.内存存储和持久化：redis支持异步将内存中的数据写到硬盘上，同时不影响继续服务<br>2.取最新N个数据的操作，如：可以将最新的10条评论的ID放在redis的List集合里面<br>3.模拟类似于HttpSession这种需要设定过期时间的功能<br>4.发布、订阅消息系统<br>5.定时器、计数器</p>
+<h2 id="与memcached区别"><a href="#与memcached区别" class="headerlink" title="与memcached区别"></a>与memcached区别</h2><p>都是key-value存储<br>memcached一旦服务关闭，数据会全部没有<br>redis服务关闭重启后数据还在</p>
 <h1 id="安装Redis"><a href="#安装Redis" class="headerlink" title="安装Redis"></a>安装Redis</h1><p>我们的环境：<br>VMware Workplace<br>CentOS-6.5<br>redis-4.0.9<br>下载地址： Http://redis.io<br>将下载好的redis-4.0.9放入虚拟机中，并解压</p>
 <pre><code>tar -zxvf redis-4.9.0.tar.gz
 </code></pre><p>redis内包含的文件<br><img src="https://i.imgur.com/inuGfQx.png" alt="">输入命令</p>
@@ -634,7 +635,7 @@ make
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -645,7 +646,7 @@ make
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -656,7 +657,7 @@ make
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -738,7 +739,7 @@ make
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis：REmote-DIctionary-Server"><span class="nav-number">1.</span> <span class="nav-text">Redis：REmote DIctionary Server</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-远程字典服务器"><span class="nav-number">1.1.</span> <span class="nav-text">Redis(远程字典服务器)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis逐步取代memcached的原因"><span class="nav-number">1.2.</span> <span class="nav-text">Redis逐步取代memcached的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis能做什么？"><span class="nav-number">1.3.</span> <span class="nav-text">Redis能做什么？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Redis"><span class="nav-number">2.</span> <span class="nav-text">安装Redis</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置redis-conf"><span class="nav-number">3.</span> <span class="nav-text">配置redis.conf</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#启动redis服务"><span class="nav-number">4.</span> <span class="nav-text">启动redis服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进入客户端"><span class="nav-number">5.</span> <span class="nav-text">进入客户端</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基础了解"><span class="nav-number">6.</span> <span class="nav-text">基础了解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#默认库"><span class="nav-number">6.1.</span> <span class="nav-text">默认库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flushdb和flushall的区别"><span class="nav-number">6.2.</span> <span class="nav-text">flushdb和flushall的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Benchmark查看本机状态"><span class="nav-number">6.3.</span> <span class="nav-text">Benchmark查看本机状态</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用五大数据类型"><span class="nav-number">7.</span> <span class="nav-text">常用五大数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用关键字"><span class="nav-number">8.</span> <span class="nav-text">常用关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#set-get-exists-keys-move-mset-mget"><span class="nav-number">8.1.</span> <span class="nav-text">set/get/exists/keys/move/mset/mget</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#expire-ttl-setex"><span class="nav-number">8.2.</span> <span class="nav-text">expire/ttl/setex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#append-strlen-getrange-setrange-incr-decr-incrby-decrby"><span class="nav-number">8.3.</span> <span class="nav-text">append/strlen/getrange/setrange/incr/decr/incrby/decrby</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lpush-lrange-lpop-rpop-lidex-llen"><span class="nav-number">8.4.</span> <span class="nav-text">lpush/lrange/lpop/rpop/lidex/llen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lren-ltrim-rpoplpush-lset-linsert"><span class="nav-number">8.5.</span> <span class="nav-text">lren/ltrim/rpoplpush/lset/linsert</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sadd-smembers-sismember-scard-srem-srandmember"><span class="nav-number">8.6.</span> <span class="nav-text">sadd/smembers/sismember/scard/srem/srandmember</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spop-smove-sdiff-sinter-sunion"><span class="nav-number">8.7.</span> <span class="nav-text">spop/smove/sdiff/sinter/sunion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zrange-zrevrange-zcount"><span class="nav-number">8.8.</span> <span class="nav-text">zrange/zrevrange/zcount</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hash相关的关键字"><span class="nav-number">8.9.</span> <span class="nav-text">hash相关的关键字</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis：REmote-DIctionary-Server"><span class="nav-number">1.</span> <span class="nav-text">Redis：REmote DIctionary Server</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-远程字典服务器"><span class="nav-number">1.1.</span> <span class="nav-text">Redis(远程字典服务器)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis逐步取代memcached的原因"><span class="nav-number">1.2.</span> <span class="nav-text">Redis逐步取代memcached的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis能做什么？"><span class="nav-number">1.3.</span> <span class="nav-text">Redis能做什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与memcached区别"><span class="nav-number">1.4.</span> <span class="nav-text">与memcached区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Redis"><span class="nav-number">2.</span> <span class="nav-text">安装Redis</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置redis-conf"><span class="nav-number">3.</span> <span class="nav-text">配置redis.conf</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#启动redis服务"><span class="nav-number">4.</span> <span class="nav-text">启动redis服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进入客户端"><span class="nav-number">5.</span> <span class="nav-text">进入客户端</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基础了解"><span class="nav-number">6.</span> <span class="nav-text">基础了解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#默认库"><span class="nav-number">6.1.</span> <span class="nav-text">默认库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flushdb和flushall的区别"><span class="nav-number">6.2.</span> <span class="nav-text">flushdb和flushall的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Benchmark查看本机状态"><span class="nav-number">6.3.</span> <span class="nav-text">Benchmark查看本机状态</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用五大数据类型"><span class="nav-number">7.</span> <span class="nav-text">常用五大数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用关键字"><span class="nav-number">8.</span> <span class="nav-text">常用关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#set-get-exists-keys-move-mset-mget"><span class="nav-number">8.1.</span> <span class="nav-text">set/get/exists/keys/move/mset/mget</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#expire-ttl-setex"><span class="nav-number">8.2.</span> <span class="nav-text">expire/ttl/setex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#append-strlen-getrange-setrange-incr-decr-incrby-decrby"><span class="nav-number">8.3.</span> <span class="nav-text">append/strlen/getrange/setrange/incr/decr/incrby/decrby</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lpush-lrange-lpop-rpop-lidex-llen"><span class="nav-number">8.4.</span> <span class="nav-text">lpush/lrange/lpop/rpop/lidex/llen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lren-ltrim-rpoplpush-lset-linsert"><span class="nav-number">8.5.</span> <span class="nav-text">lren/ltrim/rpoplpush/lset/linsert</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sadd-smembers-sismember-scard-srem-srandmember"><span class="nav-number">8.6.</span> <span class="nav-text">sadd/smembers/sismember/scard/srem/srandmember</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spop-smove-sdiff-sinter-sunion"><span class="nav-number">8.7.</span> <span class="nav-text">spop/smove/sdiff/sinter/sunion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zrange-zrevrange-zcount"><span class="nav-number">8.8.</span> <span class="nav-text">zrange/zrevrange/zcount</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hash相关的关键字"><span class="nav-number">8.9.</span> <span class="nav-text">hash相关的关键字</span></a></li></ol></li></ol></div>
             
 
           </div>

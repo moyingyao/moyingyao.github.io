@@ -101,7 +101,7 @@
 
 
 
-  <meta name="keywords" content="LaTeX," />
+  <meta name="keywords" content="物体检测," />
 
 
 
@@ -114,24 +114,18 @@
 
 
 
-<meta name="description" content="Hello World打开WinEdt，建立一个新文档，将以下内容复制进入文档中，保存，保存类型选择为UTF-8。">
-<meta name="keywords" content="LaTeX">
+<meta name="description" content="只是了解一点点，就写在这里了，后续陆续更新">
+<meta name="keywords" content="物体检测">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LaTeX入门">
-<meta property="og:url" content="http://moyingyao.github.io/2018/05/25/LaTeX入门/index.html">
+<meta property="og:title" content="物体检测">
+<meta property="og:url" content="http://moyingyao.github.io/2018/05/27/物体检测入门/index.html">
 <meta property="og:site_name" content="AmberWu">
-<meta property="og:description" content="Hello World打开WinEdt，建立一个新文档，将以下内容复制进入文档中，保存，保存类型选择为UTF-8。">
+<meta property="og:description" content="只是了解一点点，就写在这里了，后续陆续更新">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/KPP0wzq.png">
-<meta property="og:image" content="https://i.imgur.com/5KAaLd6.png">
-<meta property="og:image" content="https://i.imgur.com/Rpk6Hh2.png">
-<meta property="og:image" content="https://i.imgur.com/JCSYPxO.png">
-<meta property="og:image" content="https://i.imgur.com/JoYKa5s.png">
-<meta property="og:updated_time" content="2018-05-25T07:52:04.485Z">
+<meta property="og:updated_time" content="2018-05-27T14:00:09.994Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LaTeX入门">
-<meta name="twitter:description" content="Hello World打开WinEdt，建立一个新文档，将以下内容复制进入文档中，保存，保存类型选择为UTF-8。">
-<meta name="twitter:image" content="https://i.imgur.com/KPP0wzq.png">
+<meta name="twitter:title" content="物体检测">
+<meta name="twitter:description" content="只是了解一点点，就写在这里了，后续陆续更新">
 
 
 
@@ -161,13 +155,13 @@
 
 
 
-  <link rel="canonical" href="http://moyingyao.github.io/2018/05/25/LaTeX入门/"/>
+  <link rel="canonical" href="http://moyingyao.github.io/2018/05/27/物体检测入门/"/>
 
 
 
 
 
-  <title>LaTeX入门 | AmberWu</title>
+  <title>物体检测 | AmberWu</title>
   
 
 
@@ -304,7 +298,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://moyingyao.github.io/2018/05/25/LaTeX入门/">
+    <link itemprop="mainEntityOfPage" href="http://moyingyao.github.io/2018/05/27/物体检测入门/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AmberWu">
@@ -321,7 +315,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LaTeX入门</h1>
+          <h1 class="post-title" itemprop="name headline">物体检测</h1>
         
 
         <div class="post-meta">
@@ -333,8 +327,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-25T15:04:26+08:00">
-                2018-05-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-27T21:38:38+08:00">
+                2018-05-27
               </time>
             
 
@@ -356,8 +350,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/文档编写/" itemprop="url" rel="index">
-                    <span itemprop="name">文档编写</span>
+                  <a href="/categories/深度学习/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
                   </a>
                 </span>
 
@@ -394,7 +388,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  631
+                  240
                 </span>
               
 
@@ -419,138 +413,26 @@
       
 
       
-        <h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><p>打开WinEdt，建立一个新文档，将以下内容复制进入文档中，保存，保存类型选择为UTF-8。<br><a id="more"></a></p>
-<pre><code>\documentclass{article}  
-\begin{document}  
-hello, world  
-\end{document} 
-</code></pre><p>然后在WinEdt的工具栏中找到编译按钮（在垃圾桶和字母B中间），在下拉菜单中选择XeTeX，并点击编译。<br>如果顺利的话，就可以顺利生成出第一个pdf文件，点击工具栏中的放大镜按钮就可以快速打开生成的pdf文件。 </p>
-<h1 id="标题、作者、章节和段落"><a href="#标题、作者、章节和段落" class="headerlink" title="标题、作者、章节和段落"></a>标题、作者、章节和段落</h1><p>建立一个新文档，将以下内容复制进入文档中，保存，保存类型选择为UTF-8，编译并观察现象。</p>
-<pre><code>\documentclass{article}  
-\author{My Name}  
-\title{The Title}  
-\begin{document}  
-\maketitle  
-hello, world % This is comment  
-\end{document} 
-</code></pre><p>效果图如下：<br><img src="https://i.imgur.com/KPP0wzq.png" alt=""> </p>
-<h1 id="加入目录"><a href="#加入目录" class="headerlink" title="加入目录"></a>加入目录</h1><p>建立一个新文档，将以下内容复制进入文档中，保存，保存类型选择为UTF-8，编译并观察现象。</p>
-<pre><code>\documentclass{article}  
-\begin{document}  
-\tableofcontents  
-\section{Hello China} China is in East Asia.  
-\subsection{Hello Beijing} Beijing is the capital of China.  
-\subsubsection{Hello Dongcheng District}  
-\paragraph{Hello Tian&apos;anmen Square}is in the center of Beijing  
-\subparagraph{Hello Chairman Mao} is in the center of Tian&apos;anmen Square  
-\end{document} 
-</code></pre><p>效果图如下：<br><img src="https://i.imgur.com/5KAaLd6.png" alt=""> </p>
-<h1 id="段落和换行"><a href="#段落和换行" class="headerlink" title="段落和换行"></a>段落和换行</h1><pre><code>\documentclass{article}  
-\begin{document}  
-Beijing is  
-the capital  
-of China.  
-
-New York is  
-
-the capital  
-
-of America.  
-
-Amsterdam is \\ the capital \\  
-of Netherlands.  
-\end{document} 
-</code></pre><p>效果图如下：<br><img src="https://i.imgur.com/Rpk6Hh2.png" alt=""></p>
-<h1 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h1><pre><code>\documentclass{article}  
-\usepackage{amsmath}  
-\usepackage{amssymb}  
-\begin{document}  
-The Newton&apos;s second law is F=ma.  
-
-The Newton&apos;s second law is $F=ma$.  
-
-The Newton&apos;s second law is  
-F=ma
-
-
-The Newton&apos;s second law is  
-F=ma
-
-
-Greek Letters $\eta$ and $\mu$  
-
-Fraction $\frac{a}{b}$  
-
-Power $a^b$  
-
-Subscript $a_b$  
-
-Derivate $\frac{\partial y}{\partial t} $  
-
-Vector $\vec{n}$  
-
-Bold $\mathbf{n}$  
-
-To time differential $\dot{F}$  
-
-Matrix (lcr here means left, center or right for each column)  
-\[  
-\left[  
-\begin{array}{lcr}  
-a1 &amp; b22 &amp; c333 \\  
-d444 &amp; e555555 &amp; f6  
-\end{array}  
-\right]  
-\]  
-
-Equations(here \&amp; is the symbol for aligning different rows)  
-\begin{align}  
-a+b&amp;=c\\  
-d&amp;=e+f+g  
-\end{align}  
-
-\[  
-\left\{  
-\begin{aligned}  
-&amp;a+b=c\\  
-&amp;d=e+f+g  
-\end{aligned}  
-\right.  
-\]  
-
-\end{document} 
-</code></pre><p>效果图如下：<br><img src="https://i.imgur.com/JCSYPxO.png" alt=""></p>
-<h1 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h1><p>先搜索到一个将图片转成eps文件的软件，很容易找的，然后将图片保存为一个名字如figure1.eps。<br>建立一个新文档，将以下内容复制进入文档中，保存，保存类型选择为UTF-8，放在和图片文件同一个文件夹里，编译并观察现象。</p>
-<pre><code>\documentclass{article}  
-\usepackage{graphicx}  
-\begin{document}  
-\includegraphics[width=4.00in,height=3.00in]{figure1.eps}  
-\end{document}
-</code></pre><h1 id="简单表格"><a href="#简单表格" class="headerlink" title="简单表格"></a>简单表格</h1><pre><code>\documentclass{article}
-\begin{document}
-\begin{tabular}{|c|c|}
-a &amp; b \\
-c &amp; d\\
-\end{tabular}
-
-\begin{tabular}{|c|c|}
-\hline
-a &amp; b \\
-\hline
-c &amp; d\\
-\hline
-\end{tabular}
-
-\begin{center}
-\begin{tabular}{|c|c|}
-\hline
-a &amp; b \\ \hline
-c &amp; d\\
-\hline
-\end{tabular}
-\end{center}
-\end{document}
-</code></pre><p>效果图如下：<br><img src="https://i.imgur.com/JoYKa5s.png" alt=""></p>
+        <p>只是了解一点点，就写在这里了，后续陆续更新<br><a id="more"></a><br>物体检测  object-detection<br>分类+位置<br>14年开始热门起来</p>
+<h1 id="R-CNN"><a href="#R-CNN" class="headerlink" title="R-CNN"></a>R-CNN</h1><p>基于区域的CNN<br>步骤：</p>
+<ol>
+<li>随机扣一块区域，输入至CNN，看是否为想要识别的物体，选择性搜索、出框，一般2000次</li>
+<li>将框Resize改变成同样大小的框</li>
+<li>输入至CNN中，生成256*256的图像</li>
+<li>使用SVM分类</li>
+</ol>
+<h1 id="Fast-R-CNN"><a href="#Fast-R-CNN" class="headerlink" title="Fast R-CNN"></a>Fast R-CNN</h1><p>进步：将起初的先出框再卷积改为先卷积再出框，减少了卷积次数<br>步骤：</p>
+<ol>
+<li>先卷积，再出框，一般为2000个区域</li>
+<li>ROI Pooling框出区域，值取max</li>
+<li>softmax，多类输出</li>
+</ol>
+<p>RPI Pooling需要输入：</p>
+<ol>
+<li>卷积后的结果</li>
+<li>生成区域框的边框，标签为左下角和右上角的坐标</li>
+</ol>
+<h1 id="Faster-R-CNN"><a href="#Faster-R-CNN" class="headerlink" title="Faster R-CNN"></a>Faster R-CNN</h1><h1 id="SSD单发多框检测器"><a href="#SSD单发多框检测器" class="headerlink" title="SSD单发多框检测器"></a>SSD单发多框检测器</h1><p>图片 → 卷积 → 出框<br>softmax  →n+1分类（n类+背景）→ 卷积 → 出框</p>
 
       
     </div>
@@ -570,7 +452,7 @@ c &amp; d\\
       
         <div class="post-tags">
           
-            <a href="/tags/LaTeX/" rel="tag"><i class="fa fa-tag"></i> LaTeX</a>
+            <a href="/tags/物体检测/" rel="tag"><i class="fa fa-tag"></i> 物体检测</a>
           
         </div>
       
@@ -583,8 +465,8 @@ c &amp; d\\
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/25/机器学习实战-决策树/" rel="next" title="机器学习实战--决策树">
-                <i class="fa fa-chevron-left"></i> 机器学习实战--决策树
+              <a href="/2018/05/25/memcached安装及简单命令/" rel="next" title="memcached安装及简单命令">
+                <i class="fa fa-chevron-left"></i> memcached安装及简单命令
               </a>
             
           </div>
@@ -593,8 +475,8 @@ c &amp; d\\
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/25/hadoop-分布式搭建/" rel="prev" title="hadoop 分布式搭建">
-                hadoop 分布式搭建 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/27/zookeeper/" rel="prev" title="zookeeper">
+                zookeeper <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -782,7 +664,7 @@ c &amp; d\\
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hello-World"><span class="nav-number">1.</span> <span class="nav-text">Hello World</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#标题、作者、章节和段落"><span class="nav-number">2.</span> <span class="nav-text">标题、作者、章节和段落</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加入目录"><span class="nav-number">3.</span> <span class="nav-text">加入目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#段落和换行"><span class="nav-number">4.</span> <span class="nav-text">段落和换行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数学公式"><span class="nav-number">5.</span> <span class="nav-text">数学公式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#插入图片"><span class="nav-number">6.</span> <span class="nav-text">插入图片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简单表格"><span class="nav-number">7.</span> <span class="nav-text">简单表格</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#R-CNN"><span class="nav-number">1.</span> <span class="nav-text">R-CNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fast-R-CNN"><span class="nav-number">2.</span> <span class="nav-text">Fast R-CNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Faster-R-CNN"><span class="nav-number">3.</span> <span class="nav-text">Faster R-CNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSD单发多框检测器"><span class="nav-number">4.</span> <span class="nav-text">SSD单发多框检测器</span></a></li></ol></div>
             
 
           </div>
