@@ -1524,13 +1524,6 @@ pre .javascript .function {
 .fancybox-close:hover {
   border: none;
 }
-.post-copyright {
-  margin: 2em 0 0;
-  padding: 0.5em 1em;
-  border-left: 3px solid #ff1700;
-  background-color: #f9f9f9;
-  list-style: none;
-}
 .my_post_copyright {
   width: 85%;
   max-width: 45em;
@@ -1746,7 +1739,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #cc1b55;
+  background: #c7ff41;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2962,10 +2955,131 @@ header.post-header {
 }
 body {
   background-image: url("/images/background.jpg");
-  background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-position: 50% 50%;
   background-position: center;
+}
+.headband {
+  height: 1.5px;
+  background-image: linear-gradient(90deg, #f79533 0%, #f37055 15%, #ef4e7b 30%, #a166ab 44%, #5073b8 58%, #1098ad 72%, #07b39b 86%, #6dba82 100%);
+}
+.header-inner {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.posts-expand {
+  padding-top: 10px;
+}
+.posts-expand .post-meta {
+  margin: 5px 0px 0px 0px;
+}
+.post-button {
+  margin-top: 0px;
+}
+.menu {
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 5px;
+  background-color: rgba(255,255,255,0.75);
+  box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.15);
+}
+.posts-expand .post-eof {
+  margin: 0px;
+  background-color: rgba(255,255,255,0);
+}
+.pagination {
+  border: none;
+  margin: 0px;
+}
+.posts-collapse {
+  margin: 5px 0px;
+}
+@media (max-width: 1023px) {
+  .posts-collapse {
+    margin: 50px 20px;
+  }
+}
+.posts-collapse .post-title a {
+  color: #5073b8;
+}
+.posts-collapse .post-title a:hover {
+  color: #a166ab;
+}
+.posts-collapse .post-header:hover {
+  border-bottom-color: #a166ab;
+}
+.about-page {
+  margin: -80px 0px 60px 0px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  background-color: #fff;
+  padding: 106px 36px 36px 36px;
+}
+@media (max-width: 767px) {
+  .about-page {
+    margin: -73px 0px 50px 0px;
+    padding: 96px 15px 20px 15px;
+  }
+}
+h2.about-title {
+  border-left: none !important;
+  margin-left: 0px !important;
+  padding-left: 0px !important;
+  text-align: center;
+  background-image: linear-gradient(90deg, #a166ab 0%, #a166ab 40%, #ef4e7b 45%, #f37055 50%, #ef4e7b 55%, #a166ab 60%, #a166ab 100%);
+  background-size: cover;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  user-select: none;
+}
+.local-search-popup .local-search-input-wrapper input {
+  padding: 9px 0px;
+  height: 21px;
+  background-color: #fff;
+}
+.local-search-popup .popup-btn-close {
+  border-left: none;
+}
+.posts-collapse::after {
+  margin-left: -2px;
+  background-image: linear-gradient(180deg, #f79533 0, #f37055 15%, #ef4e7b 30%, #a166ab 44%, #5073b8 58%, #1098ad 72%, #07b39b 86%, #6dba82 100%);
+}
+.posts-collapse .collection-title::before {
+  background-color: #fff;
+}
+.posts-collapse .post-header:hover::before {
+  background-color: #a166ab;
+}
+.posts-collapse .post-title a {
+  color: #5073b8;
+}
+.posts-collapse .post-title a:hover {
+  color: #a166ab;
+}
+.posts-collapse .post-header:hover {
+  border-bottom-color: #a166ab;
+}
+.page-archive .posts-collapse .archive-move-on {
+  top: 10px;
+  opacity: 1;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+}
+.post-block.page {
+  margin-top: 40px;
+}
+@media (max-width: 767px) {
+  .category-all-page {
+    margin: -73px 15px 50px 15px;
+  }
+  .category-all-page .category-all-title {
+    margin-top: -5px;
+  }
+}
+::selection {
+  background-color: #fff159;
+  color: #555;
 }
 .post {
   margin-top: 0px;
@@ -2974,10 +3088,13 @@ body {
   -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
+.post {
+  background: $black;
+}
 .post-body p a {
-  color: #0593d3;
+  color: #428bca;
   border-bottom: none;
-  border-bottom: 1px solid #0593d3;
+  border-bottom: 1px solid #428bca;
 }
 .post-body p a:hover {
   color: #fc6423;
@@ -2985,7 +3102,7 @@ body {
   border-bottom: 1px solid #fc6423;
 }
 .site-meta {
-  background: #0684bd;
+  background: $black;
 }
 @font-face {
   font-family: Zitiming;
