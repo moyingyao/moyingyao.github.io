@@ -69,8 +69,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>redis</tag>
         <tag>大数据</tag>
+        <tag>redis</tag>
       </tags>
   </entry>
   <entry>
@@ -81,8 +81,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>大数据</tag>
         <tag>hadoop</tag>
+        <tag>大数据</tag>
       </tags>
   </entry>
   <entry>
@@ -119,8 +119,8 @@
       </categories>
       <tags>
         <tag>《机器学习实战》</tag>
-        <tag>ML</tag>
         <tag>KNN</tag>
+        <tag>ML</tag>
       </tags>
   </entry>
   <entry>

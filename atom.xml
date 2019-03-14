@@ -169,9 +169,9 @@
       <category term="大数据" scheme="http://moyingyao.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="redis" scheme="http://moyingyao.github.io/tags/redis/"/>
-    
       <category term="大数据" scheme="http://moyingyao.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+      <category term="redis" scheme="http://moyingyao.github.io/tags/redis/"/>
     
   </entry>
   
@@ -194,9 +194,9 @@
       <category term="大数据" scheme="http://moyingyao.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="大数据" scheme="http://moyingyao.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
       <category term="hadoop" scheme="http://moyingyao.github.io/tags/hadoop/"/>
+    
+      <category term="大数据" scheme="http://moyingyao.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
   </entry>
   
@@ -277,9 +277,9 @@
     
       <category term="《机器学习实战》" scheme="http://moyingyao.github.io/tags/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98%E3%80%8B/"/>
     
-      <category term="ML" scheme="http://moyingyao.github.io/tags/ML/"/>
-    
       <category term="KNN" scheme="http://moyingyao.github.io/tags/KNN/"/>
+    
+      <category term="ML" scheme="http://moyingyao.github.io/tags/ML/"/>
     
   </entry>
   
