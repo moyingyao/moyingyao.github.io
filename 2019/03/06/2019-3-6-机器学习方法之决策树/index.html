@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#fff">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#fff">
+
+
+
+
+
+  <meta name="keywords" content="machine learning,desion tree," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="AmberWu" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="决策树是一个类似于流程图的树结构：其中，每个内部结点表示在一个属性上的测试，每个分支代表一个属性输出，而每个树叶结点代表类或类分布。树的最顶层是根结点。">
+<meta name="keywords" content="machine learning,desion tree">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习方法之决策树">
+<meta property="og:url" content="http://moyingyao.github.io/2019/03/06/2019-3-6-机器学习方法之决策树/index.html">
+<meta property="og:site_name" content="AmberWu">
+<meta property="og:description" content="决策树是一个类似于流程图的树结构：其中，每个内部结点表示在一个属性上的测试，每个分支代表一个属性输出，而每个树叶结点代表类或类分布。树的最顶层是根结点。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://moyingyao.github.io/2019/03/06/2019-3-6-机器学习方法之决策树/1.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/03/06/2019-3-6-机器学习方法之决策树/9.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/03/06/2019-3-6-机器学习方法之决策树/2.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/03/06/2019-3-6-机器学习方法之决策树/3.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/03/06/2019-3-6-机器学习方法之决策树/4.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/03/06/2019-3-6-机器学习方法之决策树/5.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/03/06/2019-3-6-机器学习方法之决策树/6.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/03/06/2019-3-6-机器学习方法之决策树/7.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/03/06/2019-3-6-机器学习方法之决策树/10.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/03/06/2019-3-6-机器学习方法之决策树/8.png">
+<meta property="og:updated_time" content="2019-03-07T12:46:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习方法之决策树">
+<meta name="twitter:description" content="决策树是一个类似于流程图的树结构：其中，每个内部结点表示在一个属性上的测试，每个分支代表一个属性输出，而每个树叶结点代表类或类分布。树的最顶层是根结点。">
+<meta name="twitter:image" content="http://moyingyao.github.io/2019/03/06/2019-3-6-机器学习方法之决策树/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://moyingyao.github.io/2019/03/06/2019-3-6-机器学习方法之决策树/"/>
+
+
+
+
+
+  <title>机器学习方法之决策树 | AmberWu</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AmberWu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">越努力，越幸运</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-站主简介">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            站主简介
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-类别">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            类别
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-时间轴">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-搜索">
+          <a href="/search/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-categories" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://moyingyao.github.io/2019/03/06/2019-3-6-机器学习方法之决策树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AmberWu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmberWu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习方法之决策树</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-06T21:29:57+08:00">
+                2019-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>  阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,006
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>决策树是一个类似于流程图的树结构：其中，每个内部结点表示在一个属性上的测试，每个分支代表一个属性输出，而每个树叶结点代表类或类分布。树的最顶层是根结点。</p>
+<a id="more"></a>
+<p><img src="/2019/03/06/2019-3-6-机器学习方法之决策树/1.png" alt=""><br>上图中是否出去玩取决于天气情况（sunny、overcast、rain）和空气湿度（humidity、windy）这2个属性的值。</p>
+<h3 id="信息熵"><a href="#信息熵" class="headerlink" title="信息熵"></a>信息熵</h3><p>决策树算法种类很多，本文主要介绍<strong>ID3</strong>算法。ID3算法在1970-1980年，由J.Ross. Quinlan提出。在介绍决策树算法前，我们先引入<font size="4" color="#FF0000">熵（entropy）</font>的概念。</p>
+<p>信息和抽象，具体该如何度量呢？1948年，香农提出了<strong>信息熵（entropy）</strong>的概念。<br>一条信息的信息量大小和它的不确定性有直接的关系，要搞清楚一件非常非常不确定的事情，或者是我们一无所知的事情，需要了解大量信息==&gt;<font color="#FF0000">信息量的度量就等于不确定性的多少</font>。<br>我们用比特(bit)来衡量信息的多少，变量的不确定性越大，熵也就越大。计算公式如下，其中$P(x_i)$表示每种事件发生的可能性。</p>
+<blockquote>
+<blockquote>
+<p><img src="/2019/03/06/2019-3-6-机器学习方法之决策树/9.png" alt=""></p>
+</blockquote>
+</blockquote>
+<h3 id="ID3算法"><a href="#ID3算法" class="headerlink" title="ID3算法"></a>ID3算法</h3><blockquote>
+<p>该算法在选择每一个属性判断结点的时候是根据<font color="#FF0000">信息增益(Information Gain)</font>。通过下面公式可以计算A来作为节点分类获取了多少信息。<br>$$<br>Gain(A) = Info(D) - InfoA(D)<br>$$</p>
+</blockquote>
+<blockquote>
+<p><img src="/2019/03/06/2019-3-6-机器学习方法之决策树/2.png" alt=""><br>上图是一个买车的实例，一个人是否买车取决于他的年龄、收入、信用度和他是否是学生。下图（右）是原始数据，下图（左）是简单的决策树划分。那我们是如何确定<strong>age</strong>作为第一个属性结点的呢？<br>一共有14条数据，其中9人买车，5人没买车，所以根据公式可以算出$Info(D)$的值。接着我们计算选择<strong>age</strong>作为属性结点的信息熵。age有三个取值，其中<strong>youth</strong>有5条信息（2人买车，3人没买），<strong>middle_aged</strong>有4条信息（全部买车），<strong>senior</strong>有5条信息（3人买车，2人没买），所以根据公式可以算出$Info_{age}(D)$和$Gain(age)$的值，如下所示：</p>
+<blockquote>
+<blockquote>
+<p><img src="/2019/03/06/2019-3-6-机器学习方法之决策树/3.png" alt=""><br><img src="/2019/03/06/2019-3-6-机器学习方法之决策树/4.png" alt=""><br><img src="/2019/03/06/2019-3-6-机器学习方法之决策树/5.png" alt=""><br>类似，$Gain(income) = 0.029, Gain(student) = 0.151, Gain(credit_rating)=0.048​$<br>所以，选择age作为第一个根节点。重复。。。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>最终我们得到了如下所示的决策树。<br><img src="/2019/03/06/2019-3-6-机器学习方法之决策树/6.png" alt=""></p>
+<h3 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h3><blockquote>
+<ol>
+<li>从根节点出发，根节点包括所有的训练样本。</li>
+<li>一个节点（包括根节点），若节点内所有样本均属于同一类别，那么将该节点就成为叶节点，并将该节点标记为样本个数最多的类别。</li>
+<li>否则利用采用信息增益法来选择用于对样本进行划分的特征，该特征即为测试特征，特征的每一个值都对应着从该节点产生的一个分支及被划分的一个子集。在决策树中，所有的特征均为符号值，即离散值。如果某个特征的值为连续值，那么需要先将其离散化。</li>
+<li>递归上述划分子集及产生叶节点的过程，这样每一个子集都会产生一个决策（子）树，直到所有节点变成叶节点。</li>
+<li>递归操作的停止条件就是：<blockquote>
+<p>（1） 一个节点中所有的样本均为同一类别，那么产生叶节点<br>（2） 没有特征可以用来对该节点样本进行划分，这里用attribute_list=null为表示。此时也强制产生叶节点，该节点的类别为样本个数最多的类别<br>（3） 没有样本能满足剩余特征的取值，即test_attribute=a_i 对应的样本为空。此时也强制产生叶节点，该节点的类别为样本个数最多的类别</p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+<p>l流程图如下所示：<br><img src="/2019/03/06/2019-3-6-机器学习方法之决策树/7.png" alt=""></p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.feature_extraction <span class="keyword">import</span> DictVectorizer</span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> tree</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> preprocessing</span><br><span class="line"><span class="keyword">import</span> pydotplus</span><br><span class="line"></span><br><span class="line"><span class="comment">#读入csv文件</span></span><br><span class="line">Extradata = open(<span class="string">"G:/PycharmProjects/Machine_Learning/Decision_Tree/AllElectronics.csv"</span>,<span class="string">"r"</span>,encoding=<span class="string">"utf-8"</span>)</span><br><span class="line">reader = csv.reader(Extradata)</span><br><span class="line">headers = next(reader) <span class="comment">#逐行读取数据 python3中为nex(),python2 中为reader.next()</span></span><br><span class="line"><span class="comment">#print(headers)</span></span><br><span class="line"></span><br><span class="line">featureList = [] <span class="comment">#特征列表</span></span><br><span class="line">labelList = [] <span class="comment">#标签列表</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> reader:</span><br><span class="line">    labelList.append(row[len(row)<span class="number">-1</span>]) <span class="comment">#读取每行数据最后一列的标签，存入标签列表</span></span><br><span class="line">    rowDict = &#123;&#125; <span class="comment">#创建字典，存储每行特征数据</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(row)<span class="number">-1</span>):<span class="comment">#从第2列开始到倒数第2列读取特征数据</span></span><br><span class="line">        rowDict[headers[i]] = row[i] <span class="comment">#对应键值对存储数据</span></span><br><span class="line">    featureList.append(rowDict) <span class="comment">#将每行特征数据字典存入特征列表</span></span><br><span class="line"><span class="comment">#print(featureList)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#向量化特征数据</span></span><br><span class="line">vec = DictVectorizer()</span><br><span class="line">dum_X = vec.fit_transform(featureList).toarray()</span><br><span class="line"><span class="comment"># print("dum_X: " + str(dum_X))</span></span><br><span class="line"><span class="comment"># print(vec.get_feature_names())</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># print("labelList: " + str(labelList))</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##向量化标签数据</span></span><br><span class="line">label = preprocessing.LabelBinarizer()</span><br><span class="line">dum_Y = label.fit_transform(labelList)</span><br><span class="line"><span class="comment">#print("dum_Y: " + str(dum_Y))</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#调用sklearn方法构建决策树</span></span><br><span class="line">classfiy = tree.DecisionTreeClassifier(criterion=<span class="string">'entropy'</span>)</span><br><span class="line">classfiy = classfiy.fit(dum_X,dum_Y)</span><br><span class="line"><span class="comment">#print("classfiy: " + str(classfiy))</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#将决策树存为dot文件</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"G:/PycharmProjects/Machine_Learning/Decision_Tree/AllElectronics.dot"</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f = tree.export_graphviz(classfiy,feature_names=vec.get_feature_names(),out_file=f)</span><br><span class="line"></span><br><span class="line"><span class="comment">#可视化决策树的模型，并存为pdf文件</span></span><br><span class="line">dot_data = tree.export_graphviz(classfiy,out_file=<span class="keyword">None</span>)</span><br><span class="line">graph = pydotplus.graph_from_dot_data(dot_data )</span><br><span class="line">graph.write_pdf(<span class="string">"aa.pdf"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#验证决策树分类模型</span></span><br><span class="line">oneRow_X = dum_X[<span class="number">0</span>,:]</span><br><span class="line"><span class="comment">#print("oneRow_X: " + str(oneRow_X))</span></span><br><span class="line">newRow_X = oneRow_X</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改特征数据的值</span></span><br><span class="line">newRow_X[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">newRow_X[<span class="number">2</span>] = <span class="number">0</span></span><br><span class="line">newRow_X[<span class="number">3</span>] = <span class="number">1</span></span><br><span class="line">newRow_X[<span class="number">4</span>] = <span class="number">0</span></span><br><span class="line"><span class="comment">#print("newRow_X: " + str(newRow_X))</span></span><br><span class="line"></span><br><span class="line">finalRow_X = newRow_X.reshape(<span class="number">1</span>,<span class="number">10</span>) <span class="comment">#将一位数组转换为二维数组</span></span><br><span class="line">predict_Y = classfiy.predict(finalRow_X) <span class="comment">#调用决策树模型预测，注意，finalRow_X要求二维</span></span><br><span class="line"><span class="comment">#predict_Y = classfiy.predict([[1., 0., 0., 0., 1., 1., 0., 0., 1., 0.]])</span></span><br><span class="line">print(<span class="string">"predict_Y: "</span> + str(predict_Y))</span><br></pre></td></tr></table></figure>
+<p>代码中预测结果见下图：<br><img src="/2019/03/06/2019-3-6-机器学习方法之决策树/10.png" alt=""></p>
+<p>最后生成的决策树模型见下图：<br><img src="/2019/03/06/2019-3-6-机器学习方法之决策树/8.png" alt=""></p>
+<h3 id="其他决策树算法"><a href="#其他决策树算法" class="headerlink" title="其他决策树算法"></a>其他决策树算法</h3><blockquote>
+<ol>
+<li>C4.5:  Quinlan<br>Classification and Regression Trees (CART): (L. Breiman, J. Friedman, R. Olshen, C. Stone)<br><strong>共同点：</strong>都是贪心算法，自上而下(Top-down approach)<br><strong>区别：</strong>属性选择度量方法不同： C4.5 （gain ratio), CART(gini index), ID3 (Information Gain)</li>
+</ol>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><strong>算法</strong></th>
+<th><strong>支持模型</strong></th>
+<th><strong>树结构</strong></th>
+<th><strong>特征选择</strong></th>
+<th><strong>连续值处理</strong></th>
+<th><strong>缺失值处理</strong></th>
+<th><strong>剪枝</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID3</td>
+<td>分类</td>
+<td>多叉树</td>
+<td>信息增益</td>
+<td>不支持</td>
+<td>不支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>C4.5</td>
+<td>分类</td>
+<td>多叉树</td>
+<td>信息增益比</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>CART</td>
+<td>分类、回归</td>
+<td>二叉树</td>
+<td>基尼系数、均方差</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+</tbody>
+</table>
+<h3 id="决策树的优缺点"><a href="#决策树的优缺点" class="headerlink" title="决策树的优缺点"></a>决策树的优缺点</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><blockquote>
+<ol>
+<li>简单直观，生成的决策树很直观。 </li>
+<li>基本不需要预处理，不需要提前归一化，处理缺失值。  </li>
+<li>既可以处理离散值也可以处理连续值。很多算法只是专注于离散值或者连续值。 </li>
+<li>可以处理多维度输出的分类问题。 </li>
+<li>相比于神经网络之类的黑盒分类模型，决策树在逻辑上可以得到很好的解释 </li>
+<li>可以交叉验证的剪枝来选择模型，从而提高泛化能力。 </li>
+</ol>
+</blockquote>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><blockquote>
+<ol>
+<li>决策树算法非常容易过拟合，导致泛化能力不强。可以通过设置节点最少样本数量和限制决策树深度来改进。 </li>
+<li>决策树会因为样本发生一点点的改动，就会导致树结构的剧烈改变。这个可以通过集成学习之类的方法解决。 </li>
+<li>寻找最优的决策树是一个NP难的问题，我们一般是通过启发式方法，容易陷入局部最优。可以通过集成学习之类的方法来改善。<br>4.有些比较复杂的关系，决策树很难学习，比如异或。这个就没有办法了，一般这种关系可以换神经网络分类方法来解决。 </li>
+<li>如果某些特征的样本比例过大，生成决策树容易偏向于这些特征。这个可以通过调节样本权重来改善。</li>
+</ol>
+</blockquote>
+<p><strong>参考资料</strong></p>
+<p><a href="https://www.jianshu.com/p/59b510bafb4d" target="_blank" rel="noopener">Scikit-learn中的决策树</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+	
+	  <div>
+		
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+		
+	  </div>
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/weixin1.jpg" alt="AmberWu wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎大家扫码交流！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+	
+	
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/machine-learning/" rel="tag"><i class="fa fa-tag"></i> machine learning</a>
+          
+            <a href="/tags/desion-tree/" rel="tag"><i class="fa fa-tag"></i> desion tree</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/07/基础网络/" rel="next" title="基础网络">
+                <i class="fa fa-chevron-left"></i> 基础网络
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="AmberWu" />
+            
+              <p class="site-author-name" itemprop="name">AmberWu</p>
+              <p class="site-description motion-element" itemprop="description">这是一个深度学习菜鸟储存粮食的地方</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/moyingyao" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:moyingyao@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://my.csdn.net/?ref=toolbar" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-copyright"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5021422784/home?wvr=5&topnav=1&mod=logo" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yzhao.top/" title="😆洋仔的世界😆" target="_blank">😆洋仔的世界😆</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#信息熵"><span class="nav-number">1.</span> <span class="nav-text">信息熵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ID3算法"><span class="nav-number">2.</span> <span class="nav-text">ID3算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法流程"><span class="nav-number">3.</span> <span class="nav-text">算法流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">4.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他决策树算法"><span class="nav-number">5.</span> <span class="nav-text">其他决策树算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#决策树的优缺点"><span class="nav-number">6.</span> <span class="nav-text">决策树的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点"><span class="nav-number">6.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点"><span class="nav-number">6.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AmberWu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v="></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v="></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>
