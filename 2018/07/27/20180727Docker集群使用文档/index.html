@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#fff">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#fff">
+
+
+
+
+
+  <meta name="keywords" content="集群,Docker," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="AmberWu" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。由于深度学习众多框架如果同时使用会互相影响，在集群上使用docker可以很好地解决这种情况。">
+<meta name="keywords" content="集群,Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集群上Docker的简单使用">
+<meta property="og:url" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/index.html">
+<meta property="og:site_name" content="AmberWu">
+<meta property="og:description" content="Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。由于深度学习众多框架如果同时使用会互相影响，在集群上使用docker可以很好地解决这种情况。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/1.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/2.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/3.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/4.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/5.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/6.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/7.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/8.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/9.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/10.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/11.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/12.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/13.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/14.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/15.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/16.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/17.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/18.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/19.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/20.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/21.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/22.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/23.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/24.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/25.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/26.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/27.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/28.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/29.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/30.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/31.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/32.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/33.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/34.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/35.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/36.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/37.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/38.png">
+<meta property="og:updated_time" content="2019-03-15T04:46:58.872Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="集群上Docker的简单使用">
+<meta name="twitter:description" content="Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。由于深度学习众多框架如果同时使用会互相影响，在集群上使用docker可以很好地解决这种情况。">
+<meta name="twitter:image" content="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/"/>
+
+
+
+
+
+  <title>集群上Docker的简单使用 | AmberWu</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AmberWu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">越努力，越幸运</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-站主简介">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            站主简介
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-类别">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            类别
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-时间轴">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://moyingyao.github.io/2018/07/27/20180727Docker集群使用文档/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AmberWu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmberWu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">集群上Docker的简单使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-27T18:27:24+08:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>  阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,329
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。<br>由于深度学习众多框架如果同时使用会互相影响，在集群上使用docker可以很好地解决这种情况。<br><a id="more"></a></p>
+</blockquote>
+<h3 id="用户管理-管理员权限"><a href="#用户管理-管理员权限" class="headerlink" title="用户管理 (管理员权限)"></a>用户管理<font color="#FF0000"> (管理员权限)</font></h3><h4 id="添加docker用户组"><a href="#添加docker用户组" class="headerlink" title="添加docker用户组:"></a>添加docker用户组:</h4><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo groupadd -g <span class="number">344</span> docker</span><br></pre></td></tr></table></figure>
+<h4 id="添加用户到用户组："><a href="#添加用户到用户组：" class="headerlink" title="添加用户到用户组："></a>添加用户到用户组：</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -<span class="selector-tag">a</span> -G 用户组 用户</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>即给用户docker的使用权限，放开权限后，需要重启docker服务。</p>
+</blockquote>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">service docker restart</span></span><br></pre></td></tr></table></figure>
+<h4 id="从用户组中删除用户"><a href="#从用户组中删除用户" class="headerlink" title="从用户组中删除用户"></a>从用户组中删除用户</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpasswd -d 用户 用户组</span><br></pre></td></tr></table></figure>
+<h3 id="镜像的基本操作"><a href="#镜像的基本操作" class="headerlink" title="镜像的基本操作"></a>镜像的基本操作</h3><h4 id="列出本地镜像"><a href="#列出本地镜像" class="headerlink" title="列出本地镜像"></a>列出本地镜像</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/1.png" alt="示例图片"></p>
+<blockquote>
+<p>各个选项说明:</p>
+<ul>
+<li>REPOSITORY：表示镜像的仓库源（不唯一）</li>
+<li>TAG：镜像的标签(不唯一，可以自己设定)</li>
+<li>IMAGE ID：镜像ID（唯一）</li>
+<li>CREATED：镜像创建时间</li>
+<li>SIZE：镜像大小<br>同一个镜像ID可以有多个仓库源和标签，如图中红框所示。</li>
+</ul>
+</blockquote>
+<h4 id="查找镜像"><a href="#查找镜像" class="headerlink" title="查找镜像"></a>查找镜像</h4><blockquote>
+<p>我们可以从Docker Hub网站来搜索镜像，Docker Hub网址为：<a href="https://hub.docker.com/" target="_blank" rel="noopener">https://hub.docker.com/</a><br>我们也可以使用docker search命令来搜索镜像。比如我们需要一个httpd的镜像来作为我们的web服务。我们可以通过docker search命令搜索httpd来寻找适合我们的镜像。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search httpd</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/2.png" alt="示例图片"></p>
+<blockquote>
+<ul>
+<li>NAME:镜像仓库源的名称</li>
+<li>DESCRIPTION:镜像的描述</li>
+<li>OFFICIAL:是否docker官方发布</li>
+</ul>
+</blockquote>
+<h4 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h4><blockquote>
+<p>当我们在本地主机上使用一个不存在的镜像时 Docker 就会自动下载这个镜像。如果我们想预先下载这个镜像，我们可以使用docker pull命令来下载它。<br>此处以ubuntu:15.10为例,其中15.10为标签，若不写，会默认下载最新的镜像，标签为latest。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull 镜像名(:标签)</span><br></pre></td></tr></table></figure>
+<h4 id="设置镜像标签"><a href="#设置镜像标签" class="headerlink" title="设置镜像标签"></a>设置镜像标签</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag 原始镜像名 新镜像名:标签</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/3.png" alt="示例图片"></p>
+<blockquote>
+<p>发现镜像ID为00a10af6cf18的镜像多了一个新的标签 liufan。</p>
+</blockquote>
+<h4 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h4><blockquote>
+<p>当我们删除某一镜像时，会先尝试删除所有指向该镜像的标签，然后删除该镜像本身。</p>
+</blockquote>
+<p><strong>1.若一个镜像有多个标签，我们只想删除已经没用的标签</strong></p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi 仓库源<span class="comment">(liufan)</span>: 镜像标签<span class="comment">(lf)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>删除前后</p>
+</blockquote>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/4.png" alt="示例图片"><br><img src="/2018/07/27/20180727Docker集群使用文档/5.png" alt="示例图片"></p>
+<blockquote>
+<p>我们发现liufan:lf已经被删除</p>
+</blockquote>
+<p><strong>2.彻底删除镜像</strong></p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi –f 镜像ID（以<span class="number">8</span><span class="keyword">c</span><span class="number">811</span>b<span class="number">4</span>aec<span class="number">35</span>为例）（不建议-f强制删除）</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/6.png" alt="示例图片"></p>
+<blockquote>
+<p>我们发现8c811b4aec35这个镜像已经被彻底删除（包含所有指向这个镜像的标签）</p>
+</blockquote>
+<p><strong>3.若想删除的镜像有基于它创建的容器存在时，镜像文件是默认无法删除的。</strong><font color="#FF0000">（容器会在下面章节有所讲解）</font></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --name liufan ubuntu/numpy /bin/bash</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/7.png" alt="示例图片"></p>
+<blockquote>
+<p>我们基于ubuntu/numpy这个镜像创建了一个名为liufan的容器。下面我们退出容器，尝试删除这个镜像，docker会提示有容器在运行，无法删除：</p>
+</blockquote>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/8.png" alt="示例图片"></p>
+<blockquote>
+<p>若想强制删除，可使用2中的 docker rmi –f 镜像ID，但不建议这样做，因为有容器依赖这个镜像，强制删除会有遗留问题（强制删除的镜像换了新的ID继续存在系统中）</p>
+</blockquote>
+<h4 id="导入导出镜像"><a href="#导入导出镜像" class="headerlink" title="导入导出镜像"></a>导入导出镜像</h4><h5 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker save 镜像(busybox) &gt; 存储位置(/home/lf/aa.tar)</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/9.png" alt="示例图片"></p>
+<blockquote>
+<p>已经在对应目录生成压缩文件<br>先把本地的busybox镜像删除，然后尝试导入刚刚导出的压缩镜像</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi busybox &amp;&amp; docker images</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/10.png" alt="示例图片"></p>
+<h5 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load &lt; (镜像存储位置)/home/lf/aa.tar</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/11.png" alt="示例图片"></p>
+<blockquote>
+<p>我们发现busybox镜像已经成功导入。</p>
+</blockquote>
+<blockquote>
+<p><strong>注意</strong>：当已有的镜像不能满足我们的需求时，我们需要自己制作镜像，主要通过下面2种方式：<br>1）    通过Dockerfile文件制作镜像（较难）<br>2）    基于一个原始镜像创建一个容器，在容器里面进行一些操作（安装一些框架或者软件包），然后退出容器，利用commit命令提交生成新的镜像 （简单）</p>
+</blockquote>
+<h3 id="容器基本操作"><a href="#容器基本操作" class="headerlink" title="容器基本操作"></a>容器基本操作</h3><blockquote>
+<p>容器是镜像的一个运行实例，它是基于镜像创建的。</p>
+</blockquote>
+<h4 id="新建容器"><a href="#新建容器" class="headerlink" title="新建容器"></a>新建容器</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker create -it --name lf tensorflow</span><br><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/12.png" alt="示例图片"></p>
+<blockquote>
+<p>可以看见我们成功创建了一个名为lf，基于tensorflow镜像的容器。<br>使用docker create 命令新建的容器一开始是处于停止状态的，需要用如下命令来启动并进入它。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker start lf</span><br><span class="line">docker attach lf</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/13.png" alt="示例图片"></p>
+<h4 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h4><blockquote>
+<p>启动容器有两种方式，一种是基于镜像新建一个容器并启动，另外一个是将在终止状态（stopped）的容器重新启动。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it  --name liufan ubuntu/numpy /bin/bash</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上述命令等价于先执行docker create,再执行docker start和docker attach命令。</p>
+</blockquote>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/14.png" alt="示例图片"></p>
+<blockquote>
+<p>上面我们以交互模式创建了一个基于ubuntu/numpy镜像，名为liufan的容器。<br>命令中：</p>
+<ul>
+<li>-i：表示让容器的标准输入保持打开，</li>
+<li>-t：让docker分配一个伪终端并绑定到容器的标准输入上，</li>
+<li>/bin/bash：不是必要选项，只是在表明创建容器的时候并运行了bash应用，方便我们进入容器内部，不写也可以，不过那就要用其他命令进入容器了。（docker中必须要保持一个进程的运行，要不然整个容器就会退出）</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>我们可以按Ctrl+d或输入exit命令来退出容器。退出后该容器就会处于终止状态（stopped），可通过3.1中的start和attach重新进入容器。</p>
+</blockquote>
+<h4 id="查看终止删除容器"><a href="#查看终止删除容器" class="headerlink" title="查看终止删除容器"></a>查看终止删除容器</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps // 查看所有正在运行容器</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/15.png" alt="示例图片"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a // 查看所有容器</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/16.png" alt="示例图片"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a -q // 查看所有容器ID</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/17.png" alt="示例图片"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop containerId // 停止容器运行，containerId 是容器的ID或者名字，一个或多个</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/18.png" alt="示例图片"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm containerId // 删除容器，containerId 是容器的ID或者名字，一个或多个</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/19.png" alt="示例图片"></p>
+<blockquote>
+<p>可以看到lf、wh这两个容器已经被删除</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop $(docker ps -a -q) //  stop停止所有容器</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/20.png" alt="示例图片"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker  rm $(docker ps -a -q) //   删除所有容器</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/21.png" alt="示例图片"></p>
+<blockquote>
+<p><strong>注意：</strong>删除容器时必须保证容器是终止态（stopped），若不是先进行docker stop操作再进行docker rm操作，可以-f强制删除但不建议。</p>
+</blockquote>
+<h4 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h4><p><strong>1.attach命令</strong><br><img src="/2018/07/27/20180727Docker集群使用文档/22.png" alt="示例图片"></p>
+<blockquote>
+<p>使用attach命令有时候并不方便。当多个窗口同时attach到同一个容器的时候，所有的窗口都会同步显示。当某个窗口因命令阻塞时，其他窗口就无法执行操作了。</p>
+</blockquote>
+<p><strong>2.exec命令</strong></p>
+<blockquote>
+<p>docker自1.3版本起，提供了一个更加方便的工具exec，可以直接在容器内部运行命令，例如进入到刚创建的容器中，并启动一个bash</p>
+</blockquote>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/23.png" alt="示例图片"></p>
+<h4 id="导入和导出容器"><a href="#导入和导出容器" class="headerlink" title="导入和导出容器"></a>导入和导出容器</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --name liufan ubuntu/numpy /bin/bash</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/24.png" alt="示例图片"></p>
+<blockquote>
+<p>我们基于ubuntu/numpy镜像创建了一个名为liufan的容器，下面将它<strong>导出</strong>：</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker export 容器名(liufan) &gt; 存储地址(/home/lf/aa.tar)</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/25.png" alt="示例图片"><br>我们将liufan这个容器导出本地并压缩命名为aa.tar文件。</p>
+<blockquote>
+<p><strong>导入：</strong><br>先将liufan容器删除在尝试导入</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker stop liufan &amp;&amp;docker rm liufan &amp;&amp;docker ps -a</span><br><span class="line">docker <span class="keyword">import</span> /home/lf/aa.tar test/ubuntu:lf</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/26.png" alt="示例图片"><br><img src="/2018/07/27/20180727Docker集群使用文档/27.png" alt="示例图片"></p>
+<blockquote>
+<p>我们可以看到刚刚的容器压缩文件已经成功导入，命名为test/ubuntu:lf镜像。<br>前面第一章中的1.6节中，我们介绍过用docker load命令来导入一个镜像文件，其实这边也可以用docker import命令来导入一个镜像到本地镜像库。</p>
+</blockquote>
+<p><strong>两者的区别是：</strong></p>
+<blockquote>
+<p>docker import：丢弃了所有的历史记录和元数据信息，仅保存容器当时的快照状态。在导入的时候可以重新制定标签等元数据信息。<br>docker load：将保存完整记录，体积较大。</p>
+</blockquote>
+<h3 id="代码实例（以Tensorflow为例）"><a href="#代码实例（以Tensorflow为例）" class="headerlink" title="代码实例（以Tensorflow为例）"></a>代码实例（以Tensorflow为例）</h3><blockquote>
+<p>上面两章我介绍了镜像和容器的关系和它们的一些基本操作，接下来我将介绍如何在创建的容器里面运行我们的代码。<br>集群上有Tensorflow、Pytorch、Caffe、MXNet等深度学习框架的镜像，此处我已Tensorflow为例，介绍如何在容器里运行我们的代码。</p>
+</blockquote>
+<h4 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --name liufan bluesliuf/tensorflow /bin/bash</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/27/20180727Docker集群使用文档/28.png" alt="示例图片"></p>
+<blockquote>
+<p>我们基于bluesliuf/tensorflow这个镜像创建了一个名为liufan的镜像，进入容器ls查看目录列表，发现此时的容器就类似一个Linux环境，默认的用户权限为root权限。</p>
+</blockquote>
+<font color="#FF0000">问题：</font>我们的代码和数据集都在本地机器上，如何放到容器内部呢？直接复制困难并且耗时，如果我们的数据集过大。<br>Docker提供了一种方法：<font color="#FF0000">挂载</font>。将我们的本地目录挂载到容器内部，实现本机目录文件和容器目录文件共享。<br><br><strong>挂载本地目录到容器</strong><br><strong>注意</strong>：不可先创建容器，再挂载本地目录，两者必须同时进行，于是我们重新创建容器并挂载本地目录。<br>我的代码和数据集都放在本机/home/lf/lf/catdogs目下，下面将它挂载到容器内。<br><img src="/2018/07/27/20180727Docker集群使用文档/29.png" alt="示例图片"><br>创建容器有2种方式<br>1.<strong>未调用GPU</strong>，在终端输入命令：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -v /home/lf/lf/catdogs:/var/catdogs --name liufan bluesliuf/tensorflow /bin/bash</span><br></pre></td></tr></table></figure><br><br>2.<strong>调用GPU</strong>，在终端输入命令：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -v /home/lf/lf/catdogs:/var/catdogs -v /usr/local/docker-inspur/nvidia-volumes/volume:/usr/local/nvidia:ro --volume-driver=nvidia-docker --device=/dev/nvidiactl --device=/dev/nvidia-uvm --device=/dev/nvidia-uvm-tools --device=/dev/nvidia0 --device=/dev/nvidia1 --device=/dev/nvidia2 --device=/dev/nvidia3 --device=/dev/nvidia4 --device=/dev/nvidia5 --name liufan bluesliuf/tensorflow /bin/bash</span><br></pre></td></tr></table></figure><br><br><strong>-v:</strong>挂载的命令参数<br><strong>冒号前：</strong>本地目录的绝对路径<br><strong>冒号后：</strong>容器挂载本地目录的绝对路径<br><strong>调用GPU比不调用GPU多出的部分：</strong>表示容器需要使用GPU 时将显卡驱动映射到容器中，默认参数不用修改，如果不使用GPU，可以不加此部分<br><strong>name: </strong>创建的容器名<br><strong>bluesliuf/tensorflow:</strong>基于的镜像<br><br><font size="4">不调用GPU（本机）：</font><br><img src="/2018/07/27/20180727Docker集群使用文档/30.png" alt="示例图片"><br><font size="4">调用GPU（集群）：</font><br><img src="/2018/07/27/20180727Docker集群使用文档/31.png" alt="示例图片"><br>可以看见我们已经成功将本地目录挂载到了我们指定的容器内部位置。<br><font size="4">运行代码（本机）：</font><br><font color="#FF0000">注:</font>本地代码里面通常会有数据集的读取路径，一些生成日志文件的存储路径，我们要对它进行修改，换为容器内读取和存储路径。<br><img src="/2018/07/27/20180727Docker集群使用文档/32.png" alt="示例图片"><br>再去容器内部看，本地的修改已经同步到容器内了。<br><img src="/2018/07/27/20180727Docker集群使用文档/33.png" alt="示例图片"><br>在本地修改文件和容器内修改文件都行，一处修改两者都会同步修改。但建议在本地修改，因为本地修改起来方便，容器内一般用vim编辑器，较为不便。<br>在终端输入命令：<font color="#FF0000">python 代码文件名（此处我是training.py）</font>
+
+<p><font size="4">不调用GPU（本机）：</font><br><img src="/2018/07/27/20180727Docker集群使用文档/34.png" alt="示例图片"><br><img src="/2018/07/27/20180727Docker集群使用文档/35.png" alt="示例图片"></p>
+<p>可以看见代码已经成功运行，并且相应的日志文件也存储到本地目录（容器目录当然也有，两者是同步共享的）<br>此外，docker还提供了类似screen，可以让容器在后台运行的功能，退出时如果想继续运行：按顺序按<font color="#FF0000">【ctrl+p】【ctrl+q】</font>，下次再使用docker attach 或者docker exec进入容器，可以看见我们的程序还在继续运行。例如：<br><img src="/2018/07/27/20180727Docker集群使用文档/36.png" alt="示例图片"></p>
+<p><font size="4">调用GPU：</font><br><img src="/2018/07/27/20180727Docker集群使用文档/37.png" alt="示例图片"><br>在后台运行和上面一样，也是利用<font color="#FF0000">【ctrl+p】【ctrl+q】</font>。</p>
+<h4 id="数据卷挂载"><a href="#数据卷挂载" class="headerlink" title="数据卷挂载"></a>数据卷挂载</h4><p>Docker针对挂载目录还提供了一种高级的用法。叫数据卷。</p>
+<p><font color="#FF0000">数据卷：“其实就是一个正常的容器，专门用来提供数据卷供其它容器挂载的”。</font>感觉它就像是由一个容器定义的一个数据挂载信息。其他的容器启动可以直接挂载数据卷容器中定义的挂载信息。示例如下：<br>1.创建一个普通的容器，名为wuhao，并将本地的文件目录挂载到了容器，接下来把这个容器当做一个数据卷。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -v /home/lf/lf/catdogs:/var/catdogs --name wuhao bluesliuf/tensorflow /bin/bash</span><br></pre></td></tr></table></figure></p>
+<p>2.再创建一个新的容器，来使用这个数据卷。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --volumes-<span class="keyword">from</span> wuhao --name lf bluesliuf/tensorflow /bin/bash</span><br></pre></td></tr></table></figure></p>
+<p><font color="#FF0000">–volumes-from</font>用来指定要从哪个数据卷来挂载数据。<br><img src="/2018/07/27/20180727Docker集群使用文档/38.png" alt="示例图片"><br>我们可以发现通过wuhao这个容器（数据卷），我们成功的将本地目录也挂载到了lf这个容器内。</p>
+<p><font color="#FF0000"><strong>通过数据卷挂载目录更具有优势。</strong></font><br>1）    我们只需先创建一个容器并挂载本地目录，将其看成数据卷，当我们其他容器也需要挂载同样目录的时候，我们只需要利用–volumes-from就可以实现。<br>2）    当我们需要挂载的本地目录发生改变时，我们只需要修改作为数据卷那个容器挂载的本地目录即可<font color="#FF0000">（类似一个全局变量）</font>，而无须一个个修改其他容器的本地挂载目录。</p>
+<p>挂载成功后。运行代码步骤与上面一样。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+	
+	  <div>
+		
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+		
+	  </div>
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/weixin1.jpg" alt="AmberWu wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎大家扫码交流！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+	
+	
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/集群/" rel="tag"><i class="fa fa-tag"></i> 集群</a>
+          
+            <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i> Docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/05/20180705深度学习的常见模型-GAN/" rel="next" title="深度学习的常见模型-GAN">
+                <i class="fa fa-chevron-left"></i> 深度学习的常见模型-GAN
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/25/20190325七月在线-深度学习/" rel="prev" title="七月在线-深度学习">
+                七月在线-深度学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="AmberWu" />
+            
+              <p class="site-author-name" itemprop="name">AmberWu</p>
+              <p class="site-description motion-element" itemprop="description">这是一个深度学习菜鸟储存粮食的地方</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/moyingyao" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:moyingyao@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://my.csdn.net/?ref=toolbar" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-copyright"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5021422784/home?wvr=5&topnav=1&mod=logo" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yzhao.top/" title="😆洋仔的世界😆" target="_blank">😆洋仔的世界😆</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户管理-管理员权限"><span class="nav-number">1.</span> <span class="nav-text">用户管理 (管理员权限)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加docker用户组"><span class="nav-number">1.1.</span> <span class="nav-text">添加docker用户组:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加用户到用户组："><span class="nav-number">1.2.</span> <span class="nav-text">添加用户到用户组：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从用户组中删除用户"><span class="nav-number">1.3.</span> <span class="nav-text">从用户组中删除用户</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像的基本操作"><span class="nav-number">2.</span> <span class="nav-text">镜像的基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#列出本地镜像"><span class="nav-number">2.1.</span> <span class="nav-text">列出本地镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找镜像"><span class="nav-number">2.2.</span> <span class="nav-text">查找镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下载镜像"><span class="nav-number">2.3.</span> <span class="nav-text">下载镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置镜像标签"><span class="nav-number">2.4.</span> <span class="nav-text">设置镜像标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除镜像"><span class="nav-number">2.5.</span> <span class="nav-text">删除镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#导入导出镜像"><span class="nav-number">2.6.</span> <span class="nav-text">导入导出镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#导出"><span class="nav-number">2.6.1.</span> <span class="nav-text">导出</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#导入"><span class="nav-number">2.6.2.</span> <span class="nav-text">导入</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器基本操作"><span class="nav-number">3.</span> <span class="nav-text">容器基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#新建容器"><span class="nav-number">3.1.</span> <span class="nav-text">新建容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动容器"><span class="nav-number">3.2.</span> <span class="nav-text">启动容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看终止删除容器"><span class="nav-number">3.3.</span> <span class="nav-text">查看终止删除容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进入容器"><span class="nav-number">3.4.</span> <span class="nav-text">进入容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#导入和导出容器"><span class="nav-number">3.5.</span> <span class="nav-text">导入和导出容器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实例（以Tensorflow为例）"><span class="nav-number">4.</span> <span class="nav-text">代码实例（以Tensorflow为例）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建容器"><span class="nav-number">4.1.</span> <span class="nav-text">创建容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据卷挂载"><span class="nav-number">4.2.</span> <span class="nav-text">数据卷挂载</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AmberWu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v="></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v="></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>
