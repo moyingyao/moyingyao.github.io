@@ -101,7 +101,7 @@
 
 
 
-  <meta name="keywords" content="图像处理，计算机视觉,深度学习" />
+  <meta name="keywords" content="DL,denoise," />
 
 
 
@@ -114,16 +114,44 @@
 
 
 
-<meta name="description" content="这是一个深度学习菜鸟储存粮食的地方">
-<meta property="og:type" content="website">
-<meta property="og:title" content="AmberWu">
-<meta property="og:url" content="http://moyingyao.github.io/tags/deep-learning/index.html">
+<meta name="description" content="本篇博文主要介绍噪音类型的分类和去噪。">
+<meta name="keywords" content="DL,denoise">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于深度神经网络的图像分类与去噪">
+<meta property="og:url" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/index.html">
 <meta property="og:site_name" content="AmberWu">
-<meta property="og:description" content="这是一个深度学习菜鸟储存粮食的地方">
+<meta property="og:description" content="本篇博文主要介绍噪音类型的分类和去噪。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/1.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/2.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/3.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/4.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/5.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/7.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/8.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/6.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/9.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/10.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/111.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/222.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/333.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/11.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/444.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/12.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/13.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/14.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/15.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/16.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/17.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/18.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/19.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/20.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/21.png">
+<meta property="og:updated_time" content="2019-06-20T07:21:13.479Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AmberWu">
-<meta name="twitter:description" content="这是一个深度学习菜鸟储存粮食的地方">
+<meta name="twitter:title" content="基于深度神经网络的图像分类与去噪">
+<meta name="twitter:description" content="本篇博文主要介绍噪音类型的分类和去噪。">
+<meta name="twitter:image" content="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/1.png">
 
 
 
@@ -153,13 +181,13 @@
 
 
 
-  <link rel="canonical" href="http://moyingyao.github.io/tags/deep-learning/"/>
+  <link rel="canonical" href="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/"/>
 
 
 
 
 
-  <title>标签: deep learning | AmberWu</title>
+  <title>基于深度神经网络的图像分类与去噪 | AmberWu</title>
   
 
 
@@ -178,7 +206,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -316,82 +344,283 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>deep learning<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-categories" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://moyingyao.github.io/2018/10/04/20181004基于深度神经网络的图像分类与去噪/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AmberWu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmberWu">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/04/20/2019-4-25-FaceNet在FPGA等硬件平台上的实现/" itemprop="url">
-              
-                <span itemprop="name">FaceNet在FPGA等硬件平台上的实现</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">基于深度神经网络的图像分类与去噪</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-04-20T08:56:28+08:00"
-              content="2019-04-20" >
-          04-20
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-04T16:23:24+08:00">
+                2018-10-04
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目实战/" itemprop="url" rel="index">
+                    <span itemprop="name">项目实战</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>  阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,380
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-categories" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/05/20190424基于深度学习框架的水声信号的扩充和分类识别/" itemprop="url">
-              
-                <span itemprop="name">基于深度学习框架的水声信号的扩充和分类识别</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-04-05T10:15:01+08:00"
-              content="2019-04-05" >
-          04-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <p>本篇博文主要介绍噪音类型的分类和去噪。<a id="more"></a></p>
+<h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>现有的去噪方法取决于噪声类型的信息，通常由专家分类。换句话说，那些方法没有应用计算方法来对图像噪声类型进行预分类。此外，这些方法假设图像的噪声类型是像高斯噪声那样的单类噪声类型，这限制了实际应用中去噪方法的选择和能力。<br>与现有方法不同，我们采用一种新框架，<strong>不仅可以对单一类型噪声进行分类和去噪，而且可以根据实际需要对混合类型的噪声进行分类和去噪</strong>。</p>
+<p><strong>我们的方法和现有方法对比</strong><br><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/1.png" alt=""></p>
+<p><strong>数据集</strong></p>
+<ol>
+<li><code>Mnist</code>：Subset（10000张）</li>
+<li><code>cifar10</code>：Subset（10000张）</li>
+<li><code>BSD500</code>：Fullset（500张）</li>
+</ol>
+<p><strong>方法</strong><br>设计一个包含2个网络的框架：<strong>噪音分类网络</strong> <strong>去噪网络</strong>。</p>
+<ol>
+<li>噪音分类网络：对图像所包含的噪音类型进行识别分类</li>
+<li>去噪网络：根据噪音分类网络判别的噪音类型选择相应的去噪模型去除噪音，进而得到干净图像</li>
+</ol>
+<p><strong>总体框架图如下所示</strong><br><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/2.png" alt=""></p>
+<h2 id="项目实现过程"><a href="#项目实现过程" class="headerlink" title="项目实现过程"></a>项目实现过程</h2><h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h3><p>针对原始<strong>BSD500</strong>数据集，对其进行灰度转换，得到它的灰度图。<br>对于<code>Mnist（gray）</code>、<code>Cifar10（RGB）</code>、<code>BSD500（Gray&amp;RGB）</code>这4个数据集，在每个数据集上添加<strong>Gaussian、Salt、Speckle、Poisson</strong>噪音（可以组合），最终得到</p>
+<ol>
+<li>单类噪音数据集4类：Ga，Sa，Sp ，Po</li>
+<li>两类噪音数据集6类：Ga&amp;Sa，Ga&amp;Sp，Ga&amp;Po，Sa&amp;Sp，Sa&amp;Po，Sp&amp;Po</li>
+<li>多类噪音数据集5类（3和4）：Ga&amp;Sa&amp;Sp，Ga&amp;Sa&amp;Po，Ga&amp;Sp&amp;Po，Sa&amp;Sp&amp;Po， Ga&amp;Sa&amp;Sp&amp;Po</li>
+<li>混合噪音数据集共15类：综合上述1，2，3</li>
+</ol>
+<p><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/3.png" alt=""></p>
+<h3 id="噪音分类网络"><a href="#噪音分类网络" class="headerlink" title="噪音分类网络"></a>噪音分类网络</h3><p><strong>网络模型</strong><br><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/4.png" alt=""></p>
+<p><strong>详细参数</strong><br><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/5.png" alt=""></p>
+<p>利用Mnist和Cifar10的噪音数据集，对比几个分类网络，筛选出噪音识别准确率最高的网络（<strong>Our</strong>）。</p>
+<p><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/7.png" alt=""></p>
+<p><strong>为了和去噪网络的数据集匹配，将BSD的混合噪音也输入了我们设计的CNN网络，训练了一个分类模型。</strong>结果如下：</p>
+<p><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/8.png" alt=""></p>
+<h3 id="去噪网络设计"><a href="#去噪网络设计" class="headerlink" title="去噪网络设计"></a>去噪网络设计</h3><p><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/6.png" alt=""></p>
+<p>去噪网络主要由三种类型的层组成，如上图所示，<strong>由三种不同的颜色表示</strong>。 </p>
+<ol>
+<li>在第一层，我们使用96个尺寸的3×3×c滤波器进行卷积并生成96个特征图，我们在输入到下一层时使用整流线性单元的变量LReLU 来实现非线性。 这里，c表示训练图像的通道数，c表示灰度1，c表示彩色图3。</li>
+<li>从第2层到第（d-1）层，使用96个尺寸为3×3×96的滤波器 并且还使用了LReLU，并在卷积层和LReLU层之间进行了批量归一化操作，从而可以提高训练速度并加快收敛过程。</li>
+<li>对于最后一层，它使用大小为3×3×96的c滤波器重建输出。 它还删除了所有下采样层，因为这会大大降低我们模型的去噪效果。</li>
+</ol>
+<p>把BSD500的8种单类噪音（<strong>Gray和RGB各4种</strong>）数据输入设计的去噪网络，得到了8个单类噪音去噪模型。</p>
+<p><strong><font color="#FF0000">测试</font></strong>：</p>
+<ol>
+<li>如果图片被分类网络识别出仅包含单类噪音，就选择相应的单类去噪模型去除噪音</li>
+<li>如果图片被分类网络识别出包含多种噪音，根据所包含的噪音类型，依次选择多个单类去噪模型去除噪音</li>
+</ol>
+<h3 id="去噪结果分析"><a href="#去噪结果分析" class="headerlink" title="去噪结果分析"></a>去噪结果分析</h3><p><strong>去噪好坏的评价标准</strong></p>
+<ol>
+<li><strong>PSNR</strong>（Peak Signal to Noise Ratio）峰值信噪比<br><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/9.png" alt=""></li>
+</ol>
+<p>其中，<code>MSE</code>表示当前图像X和参考图像Y的均方误差（Mean Square Error），<code>H、W</code>分别为图像的高度和宽度；<code>n</code>为每像素的比特数，一般取8，即像素灰阶数为256.。<code>PSNR</code>的单位是<code>dB</code>，<strong>数值越大表示失真越小越好</strong>。PSNR是最普遍和使用最为广泛的一种图像客观评价指标，然而它是基于对应像素点间的误差，即基于误差敏感的图像质量评价。<strong>由于并未考虑到人眼的视觉特性</strong>（人眼对空间频率较低的对比差异敏感度较高，人眼对亮度对比差异的敏感度较色度高，人眼对一个区域的感知结果会受到其周围邻近区域的影响等），<strong>因而经常出现评价结果与人的主观感觉不一致的情况</strong>。为此我们还引入了下面一个评价指标</p>
+<ol start="2">
+<li><strong>SSIM</strong>（structural similarity）结构相似性。它分别从<strong>亮度、对比度、结构</strong>三方面度量图像相似性。<br><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/10.png" alt=""></li>
+</ol>
+<p>其中<img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/111.png" alt="">分别表示图像X和Y的均值，<img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/222.png" alt="">分别表示图像X和Y的方差，<img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/333.png" alt="">表示图像X和Y的协方差，即</p>
+<p><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/11.png" alt=""></p>
+<p>C1,C2,C3为常数，为了避免分母为0的情况，通常取<img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/444.png" alt="">一般地K1=0.01,K2=0.03, L=255​， 则</p>
+<p><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/12.png" alt=""></p>
+<p><strong>SSIM</strong>取值范围[0,1]，值越大，表示图像失真越小越好。</p>
+<h4 id="单类噪音"><a href="#单类噪音" class="headerlink" title="单类噪音"></a>单类噪音</h4><p><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/13.png" alt=""><br><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/14.png" alt=""></p>
+<p><strong>与其它方法的对比</strong><br><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/15.png" alt=""><br><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/16.png" alt=""></p>
+<h4 id="两类噪音"><a href="#两类噪音" class="headerlink" title="两类噪音"></a>两类噪音</h4><p><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/17.png" alt=""><br><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/18.png" alt=""></p>
+<h4 id="多类噪音"><a href="#多类噪音" class="headerlink" title="多类噪音"></a>多类噪音</h4><p><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/19.png" alt=""><br><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/20.png" alt=""><br><img src="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/21.png" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>在单类噪音上取得了不错的效果，彩色图要比灰度图的去噪效果好，而且比已有的方法要好。</li>
+<li>多类噪音去噪效果不够好，灰度图要比彩色图好。</li>
+</ol>
 
       
     </div>
+    
+    
+    
 
+    
+	
+	  <div>
+		
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+		
+	  </div>
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/weixin1.jpg" alt="AmberWu wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎大家扫码交流！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+	
+	
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DL/" rel="tag"><i class="fa fa-tag"></i> DL</a>
+          
+            <a href="/tags/denoise/" rel="tag"><i class="fa fa-tag"></i> denoise</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/" rel="next" title="利用深度学习对医学CT图像(LIDC-IDRI)中的肺结节进行良恶性判断">
+                <i class="fa fa-chevron-left"></i> 利用深度学习对医学CT图像(LIDC-IDRI)中的肺结节进行良恶性判断
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/" rel="prev" title="FaceNet在FPGA等硬件平台上的实现">
+                FaceNet在FPGA等硬件平台上的实现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -399,6 +628,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -421,8 +654,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -463,7 +705,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -535,6 +777,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目简介"><span class="nav-number">1.</span> <span class="nav-text">项目简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目实现过程"><span class="nav-number">2.</span> <span class="nav-text">项目实现过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据预处理"><span class="nav-number">2.1.</span> <span class="nav-text">数据预处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#噪音分类网络"><span class="nav-number">2.2.</span> <span class="nav-text">噪音分类网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去噪网络设计"><span class="nav-number">2.3.</span> <span class="nav-text">去噪网络设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去噪结果分析"><span class="nav-number">2.4.</span> <span class="nav-text">去噪结果分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单类噪音"><span class="nav-number">2.4.1.</span> <span class="nav-text">单类噪音</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两类噪音"><span class="nav-number">2.4.2.</span> <span class="nav-text">两类噪音</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多类噪音"><span class="nav-number">2.4.3.</span> <span class="nav-text">多类噪音</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -688,6 +946,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
 
   
 

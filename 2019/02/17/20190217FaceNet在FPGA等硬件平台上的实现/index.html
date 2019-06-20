@@ -101,7 +101,7 @@
 
 
 
-  <meta name="keywords" content="DL,denoise," />
+  <meta name="keywords" content="DL,硬件平台实现," />
 
 
 
@@ -114,40 +114,26 @@
 
 
 
-<meta name="description" content="本篇博文主要介绍噪音类型的分类和去噪。">
-<meta name="keywords" content="DL,denoise">
+<meta name="description" content="本文主要介绍将训练好的网络模型，移植到FPGA等硬件平台上所必须的准备工作。">
+<meta name="keywords" content="DL,硬件平台实现">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于深度神经网络的图像分类与去噪">
-<meta property="og:url" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/index.html">
+<meta property="og:title" content="FaceNet在FPGA等硬件平台上的实现">
+<meta property="og:url" content="http://moyingyao.github.io/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/index.html">
 <meta property="og:site_name" content="AmberWu">
-<meta property="og:description" content="本篇博文主要介绍噪音类型的分类和去噪。">
+<meta property="og:description" content="本文主要介绍将训练好的网络模型，移植到FPGA等硬件平台上所必须的准备工作。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/1.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/2.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/3.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/4.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/5.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/7.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/8.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/6.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/9.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/10.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/11.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/12.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/13.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/14.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/15.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/16.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/17.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/18.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/19.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/20.png">
-<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/21.png">
-<meta property="og:updated_time" content="2019-06-20T03:34:07.205Z">
+<meta property="og:image" content="http://moyingyao.github.io/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/1.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/2019-4-25-FaceNet在FPGA等硬件平台上的实现/2.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/3.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/4.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/5.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/6.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/7.png">
+<meta property="og:updated_time" content="2019-06-20T07:20:57.038Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基于深度神经网络的图像分类与去噪">
-<meta name="twitter:description" content="本篇博文主要介绍噪音类型的分类和去噪。">
-<meta name="twitter:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/1.png">
+<meta name="twitter:title" content="FaceNet在FPGA等硬件平台上的实现">
+<meta name="twitter:description" content="本文主要介绍将训练好的网络模型，移植到FPGA等硬件平台上所必须的准备工作。">
+<meta name="twitter:image" content="http://moyingyao.github.io/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/1.png">
 
 
 
@@ -177,13 +163,13 @@
 
 
 
-  <link rel="canonical" href="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/"/>
+  <link rel="canonical" href="http://moyingyao.github.io/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/"/>
 
 
 
 
 
-  <title>基于深度神经网络的图像分类与去噪 | AmberWu</title>
+  <title>FaceNet在FPGA等硬件平台上的实现 | AmberWu</title>
   
 
 
@@ -354,7 +340,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/">
+    <link itemprop="mainEntityOfPage" href="http://moyingyao.github.io/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AmberWu">
@@ -371,7 +357,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">基于深度神经网络的图像分类与去噪</h1>
+          <h1 class="post-title" itemprop="name headline">FaceNet在FPGA等硬件平台上的实现</h1>
         
 
         <div class="post-meta">
@@ -383,8 +369,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-12T16:23:24+08:00">
-                2019-04-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-17T08:56:28+08:00">
+                2019-02-17
               </time>
             
 
@@ -444,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,399
+                  1,528
                 </span>
               
 
@@ -469,69 +455,83 @@
       
 
       
-        <p>本篇博文主要介绍噪音类型的分类和去噪。<a id="more"></a></p>
-<h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>现有的去噪方法取决于噪声类型的信息，通常由专家分类。换句话说，那些方法没有应用计算方法来对图像噪声类型进行预分类。此外，这些方法假设图像的噪声类型是像高斯噪声那样的单类噪声类型，这限制了实际应用中去噪方法的选择和能力。<br>与现有方法不同，我们采用一种新框架，<strong>不仅可以对单一类型噪声进行分类和去噪，而且可以根据实际需要对混合类型的噪声进行分类和去噪</strong>。</p>
-<p><strong>我们的方法和现有方法对比</strong><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/1.png" alt=""></p>
-<p><strong>数据集</strong></p>
+        <p>本文主要介绍将训练好的网络模型，移植到FPGA等硬件平台上所必须的准备工作。<a id="more"></a><br>不涉及具体的用C语言重新编写卷积操作、RAM存储等设计，本人做的只是辅助工作=-=。</p>
+<h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p><strong>论文地址</strong>：<a href="https://arxiv.org/abs/1503.03832" target="_blank" rel="noopener">FaceNet: A Unified Embedding for Face Recognition and Clustering</a></p>
+<p>将在服务器上训练好的FaceNet模型移植到FPGA等硬件平台上，实现人脸的检测推断过程。要想实现上述操作，必须先进行下面2个操作：</p>
 <ol>
-<li><code>Mnist</code>：Subset（10000张）</li>
-<li><code>cifar10</code>：Subset（10000张）</li>
-<li><code>BSD500</code>：Fullset（500张）</li>
+<li><strong>模型参数的提取</strong>：解析 FaceNet 的网络结构， Restore 训练好的模型，提取各网络层参数。</li>
+<li><strong>参数的量化压缩</strong>：模型参数数量巨大(浮点)，为了节省空间及方便计算，将参数量化为 8 位的<br>定点数。</li>
 </ol>
-<p><strong>方法</strong><br>设计一个包含2个网络的框架：<strong>噪音分类网络</strong> <strong>去噪网络</strong>。</p>
+<h3 id="参数的提取"><a href="#参数的提取" class="headerlink" title="参数的提取"></a>参数的提取</h3><p>在提取参数前，我们先通过可视化工具<code>Tensorboard</code>解析了一下FaceNet的网络结构，它主要包含5个大模块：</p>
+<h4 id="block35"><a href="#block35" class="headerlink" title="block35"></a>block35</h4><ol>
+<li><strong>Branch_0</strong>：32个1x1卷积</li>
+<li><strong>Branch_1</strong>：32个1x1卷积、32个3x3卷积</li>
+<li><strong>Branch_2</strong>：32个1x1卷积、32个3x3卷积、32个3x 3卷积</li>
+<li><strong>Mixed</strong>：将Branch_0、Branch_1和Branch_2连接起来</li>
+<li><strong>Conv</strong>：32个1x1卷积</li>
+</ol>
+<p><img src="/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/1.png" alt=""></p>
+<h4 id="block17"><a href="#block17" class="headerlink" title="block17"></a>block17</h4><ol>
+<li><strong>Branch_0</strong>：128个1x1卷积</li>
+<li><strong>Branch_1</strong>：128个1x1卷积、128个1x7卷积、128个7 x1卷积</li>
+<li><strong>Mixed</strong>：将Branch_0和Branch_1连接起来</li>
+<li><strong>Conv</strong>：128个1x1卷积</li>
+</ol>
+<p><img src="/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/2019-4-25-FaceNet在FPGA等硬件平台上的实现/2.png" alt=""></p>
+<h4 id="block8"><a href="#block8" class="headerlink" title="block8"></a>block8</h4><ol>
+<li><strong>Branch_0</strong>：192个1x1卷积</li>
+<li><strong>Branch_1</strong>：192个1x1卷积、192个1x3卷积、192个3x1卷积</li>
+<li><strong>Mixed</strong>：将Branch_0和Branch_1连接起来</li>
+<li><strong>Conv</strong>：192个1x1卷积</li>
+</ol>
+<p><img src="/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/3.png" alt=""></p>
+<h4 id="reduction-a"><a href="#reduction-a" class="headerlink" title="reduction_a"></a>reduction_a</h4><ol>
+<li><strong>Branch_0</strong>：192个3x3（stride=2）卷积</li>
+<li><strong>Branch_1</strong>：192个1x1卷积、256个3x3卷积、384个3x3（stride=2）卷积</li>
+<li><strong>Branch_2</strong>：3x3，步长为2的最大池化</li>
+<li><strong>Mixed</strong>：将Branch_0、Branch_1和Branch_2连接起来</li>
+</ol>
+<p><img src="/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/4.png" alt=""></p>
+<h4 id="reduction-b"><a href="#reduction-b" class="headerlink" title="reduction_b"></a>reduction_b</h4><ol>
+<li><strong>Branch_0</strong>：256个1x1卷积、384个3x3（stride=2）卷积</li>
+<li><strong>Branch_1</strong>：256个1x1卷积、256个3x3（stride=2）卷积</li>
+<li><strong>Branch_2</strong>：256个1x1卷积、256个3x3卷积、256个x3（stride=2）卷积</li>
+<li><strong>Branch_3</strong>：3x 3，步长为2的最大池化</li>
+<li><strong>Mixed</strong>：将Branch_0、Branch_1、Branch_2和Branch_3连接起来</li>
+</ol>
+<p><img src="/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/5.png" alt=""></p>
+<p><strong>总的网络结构如下所示</strong>：</p>
 <ol>
-<li>噪音分类网络：对图像所包含的噪音类型进行识别分类</li>
-<li>去噪网络：根据噪音分类网络判别的噪音类型选择相应的去噪模型去除噪音，进而得到干净图像</li>
+<li><strong>Conv2d_1a</strong>：32个3x3，stride=2的卷积</li>
+<li><strong>Conv2d_2a</strong>：32个3x3的卷积</li>
+<li><strong>Conv2d_2b</strong>：64个3x3的卷积</li>
+<li><strong>MaxPool_3a</strong>：3x3，stride=2的最大池化</li>
+<li><strong>Conv2d_3b</strong>：80个1x1的卷积</li>
+<li><strong>Conv2d_4a</strong>：192个3x3的卷积</li>
+<li><strong>Conv2d_4b</strong>：256个3x3，stride=2的卷积</li>
+<li><strong>repeat</strong>：5个<strong>block35</strong>模块</li>
+<li><strong>Mixed_6a</strong>：1个<strong>reduction_a</strong>模块</li>
+<li><strong>repeat1</strong>：10个<strong>block17</strong>模块</li>
+<li><strong>Mixed_7a</strong>：1个<strong>reduction_b</strong>模块</li>
+<li><strong>repeat2</strong>：5个<strong>block8</strong>模块</li>
+<li><strong>block8</strong>：1个<strong>block8</strong>模块</li>
+<li><strong>Logits</strong>：平均池化、flatten、Dropout</li>
 </ol>
-<p><strong>总体框架图如下所示</strong><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/2.png" alt=""></p>
-<h2 id="项目实现过程"><a href="#项目实现过程" class="headerlink" title="项目实现过程"></a>项目实现过程</h2><h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h3><p>针对原始<strong>BSD500</strong>数据集，对其进行灰度转换，得到它的灰度图。<br>对于<code>Mnist（gray）</code>、<code>Cifar10（RGB）</code>、<code>BSD500（Gray&amp;RGB）</code>这4个数据集，在每个数据集上添加<strong>Gaussian、Salt、Speckle、Poisson</strong>噪音（可以组合），最终得到</p>
+<p><img src="/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/6.png" alt=""></p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><p>代码中会用到<code>float_to_bin()</code>这一个量化函数，下面会有所介绍</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> tensorflow.python <span class="keyword">import</span> pywrap_tensorflow</span><br><span class="line"><span class="keyword">import</span>  numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> float_bin</span><br><span class="line"><span class="keyword">import</span> xiaoshu_bin</span><br><span class="line">Max = <span class="number">35.004695892333984</span>          <span class="comment">#参数的最大值</span></span><br><span class="line">Min = <span class="number">-11.588409423828125</span>         <span class="comment">#参数最小值</span></span><br><span class="line">Mean = <span class="number">-0.0007627065894155365</span>     <span class="comment">#参数均值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#导入模型</span></span><br><span class="line">checkpoint_path = os.path.join(<span class="string">'facenet_lmq/20170512-110547'</span>, <span class="string">"model-20170512-110547.ckpt-250000"</span>)</span><br><span class="line"><span class="comment">#读取模型参数</span></span><br><span class="line">reader = pywrap_tensorflow.NewCheckpointReader(checkpoint_path)</span><br><span class="line"><span class="comment">#获取参数中所有的key、value值</span></span><br><span class="line">var_to_shape_map = reader.get_variable_to_shape_map()</span><br><span class="line"></span><br><span class="line"><span class="comment">#循环存储每一个key（tensor名字）对应的value</span></span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> var_to_shape_map:</span><br><span class="line">    par_name=str(key)</span><br><span class="line">    par_final_name =par_name.replace(<span class="string">'/'</span>,<span class="string">'_'</span>) <span class="comment">#特殊字符替换</span></span><br><span class="line">    file_path = <span class="string">'D:/PycharmProjects/faceface/bb/'</span>+par_final_name+<span class="string">'.txt'</span> <span class="comment">#创建存储路径</span></span><br><span class="line">    par_shape=reader.get_tensor(key).shape         <span class="comment"># Tensor维度</span></span><br><span class="line">    par_value=reader.get_tensor(key).flatten()     <span class="comment">#value拉平，方便下面的量化操作</span></span><br><span class="line">    <span class="comment"># print(type(par_value))</span></span><br><span class="line">    <span class="comment"># print(par_value.shape)</span></span><br><span class="line">    list =[]</span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> range(len(par_value)):  <span class="comment">#对每一个tensor的value量化</span></span><br><span class="line">        par_value[index] =(par_value[index]-Mean)/(Max-Min) <span class="comment">#归一化</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="string">'moving_variance'</span> <span class="keyword">in</span> par_name):       <span class="comment"># 特殊的tensor需要进行一些处理（BN）</span></span><br><span class="line">            <span class="comment"># for index in range(len(par_value)):</span></span><br><span class="line">            par_value[index] = <span class="number">1</span>/(math.sqrt(par_value[index]))</span><br><span class="line">        list.append(float_bin.float_to_bin(par_value[index]))  <span class="comment">#调用量化函数float_to_bin（）</span></span><br><span class="line">    np.savetxt(file_path,np.array(list),fmt=<span class="string">'%s'</span>,header=str(par_shape))  <span class="comment">#存储量化后的参数</span></span><br><span class="line">    print(<span class="string">'done'</span>)</span><br><span class="line">    <span class="comment">#print(type(par_value))</span></span><br></pre></td></tr></table></figure>
+<h3 id="参数的量化压缩"><a href="#参数的量化压缩" class="headerlink" title="参数的量化压缩"></a>参数的量化压缩</h3><p>训练得到的模型参数都是浮点型的，为了节省在硬件上的存储空间并加速计算，我们将参数量化到了8位的定点数。主要包含2个函数：<code>float_to_bin()</code>和<code>xiaoshu_bin()</code>。</p>
 <ol>
-<li>单类噪音数据集4类：Ga，Sa，Sp ，Po</li>
-<li>两类噪音数据集6类：Ga&amp;Sa，Ga&amp;Sp，Ga&amp;Po，Sa&amp;Sp，Sa&amp;Po，Sp&amp;Po</li>
-<li>多类噪音数据集5类（3和4）：Ga&amp;Sa&amp;Sp，Ga&amp;Sa&amp;Po，Ga&amp;Sp&amp;Po，Sa&amp;Sp&amp;Po， Ga&amp;Sa&amp;Sp&amp;Po</li>
-<li>混合噪音数据集共15类：综合上述1，2，3</li>
+<li><p><strong>float_to_bin()</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> xiaoshu_bin</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">float_to_bin</span><span class="params">(innum,n)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> innum_abs,res_nint_array</span><br><span class="line">    list = []</span><br><span class="line">    min = <span class="number">2</span>**(-n)              <span class="comment">#小数位取n位后，8位定点数能表示的最小值</span></span><br><span class="line">    max = <span class="number">2</span>**(<span class="number">7</span>-n)-min         <span class="comment">#小数位取n位后，8位定点数能表示的最大值</span></span><br><span class="line">    innum_abs = abs(innum)     <span class="comment">#不管正负，都按正数处理</span></span><br><span class="line">    <span class="keyword">if</span> (innum_abs&lt;min):        <span class="comment">#如果表示的数小于最小，按最小处理</span></span><br><span class="line">        innum_abs = min</span><br><span class="line">    <span class="keyword">if</span> (innum_abs&gt;max):        <span class="comment">#如果表示的数大于最大，按最大处理</span></span><br><span class="line">        innum_abs =max</span><br><span class="line">    nint = math.floor(innum_abs)     <span class="comment">#取整，分割小数部分和整数部分</span></span><br><span class="line">    nf = innum_abs-nint              <span class="comment">#小数部分</span></span><br><span class="line">    res_nint = bin(int(nint)).replace(<span class="string">'0b'</span>,<span class="string">''</span>)   <span class="comment">#整数部分直接调用bin函数处理</span></span><br><span class="line">    nint_num = len(res_nint)                     <span class="comment">#整数部分的二进制表示占的位数长度</span></span><br><span class="line">    res_nint_array =np.zeros(nint_num)           <span class="comment">#创建矩阵</span></span><br><span class="line">    <span class="comment">#print(nint_num)</span></span><br><span class="line">    res_nf = xiaoshu_bin.xiaoshu(nf,n)           <span class="comment">#小数部分调用xiaoshu_bin()函数</span></span><br><span class="line">    <span class="keyword">if</span> (innum&gt;=<span class="number">0</span>):                               <span class="comment">#原数为正数，二进制第一位为0</span></span><br><span class="line">        c =<span class="number">0</span></span><br><span class="line">        num_add =<span class="number">8</span>-n-nint_num                    <span class="comment">#除去小数位和整数位占的二进制位数后，还剩几位</span></span><br><span class="line">        num_add =np.zeros(num_add)               <span class="comment">#补0</span></span><br><span class="line">        <span class="keyword">for</span> value <span class="keyword">in</span> res_nint:</span><br><span class="line">            res_nint_array[c] =int(value)        <span class="comment">#整数部分二进制</span></span><br><span class="line">            c= c+<span class="number">1</span></span><br><span class="line">        <span class="comment">#@final =[num_add,res_nint_array,n,res_nf]</span></span><br><span class="line">    <span class="keyword">else</span>:                                            <span class="comment">#原数为负数，二进制第一位为1</span></span><br><span class="line">        d =<span class="number">0</span></span><br><span class="line">        num_add = <span class="number">8</span>-n-nint_num</span><br><span class="line">        num_add = np.zeros(num_add)</span><br><span class="line">        num_add[<span class="number">0</span>] =<span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> value <span class="keyword">in</span> res_nint:</span><br><span class="line">            res_nint_array[d] =int(value)</span><br><span class="line">            d= d+<span class="number">1</span></span><br><span class="line">        <span class="comment">#final = [num_add,res_nint_array,n,res_nf]</span></span><br><span class="line">    final_bin =np.hstack((num_add,res_nint_array,res_nf))  <span class="comment">#最终表示</span></span><br><span class="line">    <span class="keyword">for</span> bin_value <span class="keyword">in</span> final_bin:</span><br><span class="line">        list.append(str(int(bin_value)))                 <span class="comment">#字符串输出</span></span><br><span class="line">    final_bin_value =<span class="string">''</span>.join(list)</span><br><span class="line">    <span class="keyword">return</span> final_bin_value</span><br><span class="line"><span class="comment">#print(float_to_bin(-4.5，3))</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>xiaoshu_bin()</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xiaoshu</span><span class="params">(innum, n)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> N</span><br><span class="line">    N =n                       <span class="comment">#小数部分占的位数</span></span><br><span class="line">    count =<span class="number">0</span></span><br><span class="line">    temp = innum</span><br><span class="line">    reco =np.zeros(N)        <span class="comment">#创建全0矩阵</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (innum&gt;<span class="number">1</span>) <span class="keyword">or</span> (N==<span class="number">0</span>):   <span class="comment">#不是小数</span></span><br><span class="line">        print(<span class="string">'Error!'</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">while</span>(N):                <span class="comment">#未超过小数部分的位数</span></span><br><span class="line">        count =count+<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> (count&gt;N):</span><br><span class="line">            N = <span class="number">0</span></span><br><span class="line">            <span class="keyword">return</span> reco</span><br><span class="line">        temp =temp*<span class="number">2</span>              <span class="comment">#小数部分不断的乘2</span></span><br><span class="line">        <span class="keyword">if</span> (temp&gt;<span class="number">1</span>):</span><br><span class="line">            reco[count<span class="number">-1</span>] =<span class="number">1</span></span><br><span class="line">            temp = temp<span class="number">-1</span></span><br><span class="line">        <span class="keyword">elif</span> (temp==<span class="number">1</span>):</span><br><span class="line">            reco[count<span class="number">-1</span>] =<span class="number">1</span></span><br><span class="line">            N =<span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            reco[count<span class="number">-1</span>] =<span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (reco)</span><br><span class="line"><span class="comment">#print(xiaoshu(0.0525,4))</span></span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<p><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/3.png" alt=""></p>
-<h3 id="噪音分类网络"><a href="#噪音分类网络" class="headerlink" title="噪音分类网络"></a>噪音分类网络</h3><p><strong>网络模型</strong><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/4.png" alt=""></p>
-<p><strong>详细参数</strong><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/5.png" alt=""></p>
-<p>利用Mnist和Cifar10的噪音数据集，对比几个分类网络，筛选出噪音识别准确率最高的网络（<strong>Our</strong>）。</p>
-<p><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/7.png" alt=""></p>
-<p><strong>为了和去噪网络的数据集匹配，将BSD的混合噪音也输入了我们设计的CNN网络，训练了一个分类模型。</strong>结果如下：</p>
-<p><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/8.png" alt=""></p>
-<h3 id="去噪网络设计"><a href="#去噪网络设计" class="headerlink" title="去噪网络设计"></a>去噪网络设计</h3><p><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/6.png" alt=""></p>
-<p>去噪网络主要由三种类型的层组成，如上图所示，<strong>由三种不同的颜色表示</strong>。 </p>
-<ol>
-<li>在第一层，我们使用96个尺寸的3×3×c滤波器进行卷积并生成96个特征图，我们在输入到下一层时使用整流线性单元的变量LReLU 来实现非线性。 这里，c表示训练图像的通道数，c表示灰度1，c表示彩色图3。</li>
-<li>从第2层到第（d-1）层，使用96个尺寸为3×3×96的滤波器 并且还使用了LReLU，并在卷积层和LReLU层之间进行了批量归一化操作，从而可以提高训练速度并加快收敛过程。</li>
-<li>对于最后一层，它使用大小为3×3×96的c滤波器重建输出。 它还删除了所有下采样层，因为这会大大降低我们模型的去噪效果。</li>
-</ol>
-<p>把BSD500的8种单类噪音（<strong>Gray和RGB各4种</strong>）数据输入设计的去噪网络，得到了8个单类噪音去噪模型。</p>
-<p><strong><font color="#FF0000">测试</font></strong>：</p>
-<ol>
-<li>如果图片被分类网络识别出仅包含单类噪音，就选择相应的单类去噪模型去除噪音</li>
-<li>如果图片被分类网络识别出包含多种噪音，根据所包含的噪音类型，依次选择多个单类去噪模型去除噪音</li>
-</ol>
-<h3 id="去噪结果分析"><a href="#去噪结果分析" class="headerlink" title="去噪结果分析"></a>去噪结果分析</h3><p><strong>去噪好坏的评价标准</strong></p>
-<ol>
-<li><strong>PSNR</strong>（Peak Signal to Noise Ratio）峰值信噪比<br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/9.png" alt=""></li>
-</ol>
-<p>其中，<code>MSE</code>表示当前图像X和参考图像Y的均方误差（Mean Square Error），<code>H、W</code>分别为图像的高度和宽度；<code>n</code>为每像素的比特数，一般取8，即像素灰阶数为256.。<code>PSNR</code>的单位是<code>dB</code>，<strong>数值越大表示失真越小越好</strong>。PSNR是最普遍和使用最为广泛的一种图像客观评价指标，然而它是基于对应像素点间的误差，即基于误差敏感的图像质量评价。<strong>由于并未考虑到人眼的视觉特性</strong>（人眼对空间频率较低的对比差异敏感度较高，人眼对亮度对比差异的敏感度较色度高，人眼对一个区域的感知结果会受到其周围邻近区域的影响等），<strong>因而经常出现评价结果与人的主观感觉不一致的情况</strong>。为此我们还引入了下面一个评价指标</p>
-<ol start="2">
-<li><strong>SSIM</strong>（structural similarity）结构相似性。它分别从<strong>亮度、对比度、结构</strong>三方面度量图像相似性。<br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/10.png" alt=""></li>
-</ol>
-<p>其中$\mu_X$、$\mu_Y$分别表示图像X和Y的均值，$\sigma_X$、$\sigma_Y$分别表示图像X和Y的方差，$\sigma_{XY}$表示图像X和Y的协方差，即</p>
-<p><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/11.png" alt=""></p>
-<p>$C_1$、$C_2$、$C_3$为常数，为了避免分母为0的情况，通常取$C_1=(K_1 \times L)^2$, $C2=(K_2 \times L)^2$, $C_3=C_2/2$, 一般地$K_1=0.01$,$K_2=0.03$, $L=255​$， 则</p>
-<p><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/12.png" alt=""></p>
-<p><strong>SSIM</strong>取值范围[0,1]，值越大，表示图像失真越小越好。</p>
-<h4 id="单类噪音"><a href="#单类噪音" class="headerlink" title="单类噪音"></a>单类噪音</h4><p><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/13.png" alt=""><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/14.png" alt=""></p>
-<p><strong>与其它方法的对比</strong><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/15.png" alt=""><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/16.png" alt=""></p>
-<h4 id="两类噪音"><a href="#两类噪音" class="headerlink" title="两类噪音"></a>两类噪音</h4><p><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/17.png" alt=""><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/18.png" alt=""></p>
-<h4 id="多类噪音"><a href="#多类噪音" class="headerlink" title="多类噪音"></a>多类噪音</h4><p><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/19.png" alt=""><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/20.png" alt=""><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/21.png" alt=""></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li>在单类噪音上取得了不错的效果，彩色图要比灰度图的去噪效果好，而且比已有的方法要好。</li>
-<li>多类噪音去噪效果不够好，灰度图要比彩色图好。</li>
-</ol>
+<h3 id="量化结果展示"><a href="#量化结果展示" class="headerlink" title="量化结果展示"></a>量化结果展示</h3><p>以<code>InceptionResnetV1/Block8/Branch_0/Conv2d_1x1/BatchNorm_beta</code>这一tensor为例：</p>
+<p><strong>量化前后对比</strong>：</p>
+<p><img src="/2019/02/17/20190217FaceNet在FPGA等硬件平台上的实现/7.png" alt=""></p>
 
       
     </div>
@@ -571,7 +571,7 @@
           
             <a href="/tags/DL/" rel="tag"><i class="fa fa-tag"></i> DL</a>
           
-            <a href="/tags/denoise/" rel="tag"><i class="fa fa-tag"></i> denoise</a>
+            <a href="/tags/硬件平台实现/" rel="tag"><i class="fa fa-tag"></i> 硬件平台实现</a>
           
         </div>
       
@@ -584,8 +584,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/05/20190424基于深度学习框架的水声信号的扩充和分类识别/" rel="next" title="基于深度学习框架的水声信号的扩充和分类识别">
-                <i class="fa fa-chevron-left"></i> 基于深度学习框架的水声信号的扩充和分类识别
+              <a href="/2018/10/04/20181004基于深度神经网络的图像分类与去噪/" rel="next" title="基于深度神经网络的图像分类与去噪">
+                <i class="fa fa-chevron-left"></i> 基于深度神经网络的图像分类与去噪
               </a>
             
           </div>
@@ -594,8 +594,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/20/2019-4-25-FaceNet在FPGA等硬件平台上的实现/" rel="prev" title="FaceNet在FPGA等硬件平台上的实现">
-                FaceNet在FPGA等硬件平台上的实现 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/25/20190325七月在线-深度学习/" rel="prev" title="七月在线-深度学习">
+                七月在线-深度学习 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -701,7 +701,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -783,7 +783,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目简介"><span class="nav-number">1.</span> <span class="nav-text">项目简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目实现过程"><span class="nav-number">2.</span> <span class="nav-text">项目实现过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据预处理"><span class="nav-number">2.1.</span> <span class="nav-text">数据预处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#噪音分类网络"><span class="nav-number">2.2.</span> <span class="nav-text">噪音分类网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去噪网络设计"><span class="nav-number">2.3.</span> <span class="nav-text">去噪网络设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去噪结果分析"><span class="nav-number">2.4.</span> <span class="nav-text">去噪结果分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单类噪音"><span class="nav-number">2.4.1.</span> <span class="nav-text">单类噪音</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两类噪音"><span class="nav-number">2.4.2.</span> <span class="nav-text">两类噪音</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多类噪音"><span class="nav-number">2.4.3.</span> <span class="nav-text">多类噪音</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目简介"><span class="nav-number">1.</span> <span class="nav-text">项目简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参数的提取"><span class="nav-number">1.1.</span> <span class="nav-text">参数的提取</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#block35"><span class="nav-number">1.1.1.</span> <span class="nav-text">block35</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#block17"><span class="nav-number">1.1.2.</span> <span class="nav-text">block17</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#block8"><span class="nav-number">1.1.3.</span> <span class="nav-text">block8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reduction-a"><span class="nav-number">1.1.4.</span> <span class="nav-text">reduction_a</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reduction-b"><span class="nav-number">1.1.5.</span> <span class="nav-text">reduction_b</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现"><span class="nav-number">1.1.6.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数的量化压缩"><span class="nav-number">1.2.</span> <span class="nav-text">参数的量化压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#量化结果展示"><span class="nav-number">1.3.</span> <span class="nav-text">量化结果展示</span></a></li></ol></li></ol></div>
             
 
           </div>
