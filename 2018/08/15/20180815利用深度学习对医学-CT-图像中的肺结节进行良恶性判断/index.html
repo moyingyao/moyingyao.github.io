@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#fff">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#fff">
+
+
+
+
+
+  <meta name="keywords" content="项目," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="AmberWu" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="肺癌是最常见的癌症，目前，CT可用于帮助医生在早期阶段检测肺癌。 在许多情况下，识别肺癌的诊断取决于医生的经验，这可能会忽略一些患者并导致一些问题。 在许多医学影像诊断领域，深度学习已被证明是一种流行且有效的方法。">
+<meta name="keywords" content="项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用深度学习对医学CT图像(LIDC-IDRI)中的肺结节进行良恶性判断">
+<meta property="og:url" content="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/index.html">
+<meta property="og:site_name" content="AmberWu">
+<meta property="og:description" content="肺癌是最常见的癌症，目前，CT可用于帮助医生在早期阶段检测肺癌。 在许多情况下，识别肺癌的诊断取决于医生的经验，这可能会忽略一些患者并导致一些问题。 在许多医学影像诊断领域，深度学习已被证明是一种流行且有效的方法。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/1.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/2.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/3.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/4.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/5.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/6.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/7.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/11.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/22.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/33.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/44.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/55.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/66.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/77.png">
+<meta property="og:image" content="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/88.png">
+<meta property="og:updated_time" content="2019-06-19T08:59:28.745Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用深度学习对医学CT图像(LIDC-IDRI)中的肺结节进行良恶性判断">
+<meta name="twitter:description" content="肺癌是最常见的癌症，目前，CT可用于帮助医生在早期阶段检测肺癌。 在许多情况下，识别肺癌的诊断取决于医生的经验，这可能会忽略一些患者并导致一些问题。 在许多医学影像诊断领域，深度学习已被证明是一种流行且有效的方法。">
+<meta name="twitter:image" content="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/"/>
+
+
+
+
+
+  <title>利用深度学习对医学CT图像(LIDC-IDRI)中的肺结节进行良恶性判断 | AmberWu</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AmberWu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">越努力，越幸运</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-站主简介">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            站主简介
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-类别">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            类别
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-时间轴">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-categories" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://moyingyao.github.io/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AmberWu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmberWu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">利用深度学习对医学CT图像(LIDC-IDRI)中的肺结节进行良恶性判断</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-15T10:22:47+08:00">
+                2018-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目实战/" itemprop="url" rel="index">
+                    <span itemprop="name">项目实战</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>  阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5,257
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>肺癌是最常见的癌症，目前，CT可用于帮助医生在早期阶段检测肺癌。 在许多情况下，识别肺癌的诊断取决于医生的经验，这可能会忽略一些患者并导致一些问题。 在许多医学影像诊断领域，深度学习已被证明是一种流行且有效的方法。<a id="more"></a> 本文主要基于<a href="http://imaging.cancer.gov/reportsandpublications/reportsandpresentations/firstdataset" target="_blank" rel="noopener">LIDC-IDRI</a>这一公开数据集，对其进行了肺结节的提取，并利用CNN对其分类训练，从而辅助医生作出判断。</p>
+<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>数据集采用为<strong> LIDC-IDRI</strong> （The Lung Image Database Consortium），该数据集由胸部医学<strong>图像文件(.dcm)</strong>(如CT、X光片)和对应的诊断结果病变<strong>标注(.xml)</strong>组成。数据是由美国国家癌症研究所(National Cancer Institute)发起收集的，目的是为了研究高危人群早期癌症检测。<br>该数据集中，共收录了1012个研究实例。对于每个实例中的图像，都由4位经验丰富的胸部放射科医师进行两阶段的诊断标注。在第一阶段，每位医师分别独立诊断并标注病患位置，其中会标注三中类别：</p>
+<ol>
+<li>&gt;=3mm的结节</li>
+<li>&lt;3mm的结节</li>
+<li>&gt;=​3mm的非结节</li>
+</ol>
+<p>在随后的第二阶段中，各位医师都分别独立的复审其他三位医师的标注，并给出自己最终的诊断结果。这样的两阶段标注可以在避免forced consensus的前提下，尽可能完整的标注所有结果。</p>
+<h4 id="图像信息（-dcm）"><a href="#图像信息（-dcm）" class="headerlink" title="图像信息（.dcm）"></a>图像信息（.dcm）</h4><p>图像文件为<strong>Dicom格式</strong>，是医疗图像的标准格式，其中除了图像像素外，还有一些辅助的元数据如图像类型、图像时间等信息。<br>一张CT图像有 512x512 个像素点，在dicom文件中每个像素由2字节表示，所以每张图片约512KB大小。<br>目前测试一共1012个病例数据，对于每个实例，可以看为一个<strong>三维矩阵D(slicer <em> rows </em> cols)</strong>, slicer表示切片的个数(对应每个病例的.dcm文件数)，rows和cols分别表示图片的行数和列数(默认为512)。<br><strong>eg:</strong> 对于病例LIDC-IDRI-0001，即为133x512x512的矩阵，一共133张切片，每张大小512x512。</p>
+<p><strong>查看dcm文件：</strong></p>
+<ol>
+<li>通过pip或者Anaconda安装<strong>pydicom</strong>模块，该模块是python专门用来处理dicom格式文件的库。</li>
+</ol>
+<p><img src="/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/1.png" alt=""></p>
+<ol start="2">
+<li>通过软件<strong>MicroDicom viewer</strong></li>
+</ol>
+<p><img src="/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/2.png" alt=""></p>
+<p>通过上面2种方式，我们可以看出dicom文件中包含了一些图像信息（SOP Instance UID、Study Instance UID，Series Instance UID······）<br><strong>SOP Instance UID：</strong>用于唯一区分每一张dcm切片<br><strong>Study Instance UID:</strong> 每个病例对应的检查实例号<br><strong>Series Instance UID: </strong>不同检查对应的序列实例号</p>
+<h4 id="注释信息（-xml）"><a href="#注释信息（-xml）" class="headerlink" title="注释信息（.xml）"></a>注释信息（.xml）</h4><p>Xml文件中包含放射科医生对病人CT图像中疑似肺结节的标注信息，主要分为三类：</p>
+<ol>
+<li>结节(3mm-33mm):<font color="#FF0000">包含结节的特征信息（characteristics）、结节的完整轮廓(roi)</font></li>
+<li>结节（&lt;3mm）：只显示结节的近似三维重心，若不透明则不标记</li>
+<li>非结节（&gt;3mm）：只显示其近似的三维重心，指出非结节连接区域</li>
+</ol>
+<p><strong>Xml文件大体结构图如下：</strong></p>
+<p><img src="/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/3.png" alt=""></p>
+<p>其中对于3mm—33mm结节的characteristics，包含了如下信息：<br>1）    Subtlety：检测难度（1-5级，1最难，5最明显）<br>2）    internalStructure：内部结构（4种，软组织、液体、脂肪、空气）<br>3）    calcification：钙化（6种情况）<br>4）    sphericity：球形度（5种程度，但只明确3种）<br>5）    margin：边缘（5种程度）<br>6）    lobulation：分叶征（5种情况，但只明确2种）<br>7）    spiculation：毛刺征（5种情况，但只明确2种）<br>8）    texture：纹理（5种情况，但只明确3种）</p>
+<font color="#FF0000">9）    maliynancy：恶性程度（1-5，1最低，5最高）</font>
+
+<h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h3><p>本部分主要做的工作是分割肺实质，提取肺结节。</p>
+<h4 id="图像存储格式转换"><a href="#图像存储格式转换" class="headerlink" title="图像存储格式转换"></a>图像存储格式转换</h4><p>原始数据集的图像信息是以dcm格式存储的，但通常我们用作训练数据输入网络的图像大多是jpg或者png格式，所以为了方便以后的训练，我们首先要将原始图像转为jpg格式或者png格式存储，在这里我们是转为jpg格式存储的。<br>此处测试共包含1012个病例，每个病例包含约100—300个dcm文件，我们使用MicroDicom viewer软件对其进行批量转换。<br><strong>以LIDC-IDRI-0001 为例：</strong></p>
+<blockquote>
+<p><strong>原始数据</strong><br><img src="/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/4.png" alt=""><br><strong>转换后</strong><br><img src="/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/5.png" alt=""></p>
+</blockquote>
+<p>将原始数据转换为jpg格式的图片后，下面我们会利用matlab编写函数分割肺实质，提取肺结节，主要包含下面6个函数：</p>
+<ol>
+<li><code>find_files()</code>: 递归的遍历文件目录</li>
+<li><code>fengefeishizhi()</code>: 分割肺实质</li>
+<li><code>readxml()</code>: 读取标注信息(.xml)文件</li>
+<li><code>readdicom()</code> 存储标注信息中的肺结节信息，方便后面提取</li>
+<li><code>jianqieimage()</code>: 剪切肺结节</li>
+<li><code>jianqie()</code>: 根据肺结节的轮廓信息将其剪切出来，存为图片</li>
+</ol>
+<h4 id="分割肺实质"><a href="#分割肺实质" class="headerlink" title="分割肺实质"></a>分割肺实质</h4><p>将图像转换为jpg格式存储后，我们还要对数据进一步处理。由于我们最终是以肺结节图像作为训练数据输入网络，那么<strong>CT图像中除肺部以外的信息是无用的</strong>，所以我们要将肺实质分割出来。主要用到1个函数： <code>fengefeishizhi()</code>。<br><strong>代码如下：</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><span class="line">clear all;</span><br><span class="line">clc;</span><br><span class="line">tic</span><br><span class="line"><span class="keyword">for</span> q =<span class="number">2</span>:<span class="number">3</span></span><br><span class="line">    str1 = num2str(q);</span><br><span class="line">    <span class="comment">%jpg数据格式的存储路径</span></span><br><span class="line">    str2 = <span class="string">'D:\MATLAB\work\0001-0120\LIDC-IDRI-000'</span>;</span><br><span class="line">    str3 =<span class="string">'\*.jpg'</span>;</span><br><span class="line">    str4 =<span class="string">'\';</span></span><br><span class="line"><span class="string">    %分割好肺实质后的图片存储路径</span></span><br><span class="line"><span class="string">    str5='</span>D:\MATLAB\work\<span class="number">0001</span><span class="number">-0120</span>_fenge\<span class="number">000</span><span class="string">';</span></span><br><span class="line"><span class="string">    str_imagedir = strcat(str2,str1,str3);</span></span><br><span class="line"><span class="string">    str_dirname = strcat(str2,str1,str4);</span></span><br><span class="line"><span class="string">    str_write= strcat(str5,str1,str4);</span></span><br><span class="line"><span class="string">    %disp(str_imagedir)</span></span><br><span class="line"><span class="string">    %disp(str_dirname)</span></span><br><span class="line"><span class="string">    %disp(str_write)7</span></span><br><span class="line"><span class="string">    imagelist = dir(str_imagedir);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    for i = 1:length(imagelist)</span></span><br><span class="line"><span class="string">        name = imagelist(i).name;</span></span><br><span class="line"><span class="string">        dirname = [str_dirname,name];</span></span><br><span class="line"><span class="string">%B=imread(dirname);%读取原图像</span></span><br><span class="line"><span class="string">% B=rgb2gray(A);%将原图像转换为灰度图像</span></span><br><span class="line"><span class="string">    A=imread(dirname);</span></span><br><span class="line"><span class="string">    B=rgb2gray(A);</span></span><br><span class="line"><span class="string">%subplot(2,2,1),imshow(B,[]),title('</span>DICOM图像导入后显示<span class="string">');</span></span><br><span class="line"><span class="string">% figure,imshow(B),title('</span>图像导入后显示<span class="string">');</span></span><br><span class="line"><span class="string">%====================================================</span></span><br><span class="line"><span class="string">    min(min(B));</span></span><br><span class="line"><span class="string">    max(max(B));</span></span><br><span class="line"><span class="string">    t=graythresh(B);%计算阈值t</span></span><br><span class="line"><span class="string">    C=im2bw(B,t);%根据阈值二值化图像</span></span><br><span class="line"><span class="string">% figure(),imshow(C,[]),title('</span>显示二值化图像<span class="string">');</span></span><br><span class="line"><span class="string">% C=bwareaopen(C,6000);%去除面积小于T的部分（气管）。%%%%%%%%%在肺实质比较大的时候，而且操作床特殊分段构造，面积为10000</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    D=imfill(C,4,'</span>holes');<span class="comment">%对二值化后的图像填充肺实质</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% figure(),imshow(D,[]),title('显示填充肺实质图像');</span></span><br><span class="line">    E=D-C;<span class="comment">%得到肺实质的图像E</span></span><br><span class="line"><span class="comment">% figure(),imshow(E,[]),title('显示肺实质的图像');</span></span><br><span class="line">    F=imfill(E,<span class="number">8</span>,<span class="string">'holes'</span>);<span class="comment">%填充肺实质空洞</span></span><br><span class="line"><span class="comment">%  FMask=bwareaopen(F,1000);%去除面积小于T的部分（气管）。%%%%%%%%%在肺实质比较大的时候，而且操作床特殊分段构造，面积为4600</span></span><br><span class="line">    FMask=bwareaopen(F,<span class="number">6000</span>);<span class="comment">%去除面积小于T的部分（气管）。%%%%%%%%%在肺实质比较大的时候，而且操作床特殊分段构造，面积为4600</span></span><br><span class="line"><span class="comment">%  figure(),imshow(FMask,[]),title('显示掩摸');%得到掩膜</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%-------------------------分开左右肺----------------------------------------</span></span><br><span class="line">    r_ball=<span class="number">90</span>;<span class="comment">%可变的，取值为10/15,越小越细致</span></span><br><span class="line">    se_ball=strel(<span class="string">'ball'</span>,r_ball,<span class="number">10</span>);<span class="comment">%椭圆体半径10，高度10</span></span><br><span class="line">    r_disk=<span class="built_in">ceil</span>(r_ball/<span class="number">6</span>);<span class="comment">%圆整r_ball/6得到大于或等于它的最接近整数。ceil取整</span></span><br><span class="line">        <span class="keyword">if</span> r_disk==<span class="number">0</span>;</span><br><span class="line">            r_disk=<span class="number">1</span>;<span class="comment">%最小为1</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    se_erode=strel(<span class="string">'disk'</span>,r_disk,<span class="number">0</span>); <span class="comment">%圆形半径</span></span><br><span class="line">    mask=imopen(FMask,<span class="number">1</span>);<span class="comment">%开操作</span></span><br><span class="line"><span class="comment">% figure(),imshow(mask,[]);</span></span><br><span class="line"></span><br><span class="line">    L=bwlabel(FMask);   <span class="comment">%数学形态重建，基于膨胀运算，用掩摸对二值图像标记，将图像分成多个区域</span></span><br><span class="line"><span class="comment">%stat = regionprops(FMask);%,计算图像区域特征，区域连通，object为二值图像，</span></span><br><span class="line">    [row,col]=<span class="built_in">size</span>(B);</span><br><span class="line"><span class="comment">%im2bw，Convert image to binary image, based on threshold</span></span><br><span class="line"><span class="comment">%im2bw默认threshold0.5，得到512*512空矩阵</span></span><br><span class="line">    mask_leftlung=im2bw(<span class="built_in">zeros</span>(row,col));<span class="comment">%左肺掩膜</span></span><br><span class="line">    mask_rightlung=im2bw(<span class="built_in">zeros</span>(row,col));<span class="comment">%右肺掩膜</span></span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:row</span><br><span class="line">            <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:col</span><br><span class="line">                <span class="keyword">if</span> L(<span class="built_in">i</span>,<span class="built_in">j</span>)==<span class="number">1</span> <span class="comment">%如果是左肺</span></span><br><span class="line">                    mask_leftlung(<span class="built_in">i</span>,<span class="built_in">j</span>)=<span class="number">1</span>;<span class="comment">% 分开左右肺，肺是白色的</span></span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">                <span class="keyword">if</span> L(<span class="built_in">i</span>,<span class="built_in">j</span>)==<span class="number">2</span></span><br><span class="line">                    mask_rightlung(<span class="built_in">i</span>,<span class="built_in">j</span>)=<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% figure(),imshow(mask_leftlung,[]);title('左肺掩摸显示')</span></span><br><span class="line"><span class="comment">% figure(),imshow(mask_rightlung,[]);title('右肺掩摸显示')</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%----------------------对左肺修补-------------------------------------------</span></span><br><span class="line">    object1=<span class="number">1</span>-mask_leftlung; <span class="comment">%左肺反向</span></span><br><span class="line"><span class="comment">% figure();imshow(object1,[]);title('左肺反向后显示')</span></span><br><span class="line">    object2=imopen(object1,se_ball);<span class="comment">%开操作，椭圆体半径30，高度10</span></span><br><span class="line"><span class="comment">% figure();imshow(object2,[]);title('反向左肺模糊重影图显示')   %得到反向左肺模糊重影图</span></span><br><span class="line">    leftmask1=<span class="number">1</span>-object2;<span class="comment">%左肺模糊重影图  </span></span><br><span class="line"><span class="comment">% figure();imshow(leftmask1,[]);title('左肺模糊重影图显示')</span></span><br><span class="line"></span><br><span class="line">    leftmask2=im2bw(leftmask1,<span class="number">0.5</span>);<span class="comment">%根据阈值0.5将图像生成二值图像</span></span><br><span class="line"><span class="comment">%figure();imshow(leftmask2,[]);title('左肺清晰二值图像显示')</span></span><br><span class="line"><span class="comment">%%得到左肺清晰的二值图像，支气管消去了，结节的毛刺也消除，结节变小；对左肺进行了修补</span></span><br><span class="line">    leftmask3=imfill(leftmask2,<span class="string">'hole'</span>);  <span class="comment">%填充左肺实质空洞</span></span><br><span class="line"><span class="comment">% figure();imshow(leftmask3,[]),title('填充左肺实质后显示'); %只是填充了左肺实质，得到不平滑的左肺图像  </span></span><br><span class="line">    leftmask4=imerode(leftmask3,se_erode);<span class="comment">%腐蚀左肺操作，肺结节大了点，平滑作用</span></span><br><span class="line"><span class="comment">% figure();imshow(leftmask4,[]),title('leftlungmask');%得到平滑效果图像</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%---------------------补回空洞----------------------------------------------</span></span><br><span class="line">    ConvHull=bwconvhull(leftmask4,<span class="string">'object'</span>);<span class="comment">%对左肺掩摸求凸壳</span></span><br><span class="line"><span class="comment">%figure();imshow(ConvHull,[]),title('凸壳图像');</span></span><br><span class="line">    DIF_ConvHull=ConvHull-leftmask4;<span class="comment">%将补的缺口部分取出来</span></span><br><span class="line"><span class="comment">%figure();imshow(DIF_ConvHull,[]),title('与左肺原图差值图像');</span></span><br><span class="line">    BW1 = bwconncomp(DIF_ConvHull);<span class="comment">%利用连通域分析左肺凸壳</span></span><br><span class="line">    stats = regionprops(BW1, <span class="string">'Area'</span>,<span class="string">'Eccentricity'</span>);<span class="comment">%获得每个连通域得面积、离心率</span></span><br><span class="line">    idx = <span class="built_in">find</span>([stats.Area] &gt; <span class="number">80</span> &amp; [stats.Eccentricity] &lt; <span class="number">0.8</span>); </span><br><span class="line"><span class="comment">% % % % BW2 = ismember(labelmatrix(BW1), idx);%取出符合要求的区域</span></span><br><span class="line"><span class="comment">% % % % figure();imshow(BW2,[]),title('左肺所需要补的部分显示');</span></span><br><span class="line"><span class="comment">% % % % leftmask5=BW2+leftmask4;%将符合要求的区域“补”到左肺掩摸中</span></span><br><span class="line"><span class="comment">%figure();imshow(leftmask5,[]),title('显示最终的左肺掩摸');</span></span><br><span class="line"><span class="comment">%---------------------对右肺修补--------------------------------------------</span></span><br><span class="line">    object1=<span class="number">1</span>-mask_rightlung; <span class="comment">%反转右肺轮廓</span></span><br><span class="line">    <span class="comment">%figure();imshow(object1,[]);title('右肺反向后显示')</span></span><br><span class="line">    object2=imopen(object1,se_ball);<span class="comment">%开操作</span></span><br><span class="line"> <span class="comment">%figure();imshow(object2,[]);title('反向右肺模糊重影图显示')   %得到反向右肺模糊重影图</span></span><br><span class="line">    rightmask1=<span class="number">1</span>-object2;<span class="comment">%得到右肺模糊掩膜，反转回来，实质为白色</span></span><br><span class="line"> <span class="comment">%figure();imshow(rightmask1,[]);title('右肺模糊重影图显示')</span></span><br><span class="line"></span><br><span class="line">    rightmask2=im2bw(rightmask1,<span class="number">0.5</span>);<span class="comment">%右肺转换为二值图像</span></span><br><span class="line"> <span class="comment">%figure();imshow(rightmask2,[]);title('右肺清晰二值图像显示')</span></span><br><span class="line">    rightmask3=imfill(rightmask2,<span class="string">'hole'</span>);<span class="comment">%填充右肺实质空洞</span></span><br><span class="line"> <span class="comment">%figure();imshow(rightmask3,[]),title('填充右肺实质后显示');</span></span><br><span class="line">    rightmask4=imerode(rightmask3,se_erode);<span class="comment">%腐蚀操作，平滑作用</span></span><br><span class="line"><span class="comment">%  figure();imshow(rightmask4,[]),title('rightlungmask');</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">% % %  lungmask=im2bw(leftmask5+rightmask4);%将左右肺合并，得到全肺掩膜</span></span><br><span class="line">    lungmask=im2bw(leftmask4+rightmask4);<span class="comment">%将左右肺合并，得到全肺掩膜</span></span><br><span class="line">    lung=immultiply(lungmask,B);<span class="comment">%相与,得到的是灰度值从0到max-min+1的灰度图像</span></span><br><span class="line"> <span class="comment">%dicomwrite(lung,'E:\1_毕业设计\images_CT\S60\I00');%dicomwrite()函数将lung（从源图像提取出来的肺实质）图像保存为dicom文件格式，方便下次使用</span></span><br><span class="line"> <span class="comment">%subplot(2,2,2),imshow(lung,[]),title('提取的肺实质');</span></span><br><span class="line"> <span class="comment">%figure;imshow(lung,[]),title('提取的肺实质');</span></span><br><span class="line"><span class="comment">%name = + name;</span></span><br><span class="line">    feishizhi = [str_write,name];</span><br><span class="line">    imwrite(lung,feishizhi);</span><br><span class="line"><span class="comment">%break</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p><strong>以LIDC-IDRI-0001 中的部分切片为例，其中左侧为原始CT图像，右侧为分割肺实质后的图像，效果图如下:</strong></p>
+<p><img src="/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/6.png" alt=""></p>
+<h4 id="读取标注信息并存储"><a href="#读取标注信息并存储" class="headerlink" title="读取标注信息并存储"></a>读取标注信息并存储</h4><p>我们从医生的标注信息文件（.xml）读取肺结节的位置信息和良恶性程度，然后存储到对应的xls表中。主要用到2个函数： <code>readxml()</code>和<code>readdicom()</code><br><strong>代码如下：</strong><br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[num_mal,sop_text,max_min_xy]</span>=<span class="title">zl_readxml</span><span class="params">(xml_path)</span></span></span><br><span class="line"><span class="comment">% % function [sop_text,max_min_xy]=zl_readxml(xml_path)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">% clear all</span></span><br><span class="line"><span class="comment">% clc</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%xml_path = 'H:\肺结节\数据\LIDC-IDRI\900-300\LIDC-IDRI\LIDC-IDRI-0060\1.3.6.1.4.1.14519.5.2.1.6279.6001.203745372924354240670222118382\1.3.6.1.4.1.14519.5.2.1.6279.6001.463214953282361219537913355115\191.xml';</span></span><br><span class="line"><span class="comment">%% 跳转到内层标签unblindedReadNodule</span></span><br><span class="line">docNode = xmlread(xml_path);     <span class="comment">%读取XML文件返回一个文件模型节点*  </span></span><br><span class="line">document = docNode.getDocumentElement();</span><br><span class="line">readingSession = document.getElementsByTagName(<span class="string">'readingSession'</span>);  <span class="comment">%返回与给定的元素所有子节点的Nodelist对象*</span></span><br><span class="line"><span class="comment">%% 最后返回的三个值</span></span><br><span class="line"><span class="comment">%% 最后返回的三个值</span></span><br><span class="line">num_mal = []; <span class="comment">%每个结节的恶性度和属于该类别的图片的数量</span></span><br><span class="line">sop_text = &#123; &#125;; <span class="comment">%每个图片的标号</span></span><br><span class="line">max_min_xy = []; <span class="comment">%每个图像中肺结节的x和y的最小值和最大值</span></span><br><span class="line">sop_num = <span class="number">0</span>;         <span class="comment">%总结节个数？*</span></span><br><span class="line"><span class="comment">%%</span></span><br><span class="line"><span class="keyword">for</span> r = <span class="number">0</span>:readingSession.getLength()<span class="number">-1</span></span><br><span class="line">        unblinded_nodule = readingSession.item(r).getElementsByTagName(<span class="string">'unblindedReadNodule'</span>);     <span class="comment">%unblindedReadNodule一个节点标记，&lt;unblindedReadNodule&gt;节点数据包括在&lt;/unblindedReadNodule&gt;*</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> u = <span class="number">0</span> : unblinded_nodule.getLength()<span class="number">-1</span></span><br><span class="line"></span><br><span class="line">            roi = unblinded_nodule.item(u).getElementsByTagName(<span class="string">'roi'</span>);   <span class="comment">%item() 方法可返回节点列表中处于指定索引号的节点。*&lt;roi&gt;结节轮廓&lt;/roi&gt;*</span></span><br><span class="line">            mal = unblinded_nodule.item(u).getElementsByTagName(<span class="string">'malignancy'</span>);    <span class="comment">%&lt;malignancy&gt;结节恶性度&lt;/malignancy&gt;*</span></span><br><span class="line">            <span class="comment">%如果xml文件中没有malignancy或者roi标签直接跳过</span></span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">isempty</span>(roi.item(<span class="number">0</span>))       </span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">isempty</span>(mal.item(<span class="number">0</span>))       </span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">            Num_roi = roi.getLength();   <span class="comment">%该类别的图片的数量</span></span><br><span class="line">            mal_int = str2num(char(mal.item(<span class="number">0</span>).getTextContent()));</span><br><span class="line">            num_mal = [num_mal();mal_int,Num_roi];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">0</span> : Num_roi<span class="number">-1</span>  <span class="comment">%遍历*</span></span><br><span class="line">                sop_id = roi.item(<span class="built_in">i</span>).getElementsByTagName(<span class="string">'imageSOP_UID'</span>);    <span class="comment">%图片编号*  </span></span><br><span class="line">                sop_text&#123;sop_num + i + <span class="number">1</span>&#125; = char(sop_id.item(<span class="number">0</span>).getTextContent());   <span class="comment">%数组*</span></span><br><span class="line">                edgeMap = roi.item(<span class="built_in">i</span>).getElementsByTagName(<span class="string">'edgeMap'</span>);   <span class="comment">%边界* </span></span><br><span class="line">                 xy = [];</span><br><span class="line">                <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">0</span> :edgeMap.getLength()<span class="number">-1</span>            <span class="comment">%获得坐标*</span></span><br><span class="line">                    xCoord = edgeMap.item(<span class="built_in">j</span>).getElementsByTagName(<span class="string">'xCoord'</span>);</span><br><span class="line">                    xCoord_int = str2num(char(xCoord.item(<span class="number">0</span>).getTextContent()));</span><br><span class="line"></span><br><span class="line">                    yCoord = edgeMap.item(<span class="built_in">j</span>).getElementsByTagName(<span class="string">'yCoord'</span>);</span><br><span class="line">                    yCoord_int = str2num(char(yCoord.item(<span class="number">0</span>).getTextContent()));</span><br><span class="line">                    xy=[xy();xCoord_int,yCoord_int];</span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">                <span class="comment">%找到结节轮廓*</span></span><br><span class="line">                <span class="keyword">if</span> edgeMap.getLength()==<span class="number">1</span></span><br><span class="line">                   max_min_xy = [max_min_xy();xy,xy];</span><br><span class="line">                   <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">                [maxr,max_index] = max(xy);</span><br><span class="line">                [minr,min_index] = min(xy);</span><br><span class="line">                max_min_xy = [max_min_xy();minr,maxr];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">            sop_num = sop_num + Num_roi;   <span class="comment">%总个数</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isempty</span>(num_mal)                      </span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">         num_mal = [num_mal();<span class="number">0</span>,<span class="number">0</span>];    <span class="comment">%扩展维数*</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>上述是辅助函数，提取函数如下所示：</strong><br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">clear;</span><br><span class="line">clc;     </span><br><span class="line"><span class="comment">%% Each treatment 100 or 200       %处理数据导入到表格中</span></span><br><span class="line"><span class="comment">%LIDC_path   = 'E:\zhaolei\深度学习\肺结节\400-499\LIDC-IDRI\';    原路径</span></span><br><span class="line">LIDC_path   = <span class="string">'D:\MATLAB\tiqu\LIDC-IDRI'</span>;</span><br><span class="line"><span class="comment">%IDRI_path = 'H:\肺结节\数据\LIDC-IDRI\';     原路径</span></span><br><span class="line"><span class="comment">%XLS_path = 'H:\肺结节\数据\excel\excel_all';     原路径</span></span><br><span class="line">IDRI_path = <span class="string">'D:\MATLAB\tiqu\LIDC-IDRI'</span>;</span><br><span class="line">XLS_path = <span class="string">'D:\MATLAB\tiqu\xls'</span>;</span><br><span class="line">IDRI_child_path = dir(IDRI_path);                               <span class="comment">%打开文件目录并返回文件结构体*</span></span><br><span class="line">num_IDRI_child = <span class="built_in">size</span>(IDRI_child_path);                             <span class="comment">%返回列和行数的数组*  </span></span><br><span class="line"><span class="comment">%for n = 8 :num_IDRI_child 原版            %为啥从8开始？？？</span></span><br><span class="line"><span class="keyword">for</span> n = <span class="number">3</span> :num_IDRI_child    <span class="comment">%非原版</span></span><br><span class="line">   <span class="comment">% child_idri_path = [IDRI_path,IDRI_child_path(n).name];原版（可能有错）</span></span><br><span class="line">    child_idri_path = [IDRI_path,<span class="string">'\',IDRI_child_path(n).name];   %非原版</span></span><br><span class="line"><span class="string">    child_idri_path_temp = dir(child_idri_path);                %打开文件*</span></span><br><span class="line"><span class="string">    LIDC_path = [child_idri_path,'</span>\<span class="string">',child_idri_path_temp(3).name];     %文件目录*</span></span><br><span class="line"><span class="string">    LIDC_child_path = dir(LIDC_path);        %打开</span></span><br><span class="line"><span class="string">    num_child = size(LIDC_child_path);      %返回文件的列和行数的数组*</span></span><br><span class="line"><span class="string">    for i = 3 : num_child(1)       %从3开始（前两个是. ..） </span></span><br><span class="line"><span class="string">        %% find dicom file list</span></span><br><span class="line"><span class="string">        child_path = [LIDC_path,'</span>\<span class="string">',LIDC_child_path(i).name];        %一步步打开文件夹</span></span><br><span class="line"><span class="string">        child_path_temp = dir(child_path);</span></span><br><span class="line"><span class="string">        child_path1 = [child_path,'</span>\<span class="string">',child_path_temp(3).name];</span></span><br><span class="line"><span class="string">        child_path_temp = dir(child_path1);</span></span><br><span class="line"><span class="string">        %xml_path = [child_path1,'</span>\<span class="string">',child_path_temp(3).name];</span></span><br><span class="line"><span class="string">        xml_path = [child_path,'</span>\<span class="string">'];</span></span><br><span class="line"><span class="string">        %获取单个文件夹中的dicom和xml文件</span></span><br><span class="line"><span class="string">        dcm_files = find_files(xml_path, '</span>.dcm<span class="string">');    % 获得文件列表    </span></span><br><span class="line"><span class="string">        xml_files = find_files(xml_path, '</span>.xml<span class="string">');</span></span><br><span class="line"><span class="string">        xml_path = char(xml_files);      </span></span><br><span class="line"><span class="string">        [num_mal,sop_text,max_min_xy]=zl_readxml(xml_path);  %函数调用</span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string">       %  num_mal = []; %每个结节的恶性度和属于该类别的图片的数量</span></span><br><span class="line"><span class="string">       %  sop_text = &#123; &#125;; %每个图片的标号</span></span><br><span class="line"><span class="string">       % max_min_xy = []; %每个图像中肺结节的x和y的最小值和最大值</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        sop_num = size(sop_text);   %  获得行列数，行：？ 列：图片数*</span></span><br><span class="line"><span class="string">        mal_num = size(num_mal);        %行： 图片数？*</span></span><br><span class="line"><span class="string">        dcm_number = [ ];   %图片编号*    </span></span><br><span class="line"><span class="string">        %??</span></span><br><span class="line"><span class="string">        if sop_num(2)&gt;mal_num(1)           %要根据他们两个的差值来决定补多少个0</span></span><br><span class="line"><span class="string">            for m = 1 : sop_num(2)-mal_num(1)    </span></span><br><span class="line"><span class="string">                num_mal = [num_mal();0,0];    %添加扩展维度*</span></span><br><span class="line"><span class="string">            end</span></span><br><span class="line"><span class="string">        end</span></span><br><span class="line"><span class="string">        if sop_num(2)&lt; mal_num(1)</span></span><br><span class="line"><span class="string">            for m = 1 :  mal_num(1) - sop_num(2)     %  只有数据维度一样才能被写入到文件中！所以少的要补上四个0</span></span><br><span class="line"><span class="string">                dcm_number= [dcm_number;0];            %添加扩展维度</span></span><br><span class="line"><span class="string">                max_min_xy = [max_min_xy;0,0,0,0];       %添加扩展维度   </span></span><br><span class="line"><span class="string">            end</span></span><br><span class="line"><span class="string">        end</span></span><br><span class="line"><span class="string">        %??</span></span><br><span class="line"><span class="string">        %% Get the number and file name of the image In a single folder</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">         for md = 1 : sop_num(2)      %???            </span></span><br><span class="line"><span class="string">            dcm_number= [dcm_number;0];    </span></span><br><span class="line"><span class="string">        end</span></span><br><span class="line"><span class="string">           for j = 1:numel(dcm_files)    %遍历文件</span></span><br><span class="line"><span class="string">                    dicomInformation = dicominfo(dcm_files&#123;j&#125;);          %存储图片信息</span></span><br><span class="line"><span class="string">                    instance = dicomInformation.SOPInstanceUID;   </span></span><br><span class="line"><span class="string">                    imagenum = dicomInformation.InstanceNumber; </span></span><br><span class="line"><span class="string">                    % Make sure that the StudyInstanceUID matches that found in</span></span><br><span class="line"><span class="string">                    % the XML annotations</span></span><br><span class="line"><span class="string">                    for s = 1 : sop_num(2)    %对比</span></span><br><span class="line"><span class="string">                        if strcmpi(instance,sop_text(1,s))</span></span><br><span class="line"><span class="string">                           dcm_number(s) = imagenum;     %编号？？?*</span></span><br><span class="line"><span class="string">                        end</span></span><br><span class="line"><span class="string">                    end</span></span><br><span class="line"><span class="string">                    </span></span><br><span class="line"><span class="string">           end</span></span><br><span class="line"><span class="string">           </span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string">           total = [num_mal,dcm_number,max_min_xy];</span></span><br><span class="line"><span class="string">           if isempty(total)</span></span><br><span class="line"><span class="string">               continue;</span></span><br><span class="line"><span class="string">           end</span></span><br><span class="line"><span class="string">           child_path = [XLS_path,'</span>\<span class="string">',LIDC_child_path(i).name]</span></span><br><span class="line"><span class="string">           xlswrite(child_path,total);     %导入到表格中 2017/4/10</span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    end</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">end</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="提取肺结节"><a href="#提取肺结节" class="headerlink" title="提取肺结节"></a>提取肺结节</h4><p>读取到肺结节的位置信息和良恶性程度后，我们要根据该信息提取肺结节。主要用到2个函数： <code>jianqieimage()</code>和<code>jianqie()</code><br><strong>代码如下：</strong><br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">zl_jianqie</span><span class="params">(img_path,dir,times,size_center,col4xy)</span></span></span><br><span class="line">   <span class="comment">%dir 为患病可能程度，col4xy为剪切区域</span></span><br><span class="line">    train_path = <span class="string">'I:\肺结节\数据\result2\train23jpg\';</span></span><br><span class="line"><span class="string">    result_name = [img_path(24:37),'</span>_',char(num2str(dir)),<span class="string">'_'</span>,char(num2str(times)),img_path(<span class="number">38</span>:<span class="number">46</span>)];</span><br><span class="line">    train_path = [train_path,char(num2str(dir)),<span class="string">'\',result_name];  %剪切路径*</span></span><br><span class="line"><span class="string">    img=imread(img_path);  %读取图片文件*</span></span><br><span class="line"><span class="string">    img1=imcrop(img,col4xy);   %返回图像的一个裁剪区域*  I2=imcrop(I,[a b c d]);%利用裁剪函数裁剪图像，其中，</span></span><br><span class="line"><span class="string">    %（a,b）表示裁剪后左上角像素在原图像中的位置；c表示裁剪后图像的宽，d表示裁剪后图像的高</span></span><br><span class="line"><span class="string"> %% 分割肺结节实质</span></span><br><span class="line"><span class="string">    img1_size = size(img1);</span></span><br><span class="line"><span class="string">    min(min(img1));    %   找到最小值，最大值</span></span><br><span class="line"><span class="string">    max(max(img1));</span></span><br><span class="line"><span class="string">    t=graythresh(img1);    %使用最大类间方差法找到图片的一个合适的阈值threshold</span></span><br><span class="line"><span class="string">    C=im2bw(img1,t);   %转换为二值图像*</span></span><br><span class="line"><span class="string">    D=imfill(C,4,'</span>holes<span class="string">');%对二值化后的图像填充肺实质</span></span><br><span class="line"><span class="string">    if dir &gt;=4    %大概率为肺癌*</span></span><br><span class="line"><span class="string">        FMask=bwareaopen(D,10);  % 除二值图像中面积小于10的对象  </span></span><br><span class="line"><span class="string">        D = FMask;</span></span><br><span class="line"><span class="string">    end</span></span><br><span class="line"><span class="string">    total = 0;  </span></span><br><span class="line"><span class="string">    for i = 1:img1_size(1)   %行数    </span></span><br><span class="line"><span class="string">        for j = 1:img1_size(2)   %列数</span></span><br><span class="line"><span class="string">            if D(i,j) == 0   %二值图像当值为0时  （黑色）</span></span><br><span class="line"><span class="string">                img1(i,j) = 0;</span></span><br><span class="line"><span class="string">            end</span></span><br><span class="line"><span class="string">            if D(i,j) == 1   %二值图像当值为1时  （白色）</span></span><br><span class="line"><span class="string">       </span></span><br><span class="line"><span class="string">                if ~(i &gt; size_center(1) &amp;&amp; j &gt; size_center(1)&amp;&amp; j &lt; size_center(1) + size_center(3)&amp;&amp; i &lt; size_center(1) + size_center(3))    %不在范围内*？</span></span><br><span class="line"><span class="string">                     img1(i,j) = 0;   %取为黑色*</span></span><br><span class="line"><span class="string">                end</span></span><br><span class="line"><span class="string">            end</span></span><br><span class="line"><span class="string">        end</span></span><br><span class="line"><span class="string">    end</span></span><br><span class="line"><span class="string">  %% 保存图片</span></span><br><span class="line"><span class="string">  for m = 1:img1_size(1)</span></span><br><span class="line"><span class="string">        for n = 1:img1_size(2)</span></span><br><span class="line"><span class="string">            if img1(m,n) == 0    %黑色元素点个数*</span></span><br><span class="line"><span class="string">                total = total + 1;</span></span><br><span class="line"><span class="string">            end</span></span><br><span class="line"><span class="string">        end</span></span><br><span class="line"><span class="string">  end</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">    if total ~= img1_size(1)*img1_size(2)   %如果不全是黑*</span></span><br><span class="line"><span class="string">            imwrite(img1,train_path);    %存入图片*</span></span><br><span class="line"><span class="string">    end</span></span><br><span class="line"><span class="string">end</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">clear;</span><br><span class="line">clc;</span><br><span class="line"><span class="comment">%肺实质的图片</span></span><br><span class="line">image_path = <span class="string">'I:\肺结节\数据\result2\jpg2\';</span></span><br><span class="line"><span class="string">%肺结节的位置信息和良恶性程度</span></span><br><span class="line"><span class="string">xls_path = '</span>I:\肺结节\数据\result2\result22.xls';</span><br><span class="line">[txt,xls_text] = xlsread(xls_path);</span><br><span class="line">xls_num = <span class="built_in">size</span>(xls_text);</span><br><span class="line">xls_num(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span> m = <span class="number">1</span>:xls_num(<span class="number">1</span>)</span><br><span class="line">     img_name = xls_text(m,<span class="number">1</span>);</span><br><span class="line">     str = img_name&#123;<span class="number">1</span>&#125;;</span><br><span class="line">     img_name = [str,<span class="string">'.jpg'</span>];</span><br><span class="line">     jpg_child_path = [image_path,img_name]</span><br><span class="line">      <span class="keyword">if</span> exist(jpg_child_path,<span class="string">'file'</span>)</span><br><span class="line">          col4x = txt(m,<span class="number">4</span>) - txt(m,<span class="number">2</span>);</span><br><span class="line">          col4y = txt(m,<span class="number">5</span>) - txt(m,<span class="number">3</span>);</span><br><span class="line">          dir = txt(m,<span class="number">6</span>);</span><br><span class="line">          times = txt(m,<span class="number">7</span>);</span><br><span class="line">          size_center = [ ];</span><br><span class="line">          <span class="keyword">if</span> col4x &lt; <span class="number">32</span> &amp;&amp; col4y &lt; <span class="number">32</span></span><br><span class="line">              ma = <span class="number">0.5</span> * (<span class="number">32</span> - max(col4x,col4y));      </span><br><span class="line">              col4xy = [txt(m,<span class="number">2</span>)-ma,txt(m,<span class="number">3</span>)-ma,<span class="number">32</span>,<span class="number">32</span>];  </span><br><span class="line">              size_center =[ma,ma,max(col4x,col4y)];</span><br><span class="line">              zl_jianqie(jpg_child_path,dir,times,size_center,col4xy);</span><br><span class="line">              <span class="keyword">continue</span>;</span><br><span class="line">          <span class="keyword">end</span></span><br><span class="line">          size_center =[<span class="number">0</span>,<span class="number">0</span>,max(col4x,col4y)];</span><br><span class="line">          col4xy = [txt(m,<span class="number">2</span>),txt(m,<span class="number">3</span>),max(col4x,col4y),max(col4x,col4y)];</span><br><span class="line">          zl_jianqie(jpg_child_path,dir,times,size_center,col4xy);</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">%     break;</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p><strong>通过上面的函数，我们可以将肺结节提取出来，并按照良恶性程度分类存储</strong>。<br><strong>部分示例如下：</strong></p>
+<p><img src="/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/7.png" alt=""></p>
+<p>其中1-5表示肺结节的良恶性程度，5表示恶性可能性最大，1表示恶性可能性最小。<br><strong>注意：</strong>3表示不确定是否为肺结节，良恶性程度也不确定。</p>
+<h3 id="肺结节数据集"><a href="#肺结节数据集" class="headerlink" title="肺结节数据集"></a>肺结节数据集</h3><p>通过文中的方法，我们最后根据肺结节的<strong>良恶性程度（1-5）</strong>得到了5类肺结节。数目如下：</p>
+<ul>
+<li>良恶性程度为1：1254</li>
+<li>良恶性程度为2：1532</li>
+<li>良恶性程度为3：1721</li>
+<li>良恶性程度为4：1226</li>
+<li>良恶性程度为5：1646</li>
+</ul>
+<p>之前介绍过，3表示不确定，所以我们训练时舍弃该数据集。我们只需要判断良恶性，因而我们将良恶性程度为1和2归为<strong>良性</strong><code>（Malignant）</code>，良恶性程度为4和5归为另一类<strong>恶性</strong><code>（benign）</code>。主要采取的网络有<code>（CNN、DNN和SAE）</code>。</p>
+<h3 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h3><p>本文网络结构见论文： Using Deep Learning for Classification of Lung Nodules on Computed Tomography Images</p>
+<ol>
+<li><p>CNN的网络结构和参数<br><img src="/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/11.png" alt=""><br><img src="/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/22.png" alt=""></p>
+</li>
+<li><p>DNN的网络结构和参数<br><img src="/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/33.png" alt=""><br><img src="/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/44.png" alt=""></p>
+</li>
+<li><p>SAE的网络结构和参数<br><img src="/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/55.png" alt=""><br><img src="/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/66.png" alt=""></p>
+</li>
+</ol>
+<p><strong>最后在验证集上的测试结果如下：</strong></p>
+<p><img src="/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/77.png" alt=""></p>
+<p>通过比较可以发现，CNN的分类效果最好。</p>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><p>尽管CNN模型已经取得了不错的分类效果，但还需要提升。考虑到分类数据集还是太少，我们引入了生成式对抗网络（GAN）来扩充我们的肺结节数据集。关于GAN的介绍可以看我之前的一篇博客<a href="https://amberwu.top/2018/07/05/20180705%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9E%8B-GAN/" target="_blank" rel="noopener">深度学习的常见模型 （GAN）</a>,此处不详细介绍。</p>
+<p>我们通过CGAN网络训练了生成模型，扩充了我们的数据集，生成示例如下：</p>
+<p><img src="/2018/08/15/20180815利用深度学习对医学-CT-图像中的肺结节进行良恶性判断/88.png" alt=""></p>
+<p>然后将生成的数据与原始数据混合，重新训练CNN分类模型，在准确率上果然取得了一定的提升。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+	
+	  <div>
+		
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+		
+	  </div>
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/weixin1.jpg" alt="AmberWu wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎大家扫码交流！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+	
+	
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/项目/" rel="tag"><i class="fa fa-tag"></i> 项目</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/07/20180807Tensorflow入门2/" rel="next" title="Tensorflow入门学习2">
+                <i class="fa fa-chevron-left"></i> Tensorflow入门学习2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/25/20190325七月在线-深度学习/" rel="prev" title="七月在线-深度学习">
+                七月在线-深度学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="AmberWu" />
+            
+              <p class="site-author-name" itemprop="name">AmberWu</p>
+              <p class="site-description motion-element" itemprop="description">这是一个深度学习菜鸟储存粮食的地方</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/moyingyao" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:moyingyao@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://my.csdn.net/?ref=toolbar" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-copyright"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5021422784/home?wvr=5&topnav=1&mod=logo" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yzhao.top/" title="😆洋仔的世界😆" target="_blank">😆洋仔的世界😆</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集"><span class="nav-number">1.</span> <span class="nav-text">数据集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图像信息（-dcm）"><span class="nav-number">1.1.</span> <span class="nav-text">图像信息（.dcm）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注释信息（-xml）"><span class="nav-number">1.2.</span> <span class="nav-text">注释信息（.xml）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据预处理"><span class="nav-number">2.</span> <span class="nav-text">数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图像存储格式转换"><span class="nav-number">2.1.</span> <span class="nav-text">图像存储格式转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分割肺实质"><span class="nav-number">2.2.</span> <span class="nav-text">分割肺实质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#读取标注信息并存储"><span class="nav-number">2.3.</span> <span class="nav-text">读取标注信息并存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提取肺结节"><span class="nav-number">2.4.</span> <span class="nav-text">提取肺结节</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#肺结节数据集"><span class="nav-number">3.</span> <span class="nav-text">肺结节数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络模型"><span class="nav-number">4.</span> <span class="nav-text">网络模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拓展"><span class="nav-number">5.</span> <span class="nav-text">拓展</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AmberWu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v="></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v="></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

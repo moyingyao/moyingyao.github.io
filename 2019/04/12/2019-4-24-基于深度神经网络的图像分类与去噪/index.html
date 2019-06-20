@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#fff">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=" color="#fff">
+
+
+
+
+
+  <meta name="keywords" content="DL,denoise," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="AmberWu" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="本篇博文主要介绍噪音类型的分类和去噪。">
+<meta name="keywords" content="DL,denoise">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于深度神经网络的图像分类与去噪">
+<meta property="og:url" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/index.html">
+<meta property="og:site_name" content="AmberWu">
+<meta property="og:description" content="本篇博文主要介绍噪音类型的分类和去噪。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/1.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/2.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/3.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/4.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/5.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/7.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/8.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/6.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/9.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/10.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/11.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/12.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/13.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/14.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/15.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/16.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/17.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/18.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/19.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/20.png">
+<meta property="og:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/21.png">
+<meta property="og:updated_time" content="2019-06-20T03:34:07.205Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于深度神经网络的图像分类与去噪">
+<meta name="twitter:description" content="本篇博文主要介绍噪音类型的分类和去噪。">
+<meta name="twitter:image" content="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/"/>
+
+
+
+
+
+  <title>基于深度神经网络的图像分类与去噪 | AmberWu</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AmberWu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">越努力，越幸运</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-站主简介">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            站主简介
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-类别">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            类别
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-时间轴">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-categories" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://moyingyao.github.io/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AmberWu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AmberWu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">基于深度神经网络的图像分类与去噪</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-12T16:23:24+08:00">
+                2019-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目实战/" itemprop="url" rel="index">
+                    <span itemprop="name">项目实战</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>  阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,399
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本篇博文主要介绍噪音类型的分类和去噪。<a id="more"></a></p>
+<h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>现有的去噪方法取决于噪声类型的信息，通常由专家分类。换句话说，那些方法没有应用计算方法来对图像噪声类型进行预分类。此外，这些方法假设图像的噪声类型是像高斯噪声那样的单类噪声类型，这限制了实际应用中去噪方法的选择和能力。<br>与现有方法不同，我们采用一种新框架，<strong>不仅可以对单一类型噪声进行分类和去噪，而且可以根据实际需要对混合类型的噪声进行分类和去噪</strong>。</p>
+<p><strong>我们的方法和现有方法对比</strong><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/1.png" alt=""></p>
+<p><strong>数据集</strong></p>
+<ol>
+<li><code>Mnist</code>：Subset（10000张）</li>
+<li><code>cifar10</code>：Subset（10000张）</li>
+<li><code>BSD500</code>：Fullset（500张）</li>
+</ol>
+<p><strong>方法</strong><br>设计一个包含2个网络的框架：<strong>噪音分类网络</strong> <strong>去噪网络</strong>。</p>
+<ol>
+<li>噪音分类网络：对图像所包含的噪音类型进行识别分类</li>
+<li>去噪网络：根据噪音分类网络判别的噪音类型选择相应的去噪模型去除噪音，进而得到干净图像</li>
+</ol>
+<p><strong>总体框架图如下所示</strong><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/2.png" alt=""></p>
+<h2 id="项目实现过程"><a href="#项目实现过程" class="headerlink" title="项目实现过程"></a>项目实现过程</h2><h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h3><p>针对原始<strong>BSD500</strong>数据集，对其进行灰度转换，得到它的灰度图。<br>对于<code>Mnist（gray）</code>、<code>Cifar10（RGB）</code>、<code>BSD500（Gray&amp;RGB）</code>这4个数据集，在每个数据集上添加<strong>Gaussian、Salt、Speckle、Poisson</strong>噪音（可以组合），最终得到</p>
+<ol>
+<li>单类噪音数据集4类：Ga，Sa，Sp ，Po</li>
+<li>两类噪音数据集6类：Ga&amp;Sa，Ga&amp;Sp，Ga&amp;Po，Sa&amp;Sp，Sa&amp;Po，Sp&amp;Po</li>
+<li>多类噪音数据集5类（3和4）：Ga&amp;Sa&amp;Sp，Ga&amp;Sa&amp;Po，Ga&amp;Sp&amp;Po，Sa&amp;Sp&amp;Po， Ga&amp;Sa&amp;Sp&amp;Po</li>
+<li>混合噪音数据集共15类：综合上述1，2，3</li>
+</ol>
+<p><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/3.png" alt=""></p>
+<h3 id="噪音分类网络"><a href="#噪音分类网络" class="headerlink" title="噪音分类网络"></a>噪音分类网络</h3><p><strong>网络模型</strong><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/4.png" alt=""></p>
+<p><strong>详细参数</strong><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/5.png" alt=""></p>
+<p>利用Mnist和Cifar10的噪音数据集，对比几个分类网络，筛选出噪音识别准确率最高的网络（<strong>Our</strong>）。</p>
+<p><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/7.png" alt=""></p>
+<p><strong>为了和去噪网络的数据集匹配，将BSD的混合噪音也输入了我们设计的CNN网络，训练了一个分类模型。</strong>结果如下：</p>
+<p><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/8.png" alt=""></p>
+<h3 id="去噪网络设计"><a href="#去噪网络设计" class="headerlink" title="去噪网络设计"></a>去噪网络设计</h3><p><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/6.png" alt=""></p>
+<p>去噪网络主要由三种类型的层组成，如上图所示，<strong>由三种不同的颜色表示</strong>。 </p>
+<ol>
+<li>在第一层，我们使用96个尺寸的3×3×c滤波器进行卷积并生成96个特征图，我们在输入到下一层时使用整流线性单元的变量LReLU 来实现非线性。 这里，c表示训练图像的通道数，c表示灰度1，c表示彩色图3。</li>
+<li>从第2层到第（d-1）层，使用96个尺寸为3×3×96的滤波器 并且还使用了LReLU，并在卷积层和LReLU层之间进行了批量归一化操作，从而可以提高训练速度并加快收敛过程。</li>
+<li>对于最后一层，它使用大小为3×3×96的c滤波器重建输出。 它还删除了所有下采样层，因为这会大大降低我们模型的去噪效果。</li>
+</ol>
+<p>把BSD500的8种单类噪音（<strong>Gray和RGB各4种</strong>）数据输入设计的去噪网络，得到了8个单类噪音去噪模型。</p>
+<p><strong><font color="#FF0000">测试</font></strong>：</p>
+<ol>
+<li>如果图片被分类网络识别出仅包含单类噪音，就选择相应的单类去噪模型去除噪音</li>
+<li>如果图片被分类网络识别出包含多种噪音，根据所包含的噪音类型，依次选择多个单类去噪模型去除噪音</li>
+</ol>
+<h3 id="去噪结果分析"><a href="#去噪结果分析" class="headerlink" title="去噪结果分析"></a>去噪结果分析</h3><p><strong>去噪好坏的评价标准</strong></p>
+<ol>
+<li><strong>PSNR</strong>（Peak Signal to Noise Ratio）峰值信噪比<br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/9.png" alt=""></li>
+</ol>
+<p>其中，<code>MSE</code>表示当前图像X和参考图像Y的均方误差（Mean Square Error），<code>H、W</code>分别为图像的高度和宽度；<code>n</code>为每像素的比特数，一般取8，即像素灰阶数为256.。<code>PSNR</code>的单位是<code>dB</code>，<strong>数值越大表示失真越小越好</strong>。PSNR是最普遍和使用最为广泛的一种图像客观评价指标，然而它是基于对应像素点间的误差，即基于误差敏感的图像质量评价。<strong>由于并未考虑到人眼的视觉特性</strong>（人眼对空间频率较低的对比差异敏感度较高，人眼对亮度对比差异的敏感度较色度高，人眼对一个区域的感知结果会受到其周围邻近区域的影响等），<strong>因而经常出现评价结果与人的主观感觉不一致的情况</strong>。为此我们还引入了下面一个评价指标</p>
+<ol start="2">
+<li><strong>SSIM</strong>（structural similarity）结构相似性。它分别从<strong>亮度、对比度、结构</strong>三方面度量图像相似性。<br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/10.png" alt=""></li>
+</ol>
+<p>其中$\mu_X$、$\mu_Y$分别表示图像X和Y的均值，$\sigma_X$、$\sigma_Y$分别表示图像X和Y的方差，$\sigma_{XY}$表示图像X和Y的协方差，即</p>
+<p><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/11.png" alt=""></p>
+<p>$C_1$、$C_2$、$C_3$为常数，为了避免分母为0的情况，通常取$C_1=(K_1 \times L)^2$, $C2=(K_2 \times L)^2$, $C_3=C_2/2$, 一般地$K_1=0.01$,$K_2=0.03$, $L=255​$， 则</p>
+<p><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/12.png" alt=""></p>
+<p><strong>SSIM</strong>取值范围[0,1]，值越大，表示图像失真越小越好。</p>
+<h4 id="单类噪音"><a href="#单类噪音" class="headerlink" title="单类噪音"></a>单类噪音</h4><p><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/13.png" alt=""><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/14.png" alt=""></p>
+<p><strong>与其它方法的对比</strong><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/15.png" alt=""><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/16.png" alt=""></p>
+<h4 id="两类噪音"><a href="#两类噪音" class="headerlink" title="两类噪音"></a>两类噪音</h4><p><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/17.png" alt=""><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/18.png" alt=""></p>
+<h4 id="多类噪音"><a href="#多类噪音" class="headerlink" title="多类噪音"></a>多类噪音</h4><p><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/19.png" alt=""><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/20.png" alt=""><br><img src="/2019/04/12/2019-4-24-基于深度神经网络的图像分类与去噪/21.png" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>在单类噪音上取得了不错的效果，彩色图要比灰度图的去噪效果好，而且比已有的方法要好。</li>
+<li>多类噪音去噪效果不够好，灰度图要比彩色图好。</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+	
+	  <div>
+		
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+		
+	  </div>
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/weixin1.jpg" alt="AmberWu wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎大家扫码交流！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+	
+	
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DL/" rel="tag"><i class="fa fa-tag"></i> DL</a>
+          
+            <a href="/tags/denoise/" rel="tag"><i class="fa fa-tag"></i> denoise</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/05/20190424基于深度学习框架的水声信号的扩充和分类识别/" rel="next" title="基于深度学习框架的水声信号的扩充和分类识别">
+                <i class="fa fa-chevron-left"></i> 基于深度学习框架的水声信号的扩充和分类识别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/20/2019-4-25-FaceNet在FPGA等硬件平台上的实现/" rel="prev" title="FaceNet在FPGA等硬件平台上的实现">
+                FaceNet在FPGA等硬件平台上的实现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="AmberWu" />
+            
+              <p class="site-author-name" itemprop="name">AmberWu</p>
+              <p class="site-description motion-element" itemprop="description">这是一个深度学习菜鸟储存粮食的地方</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/moyingyao" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:moyingyao@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://my.csdn.net/?ref=toolbar" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-copyright"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5021422784/home?wvr=5&topnav=1&mod=logo" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yzhao.top/" title="😆洋仔的世界😆" target="_blank">😆洋仔的世界😆</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目简介"><span class="nav-number">1.</span> <span class="nav-text">项目简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目实现过程"><span class="nav-number">2.</span> <span class="nav-text">项目实现过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据预处理"><span class="nav-number">2.1.</span> <span class="nav-text">数据预处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#噪音分类网络"><span class="nav-number">2.2.</span> <span class="nav-text">噪音分类网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去噪网络设计"><span class="nav-number">2.3.</span> <span class="nav-text">去噪网络设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去噪结果分析"><span class="nav-number">2.4.</span> <span class="nav-text">去噪结果分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单类噪音"><span class="nav-number">2.4.1.</span> <span class="nav-text">单类噪音</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两类噪音"><span class="nav-number">2.4.2.</span> <span class="nav-text">两类噪音</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多类噪音"><span class="nav-number">2.4.3.</span> <span class="nav-text">多类噪音</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AmberWu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v="></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v="></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>
